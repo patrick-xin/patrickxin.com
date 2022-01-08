@@ -1,0 +1,30 @@
+import cn from "classnames";
+
+type PostTitleProps = {
+  title: string;
+  isGradient?: boolean;
+  size?: "sm" | "lg";
+  className?: string;
+};
+
+const PostTitle = ({
+  title,
+  isGradient = true,
+  size = "lg",
+  className,
+}: PostTitleProps) => {
+  return (
+    <h1
+      className={cn(`capitalize font-heading ${className ? className : ""}`, {
+        "text-3xl py-4 font-black md:text-5xl xl:leading-14 lg:text-6xl":
+          size === "lg",
+        "text-xl font-medium md:text-2xl lg:text-2xl": size === "sm",
+        "text-gradient": isGradient,
+      })}
+    >
+      {title}
+    </h1>
+  );
+};
+
+export default PostTitle;
