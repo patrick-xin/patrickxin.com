@@ -38,18 +38,14 @@ handler.get(async ({ query, db }, res) => {
 });
 
 handler.post(async ({ query, db }, res) => {
-  if (process.env.NODE_ENV === "production") return;
   const slug = query.slug as string;
 
-  const post = await db.post.findFirst({ where: { slug } });
-  if (!post) {
-    await db.post.create({
-      data: {
-        slug,
-      },
-    });
-  } else return res.end();
-
+  const post = await db.post.create({
+    data: {
+      slug,
+    },
+  });
+  if (post) return res.end();
   return res.status(200).json({
     message: `Successfully created post in db!`,
   });
