@@ -1,7 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import cuid from "cuid";
 
-import { URL } from "@common/constants";
 import { fetcher } from "@common/utils/fetcher";
 
 import type { IPost, IComment } from "@post/types";
@@ -62,7 +61,7 @@ export const useUpdateViews = (slug: string) => {
   const queryClient = useQueryClient();
   return useMutation(
     () => {
-      return fetch(`${URL}/api/post/${slug}/views`, {
+      return fetch(`/api/post/${slug}/views`, {
         method: "POST",
       });
     },
@@ -79,7 +78,7 @@ export const useUpdateLikes = (slug: string) => {
 
   const { mutate, isLoading } = useMutation(
     () => {
-      return fetch(`${URL}/api/post/${slug}/likes`, {
+      return fetch(`/api/post/${slug}/likes`, {
         method: "POST",
       });
     },
@@ -125,7 +124,7 @@ export const usePost = (
 ) =>
   useQuery<IPost, Error, number | IComment[]>(
     postKeys.single(slug),
-    () => fetcher(`${URL}/api/post/${slug}`),
+    () => fetcher(`/api/post/${slug}`),
     {
       select,
       enabled: !!slug,
@@ -156,7 +155,7 @@ type Posts = {
 
 export const usePosts = () => {
   const { data } = useQuery<Posts>([postKeys.all], () =>
-    fetcher<Posts>(`${URL}/api/post`)
+    fetcher<Posts>(`/api/post`)
   );
   return { data };
 };
