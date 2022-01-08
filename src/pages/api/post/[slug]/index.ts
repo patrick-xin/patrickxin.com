@@ -40,12 +40,14 @@ handler.get(async ({ query, db }, res) => {
 handler.post(async ({ query, db }, res) => {
   const slug = query.slug as string;
 
-  const post = await db.post.create({
-    data: {
+  await db.post.upsert({
+    where: { slug },
+    update: {
       slug,
     },
+    create: { slug },
   });
-  if (post) return res.end();
+
   return res.status(200).json({
     message: `Successfully created post in db!`,
   });
