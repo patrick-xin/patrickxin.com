@@ -29,6 +29,7 @@ const Post = defineDocumentType(() => ({
     description: { type: "string", required: true },
     isPublished: { type: "boolean", required: true },
     toc: { type: "boolean", required: true },
+    thumbnail: { type: "string", required: false },
   },
   computedFields,
 }));

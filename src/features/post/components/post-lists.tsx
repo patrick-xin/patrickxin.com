@@ -10,7 +10,7 @@ type PostListProps = {
 
 const PostList = ({ posts }: PostListProps) => {
   return (
-    <section className="flex justify-center">
+    <section className="flex">
       <motion.ul
         initial="initial"
         animate="animate"

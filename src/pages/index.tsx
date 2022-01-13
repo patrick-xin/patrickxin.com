@@ -1,41 +1,22 @@
-import { ReactElement, useState } from "react";
-import { GetStaticProps } from "next";
-import { AnimatePresence } from "framer-motion";
+import { PostLayout } from "@post/components";
 
-import {
-  PostCardList,
-  PostItemList,
-  PostLayout,
-  PostViewOption,
-} from "@post/components";
+import { ReactElement } from "react";
 
-import { getSortedPostsByDate } from "@post/lib";
-import type { Post } from ".contentlayer/types";
-
-const PostsPage = ({ posts }: { posts: Post[] }) => {
-  const [isGridView, setGridView] = useState(false);
+const HomePage = () => {
   return (
-    <div className="max-w-6xl mx-auto">
-      <PostViewOption isGridView={isGridView} setGridView={setGridView} />
-      <AnimatePresence exitBeforeEnter>
-        {isGridView ? (
-          <PostCardList posts={posts} />
-        ) : (
-          <PostItemList posts={posts} />
-        )}
-      </AnimatePresence>
+    <div className="max-w-4xl mx-auto">
+      <section className="flex-col gap-4 lg:flex lg:gap-10 items-center my-6">
+        <h1 className="text-xl lg:text-3xl mt-4">
+          Hello there! I'm Patrick Xin, a frontend developer, 🐱 lover and ☕
+          addict.
+        </h1>
+      </section>
     </div>
   );
 };
 
-export default PostsPage;
+export default HomePage;
 
-export const getStaticProps: GetStaticProps = async () => {
-  const posts = getSortedPostsByDate();
-
-  return { props: { posts } };
-};
-
-PostsPage.getLayout = function getLayout(page: ReactElement) {
+HomePage.getLayout = function getLayout(page: ReactElement) {
   return <PostLayout>{page}</PostLayout>;
 };

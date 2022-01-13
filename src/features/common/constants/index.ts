@@ -1,8 +1,16 @@
 export const ROUTES = [
   {
     path: "/",
-    label: "BLOG",
+    label: "Home",
     exact: true,
+  },
+  {
+    path: "/posts",
+    label: "Posts",
+  },
+  {
+    path: "/about",
+    label: "About",
   },
 ];
 

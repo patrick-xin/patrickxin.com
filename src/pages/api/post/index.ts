@@ -9,6 +9,16 @@ const handler = nc<Request, NextApiResponse>();
 handler.use(middleware);
 
 handler.get(async ({ db }, res) => {
+  // const postSortedByViews = await db.post.findMany({
+  //   orderBy: { view_count: "asc" },
+  // });
+  // const postSortedByLikes = await db.post.findMany({
+  //   orderBy: { like_count: "asc" },
+  // });
+  const postSortedByComments = await db.post.findMany({
+    orderBy: { comments: { _count: "asc" } },
+    include: { comments: true },
+  });
   const data = await db.post.findMany({
     select: {
       _count: {
@@ -16,7 +26,6 @@ handler.get(async ({ db }, res) => {
           comments: true,
         },
       },
-
       like_count: true,
       view_count: true,
       slug: true,
@@ -43,11 +52,14 @@ handler.get(async ({ db }, res) => {
     }),
     { viewsCount: 0, likesCount: 0, commentsCount: 0 }
   );
-  const comments = data.map((post) => post.comments).flat();
+  const comments = data
+    .map((post) => ({ comments: post.comments, slug: post.slug }))
+    .flat();
 
   res.status(200).json({
     data: result,
     comments,
+    posts: postSortedByComments,
   });
 });
 export default handler;

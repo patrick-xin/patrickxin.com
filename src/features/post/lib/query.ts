@@ -151,6 +151,7 @@ type Posts = {
     viewsCount: number;
   };
   comments: { createdAt: string }[];
+  posts: IPost[];
 };
 
 export const usePosts = () => {

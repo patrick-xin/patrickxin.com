@@ -1,8 +1,9 @@
 import { Post } from ".contentlayer/types";
-import { User } from "@prisma/client";
+import { IUser } from "features/admin/types";
+
 export type Frontmatter = Pick<
   Post,
-  "description" | "publishedAt" | "title" | "readingTime" | "slug"
+  "description" | "publishedAt" | "title" | "readingTime" | "slug" | "thumbnail"
 >;
 
 export interface IPost {
@@ -12,11 +13,12 @@ export interface IPost {
   like_count: number;
   updatedAt: Date;
   comments: IComment[];
+  thumbnail: string;
 }
 
 export interface IComment {
   id: string;
-  postSlug: string;
+  post: { slug: string };
   createdAt: string;
   content: string;
   user: IUser;
@@ -32,17 +34,6 @@ export interface IReply {
   content: string;
   createdAt: string;
   updatedAt: string;
-}
-
-export interface IUser {
-  username: string;
-  email: string;
-  role: Role;
-}
-
-enum Role {
-  "VISTOR",
-  "ADMIN",
 }
 
 export interface IAdjacentPosts {

@@ -1,10 +1,5 @@
-//import { useMutation, useQueryClient } from "react-query";
-
-//import Avatar from "boring-avatars";
-
-import { Hr } from "@common/components";
-import { usePostComments } from "@post/lib/query";
 import Avatar from "boring-avatars";
+import { usePostComments } from "@post/lib/query";
 
 import CommentBox from "./comment-box";
 import CommentForm from "./comment-form";
@@ -15,6 +10,7 @@ type PostCommentsProps = {
 
 const PostComments = ({ slug }: PostCommentsProps) => {
   const { comments, isLoading, isError } = usePostComments(slug);
+  console.log(slug);
 
   return (
     <section className="my-12 max-w-4xl mx-auto">
@@ -55,7 +51,7 @@ const PostComments = ({ slug }: PostCommentsProps) => {
             </div>
           ))}
       </div>
-      <Hr />
+
       <div className="my-8">
         <h3 className="text-lg md:text-xl my-4">
           Questions? Thoughts? Welcome to drop a comment below!

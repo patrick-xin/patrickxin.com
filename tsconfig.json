@@ -18,6 +18,8 @@
     "paths": {
       "@common/*": ["features/common/*"],
       "@post/*": ["features/post/*"],
+      "@auth/*": ["features/auth/*"],
+      "@admin/*": ["features/admin/*"],
       "@styles/*": ["styles/*"],
       "@lib/*": ["lib/*"],
       "@config/*": ["config/*"]

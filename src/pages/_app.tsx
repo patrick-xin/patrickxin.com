@@ -53,6 +53,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           locale: "en_IE",
         }}
       />
+
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <ThemeProvider attribute="class">

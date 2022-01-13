@@ -17,7 +17,7 @@ import {
   ScrollToTop,
   TableOfContent,
 } from "@post/components";
-import { Hr } from "@common/components";
+
 import { getAdjacentPosts, getAllPostsPaths, getPost } from "@post/lib";
 import type { IAdjacentPosts } from "@post/types";
 import siteConfig from "../../../config/site";
@@ -35,6 +35,7 @@ const PostPage = ({
     description: post.description,
     readingTime: post.readingTime,
     toc: true,
+    thumbnail: post.thumbnail,
   };
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
@@ -87,10 +88,9 @@ const PostPage = ({
           setTocOpen={setTocOpen}
         />
         <ScrollToTop isFixed top={1000} />
-        <GoBackButton path="/" title="posts" />
+        <GoBackButton path="/posts" title="posts" />
         <FrontMatter {...frontmatter} />
         <Component components={components} />
-        <Hr />
         <PostComments slug={frontmatter.slug} />
         <PostNavs adjacentPosts={adjacentPosts} />
         <MobileNav

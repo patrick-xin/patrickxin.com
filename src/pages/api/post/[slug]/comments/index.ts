@@ -11,16 +11,25 @@ handler.use(middleware);
 handler.post(async ({ query, body, db }, res) => {
   const { username, content, commentId, notificationId, email } = body;
   const slug = query.slug as string;
-
+  const user = await db.user.findUnique({
+    where: {
+      username_email: { username, email },
+    },
+  });
   if (username && content && email) {
+    if (!user) {
+      await db.user.create({
+        data: { email, username },
+      });
+    }
     await db.comment.create({
       data: {
         post: { connect: { slug } },
         content,
         user: {
-          create: {
-            email,
-            username,
+          connectOrCreate: {
+            where: { username_email: { email, username } },
+            create: { username, email },
           },
         },
         id: commentId,

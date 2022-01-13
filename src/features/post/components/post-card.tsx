@@ -14,8 +14,7 @@ const PostCard = ({ post }: { post: Frontmatter }) => {
       <Link href={`/posts/${post.slug}`}>
         <a>
           <Image
-            //src={post.thumbnail}
-            src={"/assets/images/test.jpg"}
+            src={post.thumbnail ?? "/assets/images/test.jpg"}
             layout="responsive"
             className="rounded-md"
             width={400}

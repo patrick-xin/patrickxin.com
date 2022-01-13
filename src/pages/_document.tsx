@@ -15,9 +15,8 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <link rel="shortcut icon" href="favicon.ico" />
-        </Head>
+        <Head />
+
         <body>
           <Main />
           <NextScript />
