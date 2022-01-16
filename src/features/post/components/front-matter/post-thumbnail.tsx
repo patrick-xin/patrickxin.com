@@ -33,6 +33,7 @@ const PostThumbnail = ({
       <p className="text-center my-4 lg:my-6 text-sm lg:text-base space-x-1 lg:space-x-2">
         <span>Image from</span>
         <a
+          rel="noreferrer"
           href={authorUrl}
           target="_blank"
           className="font-medium underline hover:text-mint transition-colors ease-linear"
@@ -41,6 +42,7 @@ const PostThumbnail = ({
         </a>
         <span>on</span>
         <a
+          rel="noreferrer"
           href={fromUrl}
           target="_blank"
           className="font-medium underline hover:text-orange transition-colors ease-linear"

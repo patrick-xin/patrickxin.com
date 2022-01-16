@@ -1,46 +1,47 @@
-import SpinLoader from "@common/components/svg/spin-loader";
-import { useDeleteUser, useGetUsers, useLogout } from "features/admin/hooks";
+import { Fragment, ReactElement } from "react";
+
 import AdminLayout from "features/admin/layout";
-import { Fragment, ReactElement, useMemo, useState } from "react";
+import SpinLoader from "@common/components/svg/spin-loader";
+
+import { useDeleteUser, useGetUsers } from "features/admin/hooks";
 
 const DashboardUsers = () => {
   const { users, error } = useGetUsers();
-  const [loading, setLoading] = useState(false);
+
   const { deleteUser, isDeleting } = useDeleteUser();
-  const renderTableHead = useMemo(() => {
-    return () => {
-      return (
-        <thead className="border-b border-gray-500">
-          <tr>
-            <th
-              scope="col"
-              className="text-sm font-medium text-orange dark:text-mint px-6 py-4 text-left"
-            >
-              username
-            </th>
-            <th
-              scope="col"
-              className="text-sm font-medium text-orange dark:text-mint px-6 py-4 text-left"
-            >
-              email
-            </th>
-            <th
-              scope="col"
-              className="text-sm font-medium text-orange dark:text-mint px-6 py-4 text-left"
-            >
-              comments
-            </th>
-            <th
-              scope="col"
-              className="text-sm font-medium text-orange dark:text-mint px-6 py-4 text-left"
-            >
-              actions
-            </th>
-          </tr>
-        </thead>
-      );
-    };
-  }, []);
+  const renderTableHead = () => {
+    return (
+      <thead className="border-b border-gray-500 text-base font-medium ">
+        <tr>
+          <th
+            scope="col"
+            className="text-orange dark:text-mint px-6 py-4 text-left"
+          >
+            username
+          </th>
+          <th
+            scope="col"
+            className="text-orange dark:text-mint px-6 py-4 text-left"
+          >
+            email
+          </th>
+          <th
+            scope="col"
+            className="text-orange dark:text-mint px-6 py-4 text-left"
+          >
+            comments
+          </th>
+          <th
+            scope="col"
+            className="text-orange dark:text-mint px-6 py-4 text-left"
+          >
+            actions
+          </th>
+        </tr>
+      </thead>
+    );
+  };
+  if (error) return <div>Erroe fetching users..</div>;
   return (
     <div className="dark:text-snow">
       <div className="flex flex-col max-w-4xl mx-auto">
@@ -56,24 +57,20 @@ const DashboardUsers = () => {
                       .map((user, index) => (
                         <Fragment key={`${user.id}-${index}`}>
                           <tr
-                            className={`border-t border-gray-500 ${
-                              user.role === "ADMIN"
-                                ? "dark:text-mint"
-                                : "dark:text-snow"
-                            }`}
+                            className={`border-t border-gray-500 hover:bg-mint/20 dark:hover:bg-slate`}
                           >
-                            <td className="text-sm font-light px-6 py-4 whitespace-nowrap">
+                            <td className="text-base font-medium  px-6 py-4 whitespace-nowrap">
                               {user.username}
                             </td>
-                            <td className="text-sm font-light px-6 py-4 whitespace-nowrap">
+                            <td className="text-base font-medium  px-6 py-4 whitespace-nowrap">
                               {user.email}
                             </td>
-                            <td className="text-sm font-light px-6 py-4 whitespace-nowrap">
+                            <td className="text-base font-medium  px-6 py-4 whitespace-nowrap">
                               {user._count.comment}
                             </td>
-                            <td className="text-sm font-light px-6 py-4 whitespace-nowrap">
+                            <td className="text-base font-medium  px-6 py-4 whitespace-nowrap">
                               <button
-                                className="bg-red-700 rounded px-2 py-1 inline-flex justify-center w-16"
+                                className="bg-red-700 text-snow text-sm rounded px-2 py-1 inline-flex justify-center w-16"
                                 onClick={() => {
                                   deleteUser(user.id);
                                 }}

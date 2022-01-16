@@ -31,7 +31,8 @@ handler.post(async ({ db, body }, res) => {
   const user = await db.user.findUnique({
     where: { username_email: { email, username } },
   });
-  if (user?.username && user.password && user.email) {
+
+  if (user) {
     bc.compare(password, user.password, (err, result) => {
       if (!err && result) {
         const claims = { sub: user.id };

@@ -18,7 +18,8 @@ const PostTitle = ({
       className={cn(`capitalize font-heading ${className ? className : ""}`, {
         "text-3xl py-4 font-black md:text-5xl xl:leading-14 lg:text-6xl":
           size === "lg",
-        "text-xl font-medium md:text-2xl lg:text-2xl": size === "sm",
+        "text-xl font-medium md:text-2xl lg:text-3xl xl:text-4xl":
+          size === "sm",
         "text-gradient": isGradient,
       })}
     >

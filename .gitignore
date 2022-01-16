@@ -6,6 +6,7 @@ public/sitemap.xml
 public/feed.xml
 .vercel
 .env
+.vscode
 
 # Contentlayer
 .contentlayer

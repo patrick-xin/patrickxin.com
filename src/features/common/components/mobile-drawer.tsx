@@ -68,7 +68,7 @@ const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
             </div>
 
             <div className="space-y-6">
-              <h4 className="text-2xl">Subscribe now!</h4>
+              {/* <h4 className="text-2xl">Subscribe now!</h4>
               <form className="flex">
                 <input
                   type="email"
@@ -81,7 +81,17 @@ const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
                 >
                   Subscribe
                 </button>
-              </form>
+              </form> */}
+              <div className="flex flex-col justify-center w-full space-y-4 text-center">
+                <h4 className="text-2xl">Say Hello</h4>
+                <a
+                  href="mailto:alpesdream@gmail.com"
+                  className="underline text-orange dark:text-mint"
+                >
+                  alpesdream@gmail.com
+                </a>
+              </div>
+
               <motion.div
                 className="mt-5 md:mt-9 w-full flex justify-center"
                 initial={{ opacity: 0 }}

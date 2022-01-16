@@ -69,6 +69,7 @@
   @apply bg-gradient-to-r from-orange to-pink-600 dark:from-mint dark:to-purple-700 fixed z-100 top-0 left-0 w-full h-[3px];
 }
 
+
 :not(pre) > code[class*="language-"] {
   @apply rounded p-0.5;
 }

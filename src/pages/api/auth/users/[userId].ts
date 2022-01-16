@@ -3,7 +3,6 @@ import nc from "next-connect";
 
 import { Request } from "@common/types";
 import middleware from "@common/lib/prisma/middleware";
-import cookie from "cookie";
 import auth from "@common/lib/prisma/middleware/auth";
 const handler = nc<Request, NextApiResponse>();
 

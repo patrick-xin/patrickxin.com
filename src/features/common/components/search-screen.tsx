@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
 
-import { ROUTES } from "@common/constants";
-
 interface SearchScreenProps {
   closeSearch(): void;
 }

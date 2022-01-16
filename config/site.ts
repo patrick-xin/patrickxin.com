@@ -3,12 +3,12 @@ const siteConfig = {
     title: "Patrick Xin",
     tagLine: "Frontend Developer",
     description:
-      "Articles and guides about JavaScript, CSS and Web Development from a frontend developer.",
-    url: "https://www.alpesdream.com",
+      "Articles, thoughts about Web Development from a frontend developer.",
+    url: "https://alpesdream.vercel.app/",
   },
   assets: {
     avatar: "/assets/images/seo-cover.jpeg",
-    favicon: "/assets/images/favicon.ico",
+    favicon: "/assets/favicon.ico",
   },
   socialLinks: {
     twitter: "@alpesdream",

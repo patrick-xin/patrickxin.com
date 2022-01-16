@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import SpinLoader from "@common/components/svg/spin-loader";
-import { useCommentMutation } from "@post/lib/query";
+import { useCommentMutation } from "@post/hooks";
 
 type CommentFormProps = {
   postSlug: string;
@@ -29,7 +29,6 @@ const CommentForm = ({ postSlug }: CommentFormProps) => {
       onSubmit={async (e) => {
         e.preventDefault();
         commentMutation.mutate();
-        console.log(commentMutation.isSuccess);
 
         if (commentMutation.isSuccess) {
           setUsername("");
@@ -70,7 +69,7 @@ const CommentForm = ({ postSlug }: CommentFormProps) => {
           !email
         }
         type="submit"
-        className="p-2 w-16 inline-flex justify-center rounded-md bg-orange text-snow dark:text-snow text-sm self-end disabled:opacity-25 disabled:cursor-not-allowed"
+        className="p-2 w-16 inline-flex justify-center rounded-md bg-orange text-snow dark:text-snow text-xs md:text-sm self-end disabled:opacity-25 disabled:cursor-not-allowed"
       >
         {commentMutation.isLoading ? <SpinLoader /> : "Submit"}
       </button>

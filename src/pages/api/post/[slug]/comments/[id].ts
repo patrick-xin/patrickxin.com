@@ -15,7 +15,7 @@ handler.post(async ({ query, body, db }, res) => {
     await db.reply.create({
       data: {
         comment: {
-          connect: {},
+          connect: { id },
         },
         to: username,
         by: "author",

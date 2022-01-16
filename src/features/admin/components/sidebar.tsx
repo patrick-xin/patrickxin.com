@@ -1,58 +1,13 @@
-import { Dispatch, Fragment, SetStateAction, useState } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import {
-  BellIcon,
-  MenuIcon,
-  HomeIcon,
-  BookOpenIcon,
-  BookmarkAltIcon,
-  SearchIcon,
-  DocumentIcon,
-  LogoutIcon,
-  ChatIcon,
-} from "@heroicons/react/outline";
-import {
-  LightBulbIcon,
-  LightningBoltIcon,
-  XIcon,
-} from "@heroicons/react/solid";
+import { useRouter } from "next/router";
 import Link from "next/link";
-import cn from "classnames";
 import Image from "next/image";
+import { Disclosure } from "@headlessui/react";
+import cn from "classnames";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronUpIcon, LightningBoltIcon } from "@heroicons/react/solid";
+
 import avatar from "../../../../public/assets/images/avatar.jpeg";
 
-import { ChevronUpIcon } from "@heroicons/react/solid";
-import { AnimatePresence, motion } from "framer-motion";
-import { useRouter } from "next/router";
-
-const navigation = [
-  { title: "Home", icon: <HomeIcon className="dashboard-icon" />, path: "/" },
-  {
-    title: "Search",
-    icon: <SearchIcon className="dashboard-icon" />,
-    path: "/",
-  },
-  {
-    title: "Recipes",
-    icon: <DocumentIcon className="dashboard-icon" />,
-    path: "/dashboard/recipes",
-  },
-  {
-    title: "Logout",
-    icon: <LogoutIcon className="dashboard-icon" />,
-    path: null,
-  },
-  {
-    title: "Feedback",
-    icon: <ChatIcon className="dashboard-icon" />,
-    path: null,
-  },
-];
-
-interface IProps {
-  setOpenNav: Dispatch<SetStateAction<boolean>>;
-  openNav: boolean;
-}
 const parentVariant = {
   initial: { opacity: 0 },
   animate: {
@@ -77,8 +32,9 @@ const SidebarNav = () => {
   return (
     <aside className="h-screen flex flex-col items-center px-8 col-span-2">
       <div className="flex items-center flex-col gap-6">
-        <div>Dashboard</div>
+        <h1 className="text-2xl">Dashboard</h1>
         <Image
+          alt="avatar"
           src={avatar}
           layout="fixed"
           height={50}
@@ -95,11 +51,7 @@ const SidebarNav = () => {
                   <Disclosure.Button
                     className={`flex justify-between items-center text-lg w-full
                     focus:outline-none focus-visible:ring
-                    focus-visible:ring-purple-500 focus-visible:ring-opacity-75 ${
-                      open
-                        ? "border-l-4 border-accent transition-all ease-linear"
-                        : ""
-                    }`}
+                    focus-visible:ring-purple-500 focus-visible:ring-opacity-75`}
                   >
                     <LightningBoltIcon className="w-6 h-6 text-orange dark:text-mint" />
                     <span>Performance</span>
@@ -120,84 +72,17 @@ const SidebarNav = () => {
                       >
                         <motion.button
                           variants={childVariant}
-                          className={cn("text-orange", {
-                            "text-dark-fg-primary":
-                              !!router.asPath.includes("views") ||
-                              !!router.asPath.includes("comments"),
+                          className={cn({
+                            "text-mint": !!router.asPath.endsWith("/dashboard"),
                           })}
                         >
                           <Link href="/admin/dashboard">
-                            <a>Oveall</a>
-                          </Link>
-                        </motion.button>
-                        <motion.button
-                          variants={childVariant}
-                          className={cn({
-                            "text-orange": router.asPath.includes("views"),
-                          })}
-                        >
-                          <Link href="/admin/dashboard/views">
-                            <a>Views</a>
-                          </Link>
-                        </motion.button>
-                        <motion.button
-                          variants={childVariant}
-                          className={cn({
-                            "text-orange": router.asPath.includes("comments"),
-                          })}
-                        >
-                          <Link href="/admin/dashboard/comments">
-                            <a>Comments</a>
-                          </Link>
-                        </motion.button>
-                        <motion.button
-                          variants={childVariant}
-                          className={cn({
-                            "text-orange": router.asPath.includes("comments"),
-                          })}
-                        >
-                          <Link href="/admin/dashboard/comments">
-                            <a>Likes</a>
-                          </Link>
-                        </motion.button>
-                        <motion.button
-                          variants={childVariant}
-                          className={cn({
-                            "text-orange": router.asPath.includes("comments"),
-                          })}
-                        >
-                          <Link href="/admin/dashboard/comments">
-                            <a>Subscribers</a>
+                            <a>overall</a>
                           </Link>
                         </motion.button>
                       </Disclosure.Panel>
                     )}
                   </AnimatePresence>
-                </>
-              )}
-            </Disclosure>
-          </li>
-          <li className="mx-6">
-            <Disclosure as="div">
-              {({ open }) => (
-                <>
-                  <Disclosure.Button
-                    className={`flex w-full justify-between items-center text-lg space-x-3
-                    focus:outline-none focus-visible:ring
-                    focus-visible:ring-purple-500 focus-visible:ring-opacity-75 ${
-                      open
-                        ? "border-l-4 border-accent transition-all ease-linear"
-                        : ""
-                    }`}
-                  >
-                    <LightningBoltIcon className="w-6 h-6 text-accent dark:text-dark-accent" />
-                    <span>Management</span>
-                    <ChevronUpIcon
-                      className={`${
-                        open ? "transform rotate-180" : ""
-                      } w-5 h-5 text-accent dark:text-dark-accent`}
-                    />
-                  </Disclosure.Button>
                   <AnimatePresence exitBeforeEnter>
                     {open && (
                       <Disclosure.Panel
@@ -205,28 +90,16 @@ const SidebarNav = () => {
                         variants={parentVariant}
                         initial="initial"
                         animate="animate"
-                        className="px-8 py-6 space-y-4 flex flex-col w-full gap-2 justify-start"
+                        className="px-8 py-2 space-y-4 flex flex-col w-full gap-2 justify-start"
                       >
                         <motion.button
                           variants={childVariant}
-                          className={cn("text-accent", {
-                            "text-dark-fg-primary":
-                              !!router.asPath.includes("views") ||
-                              !!router.asPath.includes("comments"),
+                          className={cn({
+                            "text-mint": !!router.asPath.includes("users"),
                           })}
                         >
                           <Link href="/admin/dashboard/users">
                             <a>users</a>
-                          </Link>
-                        </motion.button>
-                        <motion.button
-                          variants={childVariant}
-                          className={cn({
-                            "text-accent": router.asPath.includes("views"),
-                          })}
-                        >
-                          <Link href="/admin/dashboard/views">
-                            <a>comments</a>
                           </Link>
                         </motion.button>
                       </Disclosure.Panel>
@@ -243,33 +116,3 @@ const SidebarNav = () => {
 };
 
 export default SidebarNav;
-
-interface IIconProps {
-  icon: JSX.Element;
-  text?: string;
-  active?: boolean;
-}
-
-const IconPopover = ({ icon, text, active }: IIconProps) => {
-  const [show, setShow] = useState(false);
-  return (
-    <div className="relative">
-      <div
-        onMouseEnter={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}
-        className={cn(
-          "p-2 my-10 hover:bg-gray-100 dark:hover:bg-accent transition-colors ease-in-out rounded-lg",
-          {
-            "bg-gray-100 dark:bg-gray-600": active,
-          }
-        )}
-      >
-        {icon}
-      </div>
-
-      <div className="absolute -bottom-4 flex-center font-semibold rounded text-xs">
-        {text}
-      </div>
-    </div>
-  );
-};

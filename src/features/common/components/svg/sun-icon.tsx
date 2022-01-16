@@ -1,7 +1,3 @@
-type SunIconProps = {
-  onClick(): void;
-};
-
 const SunIcon = () => {
   return (
     <svg

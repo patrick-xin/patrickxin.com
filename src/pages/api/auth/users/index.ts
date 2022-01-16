@@ -14,7 +14,11 @@ handler.get(async ({ db }, res) => {
     select: {
       comment: {
         orderBy: { createdAt: "desc" },
-        select: { post: { select: { slug: true } }, content: true, id: true },
+        select: {
+          post: { select: { slug: true } },
+          content: true,
+          id: true,
+        },
       },
       _count: true,
       email: true,

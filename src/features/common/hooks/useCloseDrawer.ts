@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export const useCloseDrawer = (cb: () => void) => {
   const router = useRouter();

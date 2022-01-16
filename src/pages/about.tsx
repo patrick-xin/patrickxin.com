@@ -8,7 +8,7 @@ const AboutPage = () => {
         <p>
           I have passion for creating beautiful, user-friendly websites. I
           started my coding journey shortly before the pandemic began. I
-          immediately fall in love with React and NextJS. Since then, I've
+          immediately fall in love with React and NextJS. Since then, I&lsquo;ve
           learnt technology like Typescript, Prisma, GraplQL, StyledComponent,
           TailwindCSS, etc.. My goal is to become a full-stack software
           engineer.

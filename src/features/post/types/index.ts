@@ -3,7 +3,13 @@ import { IUser } from "features/admin/types";
 
 export type Frontmatter = Pick<
   Post,
-  "description" | "publishedAt" | "title" | "readingTime" | "slug" | "thumbnail"
+  | "description"
+  | "publishedAt"
+  | "title"
+  | "readingTime"
+  | "slug"
+  | "thumbnail"
+  | "updatedAt"
 >;
 
 export interface IPost {

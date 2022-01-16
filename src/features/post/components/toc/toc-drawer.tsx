@@ -12,7 +12,6 @@ interface DrawerProps {
 const TocDrawer = ({ isDrawerOpen, setOpenDrawer }: DrawerProps) => {
   const ref = useRef(null);
 
-  //useOnClickOutside(ref, () => setOpenDrawer(false));
   return (
     <AnimatePresence>
       {isDrawerOpen && (

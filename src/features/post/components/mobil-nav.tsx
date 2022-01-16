@@ -6,9 +6,14 @@ import PostLikes from "./front-matter/post-likes";
 type MobileNavProps = {
   setOpenDrawer: (openDrawer: boolean) => void;
   hasToc: boolean;
+  handleScrollToComments: () => void;
 };
 
-const MobileNav = ({ setOpenDrawer, hasToc = false }: MobileNavProps) => {
+const MobileNav = ({
+  setOpenDrawer,
+  hasToc = false,
+  handleScrollToComments,
+}: MobileNavProps) => {
   const { query } = useRouter();
   return (
     <nav className="fixed lg:hidden -mx-6 md:-mx-12 rounded-t bottom-0 w-full h-12 md:h-16 bg-powder shadow-lg border-t border-gray-300 dark:border-none dark:bg-stone-900 z-75 flex items-center">
@@ -22,7 +27,10 @@ const MobileNav = ({ setOpenDrawer, hasToc = false }: MobileNavProps) => {
           </li>
         )}
         <li>
-          <PostComment postSlug={query.slug as string} />
+          <PostComment
+            handleScrollToComments={handleScrollToComments}
+            postSlug={query.slug as string}
+          />
         </li>
         <li>
           <PostLikes postSlug={query.slug as string} />

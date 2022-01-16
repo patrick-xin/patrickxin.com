@@ -19,6 +19,7 @@ const PostCard = ({ post }: { post: Frontmatter }) => {
             className="rounded-md"
             width={400}
             height={270}
+            alt={`${post.title}-image`}
           />
           <div className="space-y-4 p-4 rounded-md dark:border dark:border-t-0 border-mint/20 ">
             <PublishTime

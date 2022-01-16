@@ -1,26 +1,28 @@
+import { ReactElement, useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { NextSeo } from "next-seo";
+import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
 
 import { useMDXComponent } from "next-contentlayer/hooks";
 import components from "@post/components/mdx/mdxComponents";
-import PostLayout from "@post/components/layout";
-import { ReactElement, useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { useMediaQuery } from "react-responsive";
 
 import {
   FrontMatter,
   GoBackButton,
-  MobileNav,
   PostComments,
   PostNavs,
   ScrollToTop,
   TableOfContent,
+  PostLayout,
 } from "@post/components";
 
 import { getAdjacentPosts, getAllPostsPaths, getPost } from "@post/lib";
-import type { IAdjacentPosts } from "@post/types";
+
 import siteConfig from "../../../config/site";
+
+const MobileNav = dynamic(() => import("@post/components/mobil-nav"));
 
 const PostPage = ({
   post,
@@ -30,15 +32,19 @@ const PostPage = ({
   const [isTocOpen, setTocOpen] = useState(false);
   const frontmatter = {
     publishedAt: post.publishedAt,
+    updatedAt: post.updatedAt,
     title: post.title,
     slug: post.slug,
     description: post.description,
     readingTime: post.readingTime,
-    toc: true,
+    toc: post.toc,
     thumbnail: post.thumbnail,
   };
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-
+  const ref = useRef(null);
+  function handleScrollToComments() {
+    ref.current.scrollIntoView({ behavior: "smooth" });
+  }
   useEffect(() => {
     if (process.env.NODE_ENV === "production") return;
     const createPost = async () => {
@@ -52,7 +58,7 @@ const PostPage = ({
     };
 
     createPost();
-  }, []);
+  }, [post.slug]);
   return (
     <motion.div
       initial={{ marginLeft: 0 }}
@@ -89,11 +95,15 @@ const PostPage = ({
         />
         <ScrollToTop isFixed top={1000} />
         <GoBackButton path="/posts" title="posts" />
-        <FrontMatter {...frontmatter} />
+        <FrontMatter
+          frontmatter={frontmatter}
+          handleScrollToComments={handleScrollToComments}
+        />
         <Component components={components} />
-        <PostComments slug={frontmatter.slug} />
+        <PostComments slug={frontmatter.slug} ref={ref} />
         <PostNavs adjacentPosts={adjacentPosts} />
         <MobileNav
+          handleScrollToComments={handleScrollToComments}
           hasToc={frontmatter.toc}
           setOpenDrawer={(openDrawer) => setTocOpen(openDrawer)}
         />

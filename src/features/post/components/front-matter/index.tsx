@@ -10,13 +10,17 @@ import Description from "./description";
 import PostComment from "./post-comment";
 import type { Frontmatter } from "../../types";
 
+type FrontMatterProps = {
+  handleScrollToComments: () => void;
+  frontmatter: Frontmatter;
+};
+
 const FrontMatter = ({
-  publishedAt,
-  title,
-  slug,
-  description,
-  readingTime,
-}: Frontmatter) => {
+  frontmatter,
+  handleScrollToComments,
+}: FrontMatterProps) => {
+  const { publishedAt, title, slug, description, readingTime, updatedAt } =
+    frontmatter;
   return (
     <section className="lg:py-12">
       <PostTitle title={title} />
@@ -27,7 +31,16 @@ const FrontMatter = ({
             <div className="space-y-1">
               <Author />
               <div className="flex items-center text-xs gap-1 tracking-widest italic lg:text-base">
-                <PublishTime publishedAt={publishedAt} />
+                {updatedAt ? (
+                  <>
+                    <span className="tracking-normal text-sm mr-2">
+                      Updated On
+                    </span>
+                    <PublishTime publishedAt={updatedAt} />
+                  </>
+                ) : (
+                  <PublishTime publishedAt={publishedAt} />
+                )}
                 <span> - </span>
                 <ReadingTime readingTime={readingTime} />
               </div>
@@ -41,7 +54,10 @@ const FrontMatter = ({
               <PostLikes postSlug={slug} />
             </div>
             <div className="hidden lg:block">
-              <PostComment postSlug={slug} />
+              <PostComment
+                postSlug={slug}
+                handleScrollToComments={handleScrollToComments}
+              />
             </div>
           </div>
         </div>

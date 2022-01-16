@@ -1,9 +1,10 @@
+import ThemeToggle from "@common/components/header/theme-toggle";
 import { useLogout } from "../hooks";
 
 const DashboardHeader = () => {
   const { logout, isLoading } = useLogout();
   return (
-    <header className="h-16 md:h-24 w-full ">
+    <header className="h-16 md:h-24 w-full mb-12">
       <nav
         className="grid grid-cols-2 max-w-6xl mx-auto lg:grid-cols-6 items-center h-full w-full
        px-8 md:px-12 lg:px-24"
@@ -11,8 +12,11 @@ const DashboardHeader = () => {
         <div className="col-start-4 col-span-4 flex">
           <ul className="hidden lg:flex justify-around items-center flex-1">
             <li>
+              <ThemeToggle />
+            </li>
+            <li>
               <button
-                className="border border-accent text-sm rounded p-2"
+                className="border border-mint dark:border-orange text-sm rounded p-2"
                 onClick={() => {
                   logout();
                 }}

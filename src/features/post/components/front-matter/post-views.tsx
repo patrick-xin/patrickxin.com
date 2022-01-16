@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { Tooltip } from "@common/components";
 import { EyeIcon } from "@heroicons/react/solid";
-import { usePostViews, useUpdateViews } from "@post/lib/query";
+import { usePostViews, useUpdateViews } from "@post/hooks";
 import { useEffect } from "react";
 
 const PostViews = ({ postSlug }: { postSlug: string }) => {

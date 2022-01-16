@@ -3,6 +3,7 @@ import nc from "next-connect";
 
 import { Request } from "@common/types";
 import middleware from "@common/lib/prisma/middleware";
+import auth from "@common/lib/prisma/middleware/auth";
 
 const handler = nc<Request, NextApiResponse>();
 
@@ -37,7 +38,7 @@ handler.get(async ({ query, db }, res) => {
   }
 });
 
-handler.post(async ({ query, db }, res) => {
+handler.use(auth).post(async ({ query, db }, res) => {
   const slug = query.slug as string;
 
   await db.post.upsert({
@@ -50,6 +51,19 @@ handler.post(async ({ query, db }, res) => {
 
   return res.status(200).json({
     message: `Successfully created post in db!`,
+  });
+});
+
+handler.use(auth).delete(async ({ query, db }, res) => {
+  const slug = query.slug as string;
+  console.log(slug);
+
+  await db.post.delete({
+    where: { slug },
+  });
+
+  return res.status(200).json({
+    message: `Successfully delete post ${slug}`,
   });
 });
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import cn from "classnames";
@@ -7,7 +8,6 @@ import ThemeToggle from "./theme-toggle";
 import MenuButton from "./menu-button";
 
 import { ROUTES } from "@common/constants";
-import { useCloseDrawer } from "@common/hooks/useCloseDrawer";
 
 interface HeaderProps {
   openDrawer(isopen: boolean): void;
@@ -31,7 +31,15 @@ const Header = ({ openDrawer, isDrawerOpen }: HeaderProps) => {
       >
         <div>
           <Link href="/">
-            <a className="font-bold">/alpsdream.io</a>
+            <a>
+              <Image
+                alt="logo-image"
+                src="/assets/images/logo.svg"
+                layout="fixed"
+                height={40}
+                width={40}
+              />
+            </a>
           </Link>
         </div>
 

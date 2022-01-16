@@ -1,4 +1,3 @@
-import { ThemeProvider } from "next-themes";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "@fontsource/dm-serif-display";
@@ -14,6 +13,7 @@ import { Progress, MessageModal } from "@common/components";
 
 import "@styles/globals.css";
 import siteConfig from "../../config/site";
+import ThemeProvider from "@common/components/theme-provider";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <ThemeProvider attribute="class">
+          <ThemeProvider>
             <MessageModal />
             {getLayout(<Component {...pageProps} />)}
             <Progress />

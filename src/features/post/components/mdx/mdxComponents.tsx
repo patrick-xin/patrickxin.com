@@ -19,7 +19,7 @@ const MDXComponents = {
           className="text-orange dark:text-mint underline underline-offset-4 font-medium relative inline-block link"
           href={href}
           target="_blank"
-          rel="noopener"
+          rel="noreferrer"
         />
       );
     }
