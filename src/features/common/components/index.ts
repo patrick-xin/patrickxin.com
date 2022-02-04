@@ -6,3 +6,5 @@ export { default as Header } from "./header";
 export { default as Footer } from "./footer";
 export { default as MobileDrawer } from "./mobile-drawer";
 export { default as MessageModal } from "./message-modal";
+export { default as BasicLayout } from "./layout";
+export { default as Breadcrumbs } from "./breadcrumbs";

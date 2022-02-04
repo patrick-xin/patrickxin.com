@@ -15,4 +15,6 @@
 
 ## Running locally
 
-Connection to PlanetScale is not required as long as you have your local databse setup, then run `prisma migrate dev`. If you want to create an Admin role, simply uncomment the code inside `pages/api/auth/login`, after you see your admin user in [Prisma Studio](https://www.prisma.io/studio), commnet it back.
+Connection to PlanetScale is not required as long as you have your local databse setup, then run `prisma migrate dev`. As I'm using Postgres as database, please refer to Prisma [documentation](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgres).
+
+If you want to create an Admin role, simply uncomment the code inside `pages/api/auth/login` and allow it to run once, once you see your admin user in [Prisma Studio](https://www.prisma.io/studio), comment it back.

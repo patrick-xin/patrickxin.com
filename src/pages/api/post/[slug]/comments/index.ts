@@ -17,35 +17,42 @@ handler.post(async ({ query, body, db }, res) => {
     },
   });
   if (username && content && email) {
-    if (!user) {
-      await db.user.create({
-        data: { email, username },
+    try {
+      if (!user) {
+        await db.user.create({
+          data: { email, username },
+        });
+      }
+
+      await db.comment.create({
+        data: {
+          post: { connect: { slug } },
+          content,
+          user: {
+            connectOrCreate: {
+              where: { username_email: { email, username } },
+              create: { username, email },
+            },
+          },
+          id: commentId,
+          notification: {
+            create: {
+              isRead: false,
+              id: notificationId,
+            },
+          },
+          notificationId,
+        },
+      });
+
+      res.status(200).json({
+        message: `Successfully posted comments on: ${query.slug} blog!`,
+      });
+    } catch (error) {
+      res.status(400).json({
+        message: `Unable to comment right now, please try again later...`,
       });
     }
-    await db.comment.create({
-      data: {
-        post: { connect: { slug } },
-        content,
-        user: {
-          connectOrCreate: {
-            where: { username_email: { email, username } },
-            create: { username, email },
-          },
-        },
-        id: commentId,
-        notification: {
-          create: {
-            isRead: false,
-            id: notificationId,
-          },
-        },
-        notificationId,
-      },
-    });
-
-    return res.status(200).json({
-      message: `Successfully posted comments on: ${query.slug} blog!`,
-    });
   }
 });
 

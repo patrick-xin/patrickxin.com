@@ -6,7 +6,9 @@ const PublishTime = ({
   className?: string;
 }) => {
   return (
-    <span className={className ? className : "tracking-normal text-sm"}>
+    <span
+      className={className ? className : "tracking-normal text-xs lg:text-sm"}
+    >
       {publishedAt}
     </span>
   );

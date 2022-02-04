@@ -14,14 +14,15 @@ const PostCard = ({ post }: { post: Frontmatter }) => {
       <Link href={`/posts/${post.slug}`}>
         <a>
           <Image
-            src={post.thumbnail ?? "/assets/images/test.jpg"}
+            src={post.thumbnail.url}
             layout="responsive"
             className="rounded-md"
             width={400}
             height={270}
             alt={`${post.title}-image`}
+            objectFit="cover"
           />
-          <div className="space-y-4 p-4 rounded-md dark:border dark:border-t-0 border-mint/20 ">
+          <div className="space-y-4 px-4 py-6 lg:p-4 xl:min-h-[16rem] flex flex-col justify-between rounded-md dark:border dark:border-t-0 border-mint/20 ">
             <PublishTime
               className="italic text-sm"
               publishedAt={post.publishedAt}

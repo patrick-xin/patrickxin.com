@@ -10,14 +10,16 @@
     @apply text-gray-600 bg-snow dark:bg-lead dark:text-snow/90
      text-base antialiased font-body lg:text-lg leading-3 tracking-tight xl:tracking-wide;
   }
-
+  h1,h2,h3,h4,h5{
+    @apply font-heading tracking-wider
+  }
   code,
   pre {
-    @apply font-code text-cherry bg-powder dark:bg-slate dark:text-grape;
+    @apply font-code text-cherry bg-gray-50 dark:bg-slate  rounded-md dark:text-grape;
   }
 
   pre {
-    @apply my-4 md:my-6 overflow-auto rounded-md shadow-sm pb-2 md:pb-6;
+    @apply my-4 overflow-auto rounded-md shadow-sm pb-2 md:pb-6;
   }
 
   code {
@@ -56,9 +58,7 @@
 }
 
 :not(pre) > code {
-  padding: 0.2em 0.3em;
-  border-radius: 0.2em;
-  white-space: normal;
+  @apply px-[0.2rem] py-[0.3rem] rounded whitespace-normal
 }
 
 #nprogress {
@@ -93,47 +93,47 @@ pre[class*="language-"] {
 }
 
 .token.attr-name {
-  @apply text-green-600;
+  @apply text-cyan-500 dark:text-green-600;
 }
 
 .token.attr-value {
-  @apply text-lime-600;
+  @apply text-yellow-500 dark:text-lime-600;
 }
 
 .token.attribute {
-  @apply text-lime-600;
+  @apply text-yellow-500 dark:text-lime-600;
 }
 
 .token.boolean {
-  @apply text-pink-300;
+  @apply text-purple-500 dark:text-pink-300;
 }
 
 .token.builtin {
-  @apply text-green-600;
+  @apply text-cyan-500 dark:text-green-600;
 }
 
 .token.cdata {
-  @apply text-cyan-200;
+  @apply text-cyan-500 dark:text-green-600;
 }
 
 .token.char {
-  @apply text-cyan-200;
+  @apply text-cyan-500 dark:text-green-600;
 }
 
 .token.class {
-  @apply dark:text-amber-400;
+  @apply text-cyan-500 dark:text-amber-400;
 }
 
 .token.class-name {
-  @apply text-yellow-500 dark:text-yellow-300;
+  @apply text-indigo-500 dark:text-yellow-300;
 }
 
 .token.comment {
-  @apply text-gray-500;
+  @apply text-stone-500 dark:text-gray-500;
 }
 
 .token.constant {
-  @apply text-yellow-700 dark:text-yellow-500;
+  @apply text-purple-500 dark:text-yellow-500;
 }
 
 .token.deleted {
@@ -149,7 +149,7 @@ pre[class*="language-"] {
 }
 
 .token.function {
-  @apply text-mint dark:text-pink-500;
+  @apply text-purple-500 dark:text-pink-500;
 }
 
 .token.hexcode {
@@ -157,19 +157,19 @@ pre[class*="language-"] {
 }
 
 .token.id {
-  @apply text-pink-300 font-bold;
+  @apply text-purple-500 dark:text-pink-300 font-bold;
 }
 
 .token.important {
-  @apply text-pink-400 font-bold;
+  @apply text-purple-500 dark:text-pink-300 font-bold;
 }
 
 .token.inserted {
-  @apply text-cyan-300;
+  @apply text-green-600;
 }
 
 .token.keyword {
-  @apply text-pink-600 dark:text-pink-300;
+  @apply text-purple-500 dark:text-pink-300;
 }
 
 .token.number {
@@ -177,7 +177,7 @@ pre[class*="language-"] {
 }
 
 .token.operator {
-  @apply text-cyan-300;
+  @apply text-cyan-500;
 }
 
 .token.prolog {
@@ -185,7 +185,7 @@ pre[class*="language-"] {
 }
 
 .token.property {
-  @apply text-cyan-300;
+  @apply dark:text-cyan-300 text-cyan-600;
 }
 
 .token.pseudo-class {
@@ -233,22 +233,29 @@ pre[class*="language-"] {
 }
 
 .code-line {
-  @apply block px-4 my-2 border-l border-gray-600/10;
+  @apply block px-5 -mx-[13px] border-l border-gray-600/20;
 }
 
 .code-line.inserted {
-  @apply bg-green-500/20;
+  @apply bg-green-600/40;
 }
 
 .code-line.deleted {
   @apply bg-red-500/20;
 }
 
+.code-highlight {
+  @apply float-left min-w-full
+}
+
 .highlight-line {
-  @apply -mx-4 bg-gray-600/50 border-l-4 border-blue-700;
+  @apply dark:bg-gray-600/50 bg-black/5 min-w-max -mx-5 border-l-rose-400 dark:border-l-teal-600 border-l-8;
 }
 
 .line-number::before {
   @apply inline-block w-4 text-right mr-5 -ml-2 text-gray-400;
   content: attr(line);
+}
+.rehype-code-title{
+  @apply dark:bg-mint/20 bg-orange/70 text-white rounded p-1 lg:py-2 flex items-center mt-4 -mb-1 lg:mt-6 w-fit text-sm lg:-mb-7
 }

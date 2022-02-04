@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import PostTitle from "./post-title";
 import Author from "./author";
 import PublishTime from "./publish-time";
@@ -10,6 +11,8 @@ import Description from "./description";
 import PostComment from "./post-comment";
 import type { Frontmatter } from "../../types";
 
+import { ease } from "@common/animation";
+
 type FrontMatterProps = {
   handleScrollToComments: () => void;
   frontmatter: Frontmatter;
@@ -19,11 +22,15 @@ const FrontMatter = ({
   frontmatter,
   handleScrollToComments,
 }: FrontMatterProps) => {
-  const { publishedAt, title, slug, description, readingTime, updatedAt } =
-    frontmatter;
+  const { publishedAt, title, slug, description, readingTime } = frontmatter;
   return (
-    <section className="lg:py-12">
-      <PostTitle title={title} />
+    <motion.section
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ ease, delay: 0.2 }}
+      className="lg:py-12"
+    >
+      <PostTitle title={title} isGradient />
       <div className="flex items-center justify-between md:my-4 lg:my-8">
         <div className="grid grid-cols-1 md:grid-cols-6 w-full lg:mb-12">
           <div className="flex gap-4 col-span-3 items-center w-full">
@@ -31,24 +38,17 @@ const FrontMatter = ({
             <div className="space-y-1">
               <Author />
               <div className="flex items-center text-xs gap-1 tracking-widest italic lg:text-base">
-                {updatedAt ? (
-                  <>
-                    <span className="tracking-normal text-sm mr-2">
-                      Updated On
-                    </span>
-                    <PublishTime publishedAt={updatedAt} />
-                  </>
-                ) : (
-                  <PublishTime publishedAt={publishedAt} />
-                )}
+                <PublishTime publishedAt={publishedAt} />
                 <span> - </span>
                 <ReadingTime readingTime={readingTime} />
               </div>
             </div>
           </div>
 
-          <div className="col-span-3 mt-6 md:mt-0 justify-end text-sm items-center gap-4 flex">
-            <PostViews postSlug={slug} />
+          <div className="col-span-3 justify-end text-sm items-center gap-4 flex">
+            <div className="hidden lg:block">
+              <PostViews postSlug={slug} />
+            </div>
 
             <div className="hidden lg:block">
               <PostLikes postSlug={slug} />
@@ -63,7 +63,7 @@ const FrontMatter = ({
         </div>
       </div>
       <Description description={description} />
-    </section>
+    </motion.section>
   );
 };
 

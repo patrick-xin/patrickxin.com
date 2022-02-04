@@ -1,4 +1,4 @@
-import { AnnotationIcon } from "@heroicons/react/solid";
+import { AnnotationIcon } from "@heroicons/react/outline";
 import { AnimatePresence, motion } from "framer-motion";
 
 type TocButtonProps = {

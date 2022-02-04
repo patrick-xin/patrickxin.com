@@ -21,6 +21,9 @@ import {
 import { getAdjacentPosts, getAllPostsPaths, getPost } from "@post/lib";
 
 import siteConfig from "../../../config/site";
+import { ease } from "@common/animation";
+import { Breadcrumbs } from "@common/components";
+import Image from "next/image";
 
 const MobileNav = dynamic(() => import("@post/components/mobil-nav"));
 
@@ -94,13 +97,45 @@ const PostPage = ({
           setTocOpen={setTocOpen}
         />
         <ScrollToTop isFixed top={1000} />
-        <GoBackButton path="/posts" title="posts" />
+        <Breadcrumbs title={post.title} />
         <FrontMatter
           frontmatter={frontmatter}
           handleScrollToComments={handleScrollToComments}
         />
-        <Component components={components} />
+        <div>
+          <Image
+            src={post.thumbnail.url}
+            layout="responsive"
+            className="rounded-md"
+            width={400}
+            height={270}
+            alt={`${post.title}-image`}
+            objectFit="cover"
+          />
+          <div className="text-center text-xs lg:text-sm mt-2 lg:mt-4">
+            Image from
+            <a
+              className="hover:text-orange mx-2 dark:hover:text-mint inline-block"
+              href={post.thumbnail.from}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {post.thumbnail.author}
+            </a>
+            on Unsplash
+          </div>
+        </div>
+
+        <motion.article
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ ease, delay: 0.3 }}
+        >
+          <Component components={components} />
+        </motion.article>
+
         <PostComments slug={frontmatter.slug} ref={ref} />
+        <GoBackButton path="/posts" title="Go back to posts" />
         <PostNavs adjacentPosts={adjacentPosts} />
         <MobileNav
           handleScrollToComments={handleScrollToComments}

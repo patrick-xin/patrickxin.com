@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Dialog } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
-import cn from "classnames";
 
 import {
   XIcon,
@@ -12,6 +11,32 @@ import {
 
 import { useModalStore } from "@common/hooks";
 
+const variants = {
+  initial: {
+    opacity: 0,
+    y: 12,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+  },
+  exit: {
+    opacity: 0,
+    y: "-100%",
+  },
+};
+
+const positions = {
+  topCenter: "top-0 mx-auto",
+  topRight: "top-0 right-0",
+  bottomCenter: "top-0 right-0",
+  bottomRight: "bottom-0 right-0",
+};
+const types = {
+  success: "bg-green-500",
+  error: "bg-red-500",
+  warning: "bg-yellow-500",
+};
 const MessageModal = () => {
   const {
     closeMessageModal,
@@ -38,44 +63,15 @@ const MessageModal = () => {
           initialFocus={completeButtonRef}
           open={isMessageModalOpen}
           as={motion.div}
-          initial={{
-            scale: 0.5,
-            opacity: 0,
-            y:
-              position === "bottom" || position === "bottomRight"
-                ? "100%"
-                : "0",
-            x: position === "topRight" ? "100%" : "0",
-          }}
-          animate={{ scale: 1, opacity: 1, y: 0, x: 0 }}
-          exit={{
-            opacity: 0,
-            y:
-              position === "bottom" || position === "bottomRight"
-                ? "100%"
-                : "-100%",
-          }}
-          className={cn("fixed w-72 z-100", {
-            "top-0": position === "top",
-            "bottom-0": position === "bottom",
-            "bottom-10 right-6": position === "bottomRight",
-            "top-10 right-6": position === "topRight",
-            "mx-auto left-0 right-0":
-              position === "bottom" || position === "top",
-          })}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={variants}
+          className={`fixed w-72 z-100 ${positions[position]}`}
           onClose={closeMessageModal}
         >
           <div
-            className={cn(
-              "shadow-xl rounded-md w-full p-2 relative flex items-center gap-2",
-              {
-                "bg-mint": messageType === "success",
-                "bg-red-500": messageType === "error",
-                "bg-yellow-500": messageType === "warning",
-                "ml-auto":
-                  position === "bottomRight" || position === "topRight",
-              }
-            )}
+            className={`flex h-12 w-48 items-center justify-center rounded ${types[messageType]}`}
           >
             {messageType === "warning" && (
               <ExclamationCircleIcon className="text-snow h-6 w-6" />
@@ -100,7 +96,7 @@ const MessageModal = () => {
               ref={completeButtonRef}
               type="button"
               className="absolute top-3 right-2"
-              onClick={() => closeMessageModal()}
+              onClick={closeMessageModal}
             >
               <XIcon className="h-4 w-4 text-snow" />
             </button>

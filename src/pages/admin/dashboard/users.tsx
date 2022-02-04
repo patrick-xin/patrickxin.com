@@ -1,14 +1,19 @@
 import { Fragment, ReactElement } from "react";
 
 import AdminLayout from "features/admin/layout";
-import SpinLoader from "@common/components/svg/spin-loader";
+import { SpinLoader } from "@common/components/svg";
 
-import { useDeleteUser, useGetUsers } from "features/admin/hooks";
+import { deleteUser, useGetUsers } from "features/admin/hooks";
+import { useMutation, useQueryClient } from "react-query";
 
 const DashboardUsers = () => {
   const { users, error } = useGetUsers();
 
-  const { deleteUser, isDeleting } = useDeleteUser();
+  const queryClient = useQueryClient();
+  const { mutate, status } = useMutation(deleteUser, {
+    onSuccess: () => queryClient.invalidateQueries("users"),
+  });
+
   const renderTableHead = () => {
     return (
       <thead className="border-b border-gray-500 text-base font-medium ">
@@ -70,12 +75,17 @@ const DashboardUsers = () => {
                             </td>
                             <td className="text-base font-medium  px-6 py-4 whitespace-nowrap">
                               <button
+                                type="button"
                                 className="bg-red-700 text-snow text-sm rounded px-2 py-1 inline-flex justify-center w-16"
                                 onClick={() => {
-                                  deleteUser(user.id);
+                                  mutate({ id: user.id });
                                 }}
                               >
-                                {isDeleting ? <SpinLoader /> : "delete"}
+                                {status === "loading" ? (
+                                  <SpinLoader />
+                                ) : (
+                                  "delete"
+                                )}
                               </button>
                             </td>
                           </tr>

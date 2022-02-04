@@ -22,16 +22,22 @@ handler.get(async ({ query, db }, res) => {
 
 handler.post(async ({ query, db }, res) => {
   const slug = query.slug as string;
-  await db.post.upsert({
-    where: { slug },
-    create: { slug },
-    update: {
-      like_count: { increment: 1 },
-    },
-  });
-  res.status(200).json({
-    message: `Successfully liked page: ${query.slug}`,
-  });
+  try {
+    await db.post.upsert({
+      where: { slug },
+      create: { slug },
+      update: {
+        like_count: { increment: 1 },
+      },
+    });
+    res.status(200).json({
+      message: `Successfully liked page: ${query.slug}`,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: `Unable to like post, please try agian later...`,
+    });
+  }
 });
 
 export default handler;

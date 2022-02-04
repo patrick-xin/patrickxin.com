@@ -1,9 +1,11 @@
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+
 import "@fontsource/dm-serif-display";
 import "@fontsource/space-mono";
 import "@fontsource/fira-code";
 import { NextSeo } from "next-seo";
+import { ThemeProvider } from "next-themes";
 
 import type { NextPage } from "next";
 import { ReactElement, ReactNode, useState } from "react";
@@ -13,7 +15,6 @@ import { Progress, MessageModal } from "@common/components";
 
 import "@styles/globals.css";
 import siteConfig from "../../config/site";
-import ThemeProvider from "@common/components/theme-provider";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -56,13 +57,13 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <ThemeProvider>
+          <ThemeProvider attribute="class">
             <MessageModal />
             {getLayout(<Component {...pageProps} />)}
             <Progress />
           </ThemeProvider>
+          <ReactQueryDevtools />
         </Hydrate>
-        <ReactQueryDevtools />
       </QueryClientProvider>
     </>
   );

@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: alpesdream.vercel.app/sitemap.xml

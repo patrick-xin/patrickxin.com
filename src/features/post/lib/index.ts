@@ -32,3 +32,8 @@ export const getAdjacentPosts = (slug: string) => {
           },
   };
 };
+
+export const getMostRecentPost = () =>
+  allPosts.sort(
+    (a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
+  )[0];

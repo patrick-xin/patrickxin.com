@@ -40,7 +40,7 @@ const PostLikes = ({ postSlug }: { postSlug: string }) => {
               />
             )}
             <motion.div
-              className="font-black font-modernist"
+              className="font-black text-xs lg:text-sm"
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >

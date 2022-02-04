@@ -21,7 +21,6 @@ handler.get(async ({ query, db }, res) => {
 });
 
 handler.post(async ({ query, db }, res) => {
-  //if(process.env.NODE_ENV==='development') return
   const slug = query.slug as string;
   const data = await db.post.update({
     where: { slug },

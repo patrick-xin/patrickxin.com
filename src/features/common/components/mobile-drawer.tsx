@@ -1,15 +1,14 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-
 import { AnimatePresence, motion } from "framer-motion";
 import { usePreventScroll } from "@react-aria/overlays";
 import cn from "classnames";
 
 import ThemeToggle from "./header/theme-toggle";
-import { ROUTES } from "@common/constants";
 import { Blob, Footer } from ".";
 
 import { ease } from "@common/animation";
+import { ROUTES } from "@common/constants";
 
 interface MobileDrawerProps {
   isDrawerOpen: boolean;
@@ -17,7 +16,6 @@ interface MobileDrawerProps {
 
 const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
   const router = useRouter();
-
   usePreventScroll({ isDisabled: !isDrawerOpen });
 
   return (
@@ -68,20 +66,6 @@ const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
             </div>
 
             <div className="space-y-6">
-              {/* <h4 className="text-2xl">Subscribe now!</h4>
-              <form className="flex">
-                <input
-                  type="email"
-                  placeholder="Email..."
-                  className="bg-transparent appearance-none focus:outline-none w-5/6 border rounded-r-none dark:border-mint p-2 placeholder-main-gray/20"
-                />
-                <button
-                  type="submit"
-                  className="bg-transparent border rounded-r border-l-0 cursor-pointer dark:border-mint p-2 placeholder-main-gray/20"
-                >
-                  Subscribe
-                </button>
-              </form> */}
               <div className="flex flex-col justify-center w-full space-y-4 text-center">
                 <h4 className="text-2xl">Say Hello</h4>
                 <a
@@ -91,7 +75,6 @@ const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
                   alpesdream@gmail.com
                 </a>
               </div>
-
               <motion.div
                 className="mt-5 md:mt-9 w-full flex justify-center"
                 initial={{ opacity: 0 }}
@@ -105,7 +88,7 @@ const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
               </motion.div>
             </div>
 
-            <Footer />
+            <Footer hasMarginBottom />
           </div>
         </motion.div>
       )}

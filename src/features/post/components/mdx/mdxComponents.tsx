@@ -1,34 +1,30 @@
 import Link from "next/link";
 import Image from "next/image";
-import cn from "classnames";
-import CodeLink from "./code-link";
+
 import FeaturedText from "./featured-text";
-import Code from "./code";
+import Pre from "./pre";
 import { HashIcon, QuoteEndIcon, QuoteStartIcon } from "@common/components/svg";
 
 const MDXComponents = {
   Image,
-  CodeLink,
-  Code,
   FeaturedText,
-  a: ({ href = "", ...props }) => {
-    if (href.startsWith("http")) {
+  a: ({ ...props }) => {
+    if (props.href.startsWith("https")) {
       return (
         <a
-          {...props}
           className="text-orange dark:text-mint underline underline-offset-4 font-medium relative inline-block link"
-          href={href}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
+          {...props}
         />
       );
     }
 
-    if (href.startsWith("#")) {
+    if (props.href.startsWith("#")) {
       return (
         <a
           {...props}
-          href={href}
+          href={props.href}
           className="ml-2 mt-1 text-mint dark:text-orange transition-transform duration-75 ease-out origin-left transform : ;
           scale-0 opacity-0 group-hover:scale-100 inline-block
           group-hover:opacity-100"
@@ -39,8 +35,8 @@ const MDXComponents = {
     }
 
     return (
-      <Link href={href}>
-        <a {...props} />
+      <Link href={props.href}>
+        <a {...props}>{props.children}</a>
       </Link>
     );
   },
@@ -50,7 +46,7 @@ const MDXComponents = {
       <h2
         {...props}
         data-heading
-        className="text-2xl scroll-mt-6 flex items-center tracking-tight font-code font-bold my-4 
+        className="text-2xl capitalize scroll-mt-6 flex items-center tracking-tight font-code font-bold my-4 
         lg:mt-14 lg:text-4xl"
       />
     );
@@ -60,7 +56,7 @@ const MDXComponents = {
       <h3
         {...props}
         data-heading
-        className="text-xl py-2 scroll-mt-2 flex lg:py-2 items-center group tracking-tighter lg:tracking-tight font-code font-semibold 
+        className="text-xl capitalize py-2 scroll-mt-2 flex lg:py-2 items-center group tracking-tighter lg:tracking-tight font-code font-semibold 
         lg:leading-10 lg:text-3xl"
       />
     );
@@ -68,35 +64,6 @@ const MDXComponents = {
   p: ({ ...props }) => {
     return (
       <p {...props} className="my-2 md:my-4 lg:my-6 leading-7 lg:leading-8" />
-    );
-  },
-  code: ({
-    children,
-    showLineNumbers,
-    fileName,
-    id,
-  }: {
-    children: React.ReactNode;
-    showLineNumbers: string;
-    fileName: string;
-    id: string;
-  }) => {
-    return (
-      <>
-        {fileName && (
-          <div className="pl-4 text-xs lg:text-base p-2 md:mb-4 w-full rounded-sm text-orange bg-mint/10 font-bold">
-            {fileName}
-          </div>
-        )}
-        <code
-          className={cn({
-            "line-numbers": showLineNumbers !== undefined,
-          })}
-          id={id}
-        >
-          {children}
-        </code>
-      </>
     );
   },
   em: ({ ...props }) => {
@@ -107,11 +74,14 @@ const MDXComponents = {
   },
   blockquote: ({ ...props }) => {
     return (
-      <div className="relative flex my-4 p-2 mx-auto italic rounded-lg font-bold">
+      <div
+        className="relative dark:bg-white/5 bg-gray-50 flex my-4 lg:my-12 p-2 mx-auto italic rounded-lg font-serif font-medium
+"
+      >
         <div>
           <QuoteStartIcon />
         </div>
-        <blockquote {...props} className="p-2 lg:p-4" />
+        <blockquote {...props} className="p-2 lg:p-4 leading-3" />
         <div className="self-end">
           <QuoteEndIcon />
         </div>
@@ -120,21 +90,19 @@ const MDXComponents = {
   },
   ul: ({ ...props }) => (
     <ul
-      className="my-6 leading-7 italic font-medium
-       md:ml-4 md:pl-8 list-disc list-inside space-y-4"
+      className="my-4 md:my-6 leading-7 italic font-medium
+       md:ml-4 md:pl-8 list-disc list-inside space-y-2 md:space-y-4"
       {...props}
     />
   ),
   ol: ({ ...props }) => (
     <ol
-      className="p-4 text-sm lg:text-lg list-inside leading-6 space-y-1 list-decimal italic font-medium 
+      className="p-2 md:p-4 text-sm lg:text-lg list-inside leading-6 space-y-1 list-decimal italic font-medium 
        md:pl-10 md:my-4 md:space-y-4 md:leading-7 lg:my-6"
       {...props}
     />
   ),
-  pre: ({ children, ...props }: { children: React.ReactNode }) => (
-    <pre {...props}>{children}</pre>
-  ),
+  pre: Pre,
 };
 
 export default MDXComponents;

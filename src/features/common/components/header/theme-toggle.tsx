@@ -1,25 +1,32 @@
 import { Switch } from "@headlessui/react";
 import cn from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTheme } from "next-themes";
 
 import { SunIcon, MoonIcon } from "@common/components/svg";
-
-import { useTheme } from "../theme-provider";
+import { useEffect, useState } from "react";
 
 const ThemeToggle = () => {
-  const { theme, toggleDarkMode } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark";
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
 
   return (
     <Switch
-      checked={theme === "dark"}
-      onChange={toggleDarkMode}
+      checked={isDark}
+      onChange={() => {
+        isDark ? setTheme("light") : setTheme("dark");
+      }}
       className={cn("relative flex items-center h-6 rounded-full w-12", {
-        "bg-white/10": theme === "dark",
-        "bg-black/10": theme !== "dark",
+        "bg-white/10": isDark,
+        "bg-black/10": !isDark,
       })}
     >
       <span className="sr-only">Change Color Mode</span>
-      {theme === "dark" ? (
+      {isDark ? (
         <AnimatePresence>
           <motion.span
             initial={{ opacity: 0, x: 2 }}

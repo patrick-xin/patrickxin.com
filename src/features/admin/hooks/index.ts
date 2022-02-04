@@ -6,7 +6,6 @@ import { fetcher } from "@common/utils/fetcher";
 import { IUser } from "features/admin/types";
 
 export const useLogout = () => {
-  //const queryClient = useQueryClient();
   const router = useRouter();
   const { mutate, isLoading } = useMutation(
     () => {
@@ -16,7 +15,6 @@ export const useLogout = () => {
     },
     {
       onSuccess: () => {
-        //queryClient.invalidateQueries(["user"]);
         router.push("/");
       },
     }
@@ -68,19 +66,6 @@ export const useLogin = ({
   return { login: mutate, message };
 };
 
-export const useUser = () => {
-  let isAdmin;
-  const { data, isFetching, error, refetch } = useQuery<{ isAdmin: boolean }>(
-    "user",
-    () => fetcher<{ isAdmin: boolean }>(`/api/auth/user`)
-  );
-
-  if (data) {
-    isAdmin = data.isAdmin;
-  }
-  return { isAdmin, isFetching, error, refetch };
-};
-
 export const useGetUsers = () => {
   const { data, isFetching, error, refetch } = useQuery<IUser[]>("users", () =>
     fetcher<IUser[]>(`/api/auth/users`)
@@ -89,18 +74,18 @@ export const useGetUsers = () => {
   return { users: data, isFetching, error, refetch };
 };
 
-const deleteUser = async (userId: string) => {
-  return await fetch(`/api/auth/users/${userId}`, { method: "DELETE" });
+export const deleteUser = async ({ id }: { id: string }) => {
+  return await fetch(`/api/auth/users/${id}`, { method: "DELETE" });
 };
 
 export const useDeleteUser = () => {
   const queryClient = useQueryClient();
-  const { mutate, error, isLoading } = useMutation(
-    (userId: string) => deleteUser(userId),
+  const { mutate, error, isLoading, data } = useMutation(
+    ({ id }: { id: string }) => deleteUser({ id }),
     {
       onSuccess: () => queryClient.invalidateQueries("users"),
     }
   );
 
-  return { deleteUser: mutate, error, isDeleting: isLoading };
+  return { deleteUser: mutate, error, isDeleting: isLoading, data };
 };

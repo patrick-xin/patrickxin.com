@@ -6,7 +6,7 @@ export { default as GoBackButton } from "./go-back-button";
 export { default as PostCard } from "./post-card";
 export { default as PostCardList } from "./post-card-list";
 export { default as PostItem } from "./post-item";
-export { default as PostItemList } from "./post-lists";
+export { default as PostItemList } from "./post-list";
 export { default as ScrollToTop } from "./scroll-top";
 export { default as TableOfContent } from "./toc";
 export { default as PostNavs } from "./nav/post-navs";

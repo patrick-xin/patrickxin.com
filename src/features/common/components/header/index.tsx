@@ -8,6 +8,7 @@ import ThemeToggle from "./theme-toggle";
 import MenuButton from "./menu-button";
 
 import { ROUTES } from "@common/constants";
+import { ease } from "@common/animation";
 
 interface HeaderProps {
   openDrawer(isopen: boolean): void;
@@ -22,12 +23,12 @@ const Header = ({ openDrawer, isDrawerOpen }: HeaderProps) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ ease: "linear" }}
+      transition={{ ease }}
       className="h-16 md:h-24 w-full mx-auto shadow-sm bg-snow dark:bg-lead"
     >
       <nav
         className="grid grid-cols-2 max-w-6xl mx-auto lg:grid-cols-6 items-center h-full w-full
-       px-8 md:px-12 lg:px-24"
+       px-8 md:px-12 lg:px-32"
       >
         <div>
           <Link href="/">
@@ -36,8 +37,8 @@ const Header = ({ openDrawer, isDrawerOpen }: HeaderProps) => {
                 alt="logo-image"
                 src="/assets/images/logo.svg"
                 layout="fixed"
-                height={40}
-                width={40}
+                height={32}
+                width={32}
               />
             </a>
           </Link>
@@ -51,12 +52,15 @@ const Header = ({ openDrawer, isDrawerOpen }: HeaderProps) => {
               <li key={route.path}>
                 <Link href={`${route.path}`}>
                   <a
-                    className={cn({
-                      "underline underline-offset-2 decoration-orange dark:decoration-mint decoration-4":
-                        route.exact === true
-                          ? route.path === router.asPath
-                          : router.asPath.startsWith(route.path),
-                    })}
+                    className={cn(
+                      "hover:text-orange dark:hover:text-mint transition-colors ease-linear",
+                      {
+                        "underline underline-offset-2 decoration-orange dark:decoration-mint decoration-4":
+                          route.exact === true
+                            ? route.path === router.asPath
+                            : router.asPath.startsWith(route.path),
+                      }
+                    )}
                   >
                     {route.label}
                   </a>

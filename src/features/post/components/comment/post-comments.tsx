@@ -19,7 +19,7 @@ const PostComments = forwardRef<HTMLHeadingElement, PostCommentsProps>(
       return (
         <div className="my-12 flex gap-6 flex-col justify-center items-center">
           <SpinLoader />
-          <div> Loading comments...</div>
+          <div>Loading comments...</div>
         </div>
       );
     }
@@ -31,10 +31,13 @@ const PostComments = forwardRef<HTMLHeadingElement, PostCommentsProps>(
       );
     }
     return (
-      <section className="my-12 max-w-4xl mx-auto">
+      <section className="my-12 max-w-4xl lg:my-20 mx-auto">
         <div className="space-y-3 md:space-y-6">
-          <h3 className="text-xl md:text-2xl lg:text-3xl" ref={ref}>
-            Comments
+          <h3
+            className="text-xl font-heading tracking-wider md:text-2xl lg:text-3xl"
+            ref={ref}
+          >
+            Comments({comments.length})
           </h3>
           {comments &&
             comments.map((comment) => (
@@ -66,7 +69,6 @@ const PostComments = forwardRef<HTMLHeadingElement, PostCommentsProps>(
                           by={comment.reply.by}
                           isAdmin
                         />
-
                         <p className="text-lg p-2">{comment.reply.content}</p>
                       </div>
                     )}
@@ -76,8 +78,8 @@ const PostComments = forwardRef<HTMLHeadingElement, PostCommentsProps>(
             ))}
         </div>
 
-        <div className="my-8">
-          <h3 className="text-lg md:text-xl my-4">
+        <div className="my-4 lg:my-16 space-y-3 md:space-y-6">
+          <h3 className="text-xl font-heading tracking-wider md:text-2xl">
             Questions? Thoughts? Welcome to drop a comment below!
           </h3>
           <CommentForm postSlug={slug} />

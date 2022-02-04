@@ -4,7 +4,7 @@ type Position = "top" | "bottom" | "topRight" | "bottomRight";
 
 type MessageModalState = {
   isMessageModalOpen: boolean;
-  message?: string;
+  message: string;
   toast: {
     success: (message: string, position?: Position) => void;
     error: (message: string, position?: Position) => void;
@@ -12,14 +12,14 @@ type MessageModalState = {
   };
   position: Position;
   closeMessageModal: () => void;
-  messageType: "success" | "error" | "warning" | undefined;
+  messageType: "success" | "error" | "warning";
 };
 
 const useModalStore = create<MessageModalState>((set) => ({
   isMessageModalOpen: false,
-  closeMessageModal: () => set(() => ({ isMessageModalOpen: false })),
-  message: undefined,
-  messageType: undefined,
+  closeMessageModal: () => set({ isMessageModalOpen: false }),
+  message: "",
+  messageType: "success",
   position: "bottom",
   toast: {
     success: (message: string, position?: Position) =>

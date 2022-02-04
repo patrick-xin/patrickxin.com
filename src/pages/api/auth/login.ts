@@ -12,7 +12,7 @@ handler.use(middleware);
 handler.post(async ({ db, body }, res) => {
   const { username, password, email } = body;
   // Allow this function run once for registering user role
-  // as admin, in this case, myself.
+  // as admin.
 
   // bc.genSalt(10, function (err, salt) {
   //   bc.hash(password, salt, async function (err, hash) {
@@ -57,6 +57,7 @@ handler.post(async ({ db, body }, res) => {
     res.status(401).json({
       message: `Unauthorized`,
     });
+    res.end();
   }
 });
 

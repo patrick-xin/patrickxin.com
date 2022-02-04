@@ -7,11 +7,12 @@ const siteConfig = {
     url: "https://alpesdream.vercel.app/",
   },
   assets: {
-    avatar: "/assets/images/seo-cover.jpeg",
+    avatar: "/assets/images/seo-image.jpg",
     favicon: "/assets/favicon.ico",
   },
   socialLinks: {
     twitter: "@alpesdream",
+    github: "https://github.com/patrick-xin",
   },
 };
 

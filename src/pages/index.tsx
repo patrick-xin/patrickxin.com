@@ -1,27 +1,62 @@
-import { PostLayout } from "@post/components";
-
 import { ReactElement } from "react";
+import { motion } from "framer-motion";
 
-const HomePage = () => {
+import { BasicLayout, Blob } from "@common/components";
+import { PostItem } from "@post/components";
+import { ease } from "@common/animation";
+import { GetStaticProps } from "next";
+import { getMostRecentPost } from "@post/lib";
+
+import { Post } from ".contentlayer/types";
+
+const HomePage = ({ post }: { post: Post }) => {
   return (
-    <div className="max-w-4xl mx-auto relative">
-      <section className="flex-col gap-4 lg:flex lg:gap-10 items-center my-6">
-        <h1 className="text-xl lg:text-3xl mt-4">
-          Hello there! I&lsquo;m Patrick Xin, a frontend developer, 🐱 lover and
-          ☕ addict.
-        </h1>
-        {/* <div className="flex absolute top-1/2">
-          <div className="filter blur-md bg-mint/20 h-72 w-72 rounded-full -mx-12" />
-          <div className="filter blur-md bg-pink-400/20 h-72 w-72 rounded-full" />
-          <div className="filter blur-md bg-indigo-400/20 h-72 w-72 rounded-full" />
-        </div> */}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ ease, delay: 0.2 }}
+      className="max-w-4xl mx-auto relative lg:h-[50vh]"
+    >
+      <section className="grid h-full grid-cols-1 lg:grid-cols-2 place-content-center">
+        <div className="relative h-full w-full hidden lg:block">
+          <Blob color="mint" className="absolute inset-0 -top-12" />
+          <div className="absolute inset-0 -top-16 z-50 -left-12 w-96 h-96 rounded-full filter blur-xl bg-gradient-to-tl from-mint/50 to-orange/50 via-pink-900/50" />
+          <Blob
+            color="orange"
+            className="absolute -inset-4 top-6 left-6"
+            isReverse
+          />
+        </div>
+        <div className="relative">
+          <div className="text-xl font-heading tracking-wider lg:text-3xl leading-loose lg:leading-[3rem]">
+            Hello there! I&lsquo;m
+          </div>
+          <h1 className="text-3xl lg:text-6xl lg:my-4 font-bold text-gradient">
+            Patrick Xin
+          </h1>
+          <p className="text-xl font-heading tracking-wider lg:text-3xl leading-loose lg:leading-[3rem]">
+            a frontend developer, 🐱 lover and ☕ addict.
+          </p>
+        </div>
+        <div className="my-24 lg:hidden">
+          <h2 className="text-xl">Latest Post</h2>
+          <ul>
+            <PostItem post={post} />
+          </ul>
+        </div>
       </section>
-    </div>
+    </motion.div>
   );
 };
 
 export default HomePage;
 
+export const getStaticProps: GetStaticProps = async () => {
+  const post = getMostRecentPost();
+
+  return { props: { post } };
+};
+
 HomePage.getLayout = function getLayout(page: ReactElement) {
-  return <PostLayout>{page}</PostLayout>;
+  return <BasicLayout>{page}</BasicLayout>;
 };

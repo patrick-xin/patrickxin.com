@@ -24,7 +24,7 @@ const TocDrawer = ({ isDrawerOpen, setOpenDrawer }: DrawerProps) => {
             transition: { duration: 0.4 },
           }}
           transition={{ type: "tween", duration: 0.3 }}
-          className="fixed left-0 top-0 bg-snow dark:bg-lead overflow-y-scroll h-screen w-[60vw] md:w-[40vw] lg:w-[20vw] px-6 lg:px-12
+          className="fixed left-0 top-0 border-r-2 dark:border-mint/20 bg-snow dark:bg-lead overflow-y-scroll h-screen w-[60vw] md:w-[40vw] lg:w-[20vw] px-6 lg:px-12
       flex flex-col z-100 shadow-md"
         >
           <motion.div

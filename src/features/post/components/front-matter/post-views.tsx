@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 
 import { Tooltip } from "@common/components";
-import { EyeIcon } from "@heroicons/react/solid";
+import { EyeIcon } from "@heroicons/react/outline";
 import { usePostViews, useUpdateViews } from "@post/hooks";
 import { useEffect } from "react";
 
@@ -11,7 +11,7 @@ const PostViews = ({ postSlug }: { postSlug: string }) => {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") return;
     updateViews.mutate();
-  }, [postSlug]);
+  }, [postSlug, updateViews]);
   return (
     <Tooltip tooltipText={"views"} position="bottom" color="orange">
       <AnimatePresence>
@@ -23,7 +23,7 @@ const PostViews = ({ postSlug }: { postSlug: string }) => {
           >
             <EyeIcon className="h-6 w-6 text-mint dark:text-orange" />
             <motion.div
-              className="font-black font-modernist"
+              className="font-black text-xs lg:text-sm"
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >

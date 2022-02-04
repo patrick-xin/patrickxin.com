@@ -15,7 +15,23 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `try {
+              const theme = localStorage.getItem("theme");
+                if (
+                  theme === "dark" ||
+                  (!theme && window.matchMedia("(prefers-color-scheme:dark)").matches)
+                ) {
+                  document.documentElement.classList.add("dark", "changing theme");
+                } else {
+                  document.documentElement.classList.remove("dark", "changing theme");
+                }
+            } catch(_){}`,
+            }}
+          />
+        </Head>
 
         <body>
           <Main />

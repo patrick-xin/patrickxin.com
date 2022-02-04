@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import SpinLoader from "@common/components/svg/spin-loader";
+import { SpinLoader } from "@common/components/svg";
 import { useCommentMutation } from "@post/hooks";
 
 type CommentFormProps = {
@@ -16,21 +16,22 @@ const CommentForm = ({ postSlug }: CommentFormProps) => {
     setEmail("");
     setContent("");
   };
-  const commentMutation = useCommentMutation({
+  const { mutate, isLoading, isSuccess } = useCommentMutation({
     postSlug,
     username,
     email,
     content,
     cb: resetState,
   });
+
   return (
     <form
       className="space-y-4 flex flex-col"
       onSubmit={async (e) => {
         e.preventDefault();
-        commentMutation.mutate();
+        mutate();
 
-        if (commentMutation.isSuccess) {
+        if (isSuccess) {
           setUsername("");
           setEmail("");
           setContent("");
@@ -48,11 +49,11 @@ const CommentForm = ({ postSlug }: CommentFormProps) => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         type="email"
-        placeholder="Email"
+        placeholder="email"
         className="form-input"
       />
-      <p className="text-xs -my-1 italic ml-1 text-mint dark:text-orange">
-        Your email will not display in public.
+      <p className="text-xs lg:text-sm -my-1 italic ml-1 text-mint dark:text-orange">
+        Don&lsquo;t worry. Your email will not display in public.
       </p>
       <textarea
         value={content}
@@ -61,17 +62,15 @@ const CommentForm = ({ postSlug }: CommentFormProps) => {
         placeholder="leave a comment"
         className="form-input min-h-[10rem]"
       />
+
       <button
         disabled={
-          commentMutation.isLoading ||
-          username.length < 2 ||
-          content.length <= 2 ||
-          !email
+          isLoading || username.length < 2 || content.length <= 2 || !email
         }
         type="submit"
         className="p-2 w-16 inline-flex justify-center rounded-md bg-orange text-snow dark:text-snow text-xs md:text-sm self-end disabled:opacity-25 disabled:cursor-not-allowed"
       >
-        {commentMutation.isLoading ? <SpinLoader /> : "Submit"}
+        {isLoading ? <SpinLoader /> : "Submit"}
       </button>
     </form>
   );

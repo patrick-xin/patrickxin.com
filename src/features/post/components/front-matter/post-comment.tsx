@@ -26,11 +26,11 @@ const PostComment = ({
           >
             <ChatIcon
               onClick={handleScrollToComments}
-              className="h-6 w-6 text-orange dark:text-grape cursor-pointer"
+              className="h-6 w-6 text-orange dark:text-mint cursor-pointer"
             />
 
             <motion.div
-              className="font-black font-modernist"
+              className="font-black text-xs lg:text-sm"
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >

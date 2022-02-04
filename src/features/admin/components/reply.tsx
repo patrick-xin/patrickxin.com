@@ -65,7 +65,7 @@ const DashboradReply = ({ comment, setActiveReply }: DashboradReplyProps) => {
         <button
           disabled={reply.length === 0}
           type="submit"
-          className="p-1 my-2 bg-skin-accent rounded text-black/70 text-xs disabled:opacity-50 disabled:cursor-not-allowed"
+          className="p-1 my-2 bg-mint rounded text-black/70 text-xs disabled:opacity-50 disabled:cursor-not-allowed"
         >
           reply
         </button>

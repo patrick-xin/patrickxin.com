@@ -56,7 +56,6 @@ handler.use(auth).post(async ({ query, db }, res) => {
 
 handler.use(auth).delete(async ({ query, db }, res) => {
   const slug = query.slug as string;
-  console.log(slug);
 
   await db.post.delete({
     where: { slug },

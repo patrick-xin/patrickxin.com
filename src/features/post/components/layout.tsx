@@ -17,7 +17,7 @@ const PostLayout: React.FC = ({ children }) => {
       <main className="mx-6 md:mx-12 lg:mx-0 my-8 lg:my-16 flex-grow">
         {children}
       </main>
-      <Footer />
+      <Footer hasMarginBottom />
     </div>
   );
 };

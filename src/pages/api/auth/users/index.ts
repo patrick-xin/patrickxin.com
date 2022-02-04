@@ -10,25 +10,29 @@ handler.use(middleware);
 handler.use(auth);
 
 handler.get(async ({ db }, res) => {
-  const allUsers = await db.user.findMany({
-    select: {
-      comment: {
-        orderBy: { createdAt: "desc" },
-        select: {
-          post: { select: { slug: true } },
-          content: true,
-          id: true,
+  try {
+    const allUsers = await db.user.findMany({
+      select: {
+        comment: {
+          orderBy: { createdAt: "desc" },
+          select: {
+            post: { select: { slug: true } },
+            content: true,
+            id: true,
+          },
         },
+        _count: true,
+        email: true,
+        id: true,
+        username: true,
+        role: true,
       },
-      _count: true,
-      email: true,
-      id: true,
-      username: true,
-      role: true,
-    },
-  });
-  const users = allUsers.filter((user) => user.role !== "ADMIN");
-  res.status(200).json(users);
+    });
+    const users = allUsers.filter((user) => user.role !== "ADMIN");
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(400).json({ message: "Unable to get users." });
+  }
 });
 
 export default handler;

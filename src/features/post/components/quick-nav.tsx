@@ -45,7 +45,7 @@ const QuickNav = ({ setOpenDrawer }: QuickNavProps) => {
   const mapHeadings = () => {
     return headings.map((heading) => {
       return (
-        <Link href={`#${heading.id}`} key={heading.id}>
+        <Link href={`#${heading.id}`} key={heading.id} passHref>
           <motion.a
             className={cn(
               "relative hover:text-orange dark:hover:text-mint transition-colors ease-linear cursor-pointer",
@@ -66,7 +66,7 @@ const QuickNav = ({ setOpenDrawer }: QuickNavProps) => {
   };
 
   return (
-    <aside className="py-6 md:mt-16 lg:mt-20">
+    <aside className="py-6 md:my-16 lg:my-20">
       <nav className="flex flex-col">
         <h2
           className={cn("mb-6 w-full inline-flex justify-center gap-2", {

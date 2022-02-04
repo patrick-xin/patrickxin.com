@@ -1,17 +1,26 @@
-import { PostLayout } from "@post/components";
 import { ReactElement } from "react";
+import { motion } from "framer-motion";
+
+import { BasicLayout, Breadcrumbs } from "@common/components";
+import { ease } from "@common/animation";
 
 const AboutPage = () => {
   return (
-    <div className="space-y-6 leading-relaxed max-w-4xl mx-auto">
-      <section className="space-y-6 ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ ease, delay: 0.2 }}
+      className="space-y-6 leading-relaxed max-w-4xl mx-auto"
+    >
+      <Breadcrumbs title="about" />
+      <section className="space-y-6">
         <p>
-          I have passion for creating beautiful, user-friendly websites. I
-          started my coding journey shortly before the pandemic began. I
+          I&lsquo;m passionate about creating beautiful, user-friendly websites.
+          I started my coding journey shortly before the pandemic began. I
           immediately fall in love with React and NextJS. Since then, I&lsquo;ve
           learnt technology like Typescript, Prisma, GraplQL, StyledComponent,
-          TailwindCSS, etc.. My goal is to become a full-stack software
-          engineer.
+          TailwindCSS, etc.. My goal is to become a full-stack software engineer
+          and have my own start-up!.
         </p>
         <p>
           I decide to regularly write posts, sharing my daily life as well as
@@ -22,12 +31,12 @@ const AboutPage = () => {
           open-source on Github, source code can be found here. Cheers!
         </p>
       </section>
-    </div>
+    </motion.div>
   );
 };
 
 export default AboutPage;
 
 AboutPage.getLayout = function getLayout(page: ReactElement) {
-  return <PostLayout>{page}</PostLayout>;
+  return <BasicLayout>{page}</BasicLayout>;
 };
