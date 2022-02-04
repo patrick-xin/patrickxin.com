@@ -89,3 +89,11 @@ export const useDeleteUser = () => {
 
   return { deleteUser: mutate, error, isDeleting: isLoading, data };
 };
+
+export const useResetViews = () => {
+  return useMutation((slug: string) => {
+    return fetch(`/api/post/${slug}/views`, {
+      method: "PATCH",
+    });
+  });
+};

@@ -22,7 +22,7 @@ const PostItem = ({ post }: { post: Frontmatter }) => {
           <PostTitle
             className="group-hover:text-orange  dark:group-hover:text-mint hover:underline hover:underline-offset-2 decoration-orange dark:decoration-mint/60 transition-all ease-linear"
             title={post.title}
-            size="sm"
+            size="md"
             isGradient={false}
           />
           <p className="text-sm md:text-base">{post.description}</p>

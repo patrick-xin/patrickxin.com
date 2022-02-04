@@ -4,6 +4,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 import { useSortData } from "@common/hooks";
 import { useDeletePost } from "@post/hooks";
 import type { IPost } from "@post/types";
+import { useResetViews } from "@admin/hooks";
 
 interface TableProps {
   posts: IPost[];
@@ -68,6 +69,7 @@ const TableHead = ({ title, onClick }: { title: string; onClick }) => {
 
 const TableRow = ({ post }: { post: any }) => {
   const { deletePost } = useDeletePost();
+  const { mutate } = useResetViews();
   return (
     <tr className="hover:bg-mint/20 dark:hover:bg-slate transition-colors ease-linear">
       <td className="py-4">
@@ -80,7 +82,15 @@ const TableRow = ({ post }: { post: any }) => {
         </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap ">
-        <div>{post.views}</div>
+        <div>
+          {post.views}
+          <button
+            className="bg-yellow-700 text-snow text-sm rounded px-2 py-1 inline-flex justify-center w-20"
+            onClick={() => mutate(post.title)}
+          >
+            reset
+          </button>
+        </div>
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap">

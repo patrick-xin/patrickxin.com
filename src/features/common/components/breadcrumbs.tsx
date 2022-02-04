@@ -13,7 +13,7 @@ const Breadcrumbs = ({ title }: { title: string }) => {
       transition={{ delay: 0.5 }}
       aria-label="breadcrumb"
     >
-      <ul className="flex flex-wrap space-x-2 lg:space-x-3 text-xs lg:text-sm xl:text-base font-medium">
+      <ul className="flex space-x-2 lg:space-x-3 text-xs lg:text-sm xl:text-base font-medium">
         {paths.map((path) => (
           <li className="flex items-center space-x-3" key={path}>
             <Link href={`${path === "" ? "/" : `/${path}`}`}>
@@ -37,10 +37,7 @@ export default Breadcrumbs;
 
 const DisabledBreadcrumb = ({ title }: { title: string }) => {
   return (
-    <li
-      className="flex items-center space-x-2 lg:space-x-3"
-      aria-current="page"
-    >
+    <li className="flex items-center lg:space-x-3" aria-current="page">
       <span className="text-gray-400 dark:text-gray-500 capitalize">
         {title}
       </span>
