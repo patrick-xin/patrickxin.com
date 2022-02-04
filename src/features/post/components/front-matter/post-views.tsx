@@ -11,7 +11,7 @@ const PostViews = ({ postSlug }: { postSlug: string }) => {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") return;
     updateViews.mutate();
-  }, [postSlug, updateViews]);
+  }, [postSlug]);
   return (
     <Tooltip tooltipText={"views"} position="bottom" color="orange">
       <AnimatePresence>
