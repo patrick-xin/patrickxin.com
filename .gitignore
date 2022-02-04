@@ -10,3 +10,5 @@ public/feed.xml
 
 # Contentlayer
 .contentlayer
+
+tsconfig.tsbuildinfo
