@@ -6,30 +6,28 @@ const Breadcrumbs = ({ title }: { title: string }) => {
   const { asPath } = useRouter();
 
   const paths = asPath.split("/").slice(0, -1);
+  if (!asPath) return null;
   return (
-    <motion.nav
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.5 }}
-      aria-label="breadcrumb"
-    >
-      <ul className="flex space-x-2 lg:space-x-3 text-xs lg:text-sm xl:text-base font-medium">
-        {paths.map((path) => (
-          <li className="flex items-center space-x-3" key={path}>
-            <Link href={`${path === "" ? "/" : `/${path}`}`}>
-              <a className="text-gray-800 capitalize dark:text-snow hover:underline underline-offset-4 decoration-2 transition-all ease-linear decoration-orange dark:decoration-mint">
-                {path === "" ? "home" : path}
-              </a>
-            </Link>
-            <div
-              aria-hidden="true"
-              className="h-2 lg:h-4 w-px rotate-12 rounded-full bg-gray-400 dark:bg-gray-300"
-            ></div>
-          </li>
-        ))}
-        <DisabledBreadcrumb title={title} />
-      </ul>
-    </motion.nav>
+    <div>
+      <nav aria-label="breadcrumb">
+        <ul className="flex space-x-2 lg:space-x-3 text-xs lg:text-sm xl:text-base font-medium">
+          {paths.map((path) => (
+            <li className="flex items-center space-x-3" key={path}>
+              <Link href={`${path === "" ? "/" : `/${path}`}`}>
+                <a className="text-gray-800 capitalize dark:text-snow hover:underline underline-offset-4 decoration-2 transition-all ease-linear decoration-orange dark:decoration-mint">
+                  {path === "" ? "home" : path}
+                </a>
+              </Link>
+              <div
+                aria-hidden="true"
+                className="h-2 lg:h-4 w-px rotate-12 rounded-full bg-gray-400 dark:bg-gray-300"
+              />
+            </li>
+          ))}
+          <DisabledBreadcrumb title={title} />
+        </ul>
+      </nav>
+    </div>
   );
 };
 

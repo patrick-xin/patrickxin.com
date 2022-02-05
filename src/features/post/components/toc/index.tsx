@@ -12,7 +12,7 @@ const TableOfContent = ({
   isTocOpen,
   setTocOpen,
 }: TableOfContentProps) => {
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" });
   if (!hasToc) return null;
   return (
     <>

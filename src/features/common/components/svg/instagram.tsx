@@ -2,7 +2,7 @@ const InstagramIcon = () => {
   return (
     <svg
       aria-hidden="true"
-      className="h-6 w-6 fill-current text-gray-400 hover:text-orange dark:hover:text-mint transition-colors ease-linear"
+      className="w-5 h-5 lg:h-6 lg:w-6 fill-current text-pink-400"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
     >

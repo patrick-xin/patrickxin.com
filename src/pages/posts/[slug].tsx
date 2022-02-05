@@ -15,15 +15,17 @@ import {
   PostComments,
   PostNavs,
   ScrollToTop,
-  TableOfContent,
   PostLayout,
 } from "@post/components";
+const TableOfContent = dynamic(() => import("@post/components/toc"), {
+  ssr: false,
+});
 
 import { getAdjacentPosts, getAllPostsPaths, getPost } from "@post/lib";
-
 import siteConfig from "../../../config/site";
 import { ease } from "@common/animation";
 import { Breadcrumbs } from "@common/components";
+import { useMutation, useQueryClient } from "react-query";
 
 const MobileNav = dynamic(() => import("@post/components/mobil-nav"));
 
@@ -31,6 +33,19 @@ const PostPage = ({
   post,
   adjacentPosts,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation(
+    (slug: string) => {
+      return fetch(`/api/post/${slug}/views`, {
+        method: "POST",
+      });
+    },
+    {
+      onSettled: () => {
+        queryClient.invalidateQueries(["post", post.slug]);
+      },
+    }
+  );
   const Component = useMDXComponent(post.body.code);
   const [isTocOpen, setTocOpen] = useState(false);
   const frontmatter = {
@@ -43,7 +58,7 @@ const PostPage = ({
     toc: post.toc,
     thumbnail: post.thumbnail,
   };
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" });
   const ref = useRef(null);
   function handleScrollToComments() {
     ref.current.scrollIntoView({ behavior: "smooth" });
@@ -62,6 +77,10 @@ const PostPage = ({
     };
 
     createPost();
+  }, [post.slug]);
+  useEffect(() => {
+    if (process.env.NODE_ENV === "development") return;
+    mutate(post.slug);
   }, [post.slug]);
   return (
     <motion.div

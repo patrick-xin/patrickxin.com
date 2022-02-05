@@ -40,18 +40,20 @@ handler.get(async ({ query, db }, res) => {
 
 handler.use(auth).post(async ({ query, db }, res) => {
   const slug = query.slug as string;
-
-  await db.post.upsert({
+  const existedPost = db.post.findUnique({
     where: { slug },
-    update: {
-      slug,
-    },
-    create: { slug },
   });
+  if (!existedPost) {
+    await db.post.create({
+      data: { slug },
+    });
 
-  return res.status(200).json({
-    message: `Successfully created post in db!`,
-  });
+    res.status(200).json({
+      message: `Successfully created post in db!`,
+    });
+  } else {
+    res.end();
+  }
 });
 
 handler.use(auth).delete(async ({ query, db }, res) => {

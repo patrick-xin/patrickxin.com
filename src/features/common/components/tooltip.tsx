@@ -23,7 +23,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     red: "bg-red-600",
     purple: "bg-orange dark:bg-purple-600",
   };
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" });
   return (
     <div
       className="relative flex items-center"

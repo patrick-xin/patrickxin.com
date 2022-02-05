@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-
+import { useQueryClient, useMutation } from "react-query";
 import { Tooltip } from "@common/components";
 import { EyeIcon } from "@heroicons/react/outline";
 import { usePostViews, useUpdateViews } from "@post/hooks";
@@ -7,11 +7,7 @@ import { useEffect } from "react";
 
 const PostViews = ({ postSlug }: { postSlug: string }) => {
   const { views } = usePostViews(postSlug);
-  const updateViews = useUpdateViews(postSlug);
-  useEffect(() => {
-    if (process.env.NODE_ENV === "development") return;
-    updateViews.mutate();
-  }, []);
+
   return (
     <Tooltip tooltipText={"views"} position="bottom" color="orange">
       <AnimatePresence>

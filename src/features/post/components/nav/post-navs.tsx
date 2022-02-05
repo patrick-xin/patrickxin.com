@@ -7,6 +7,7 @@ type PostNavsProps = {
 };
 
 const PostNavs = ({ adjacentPosts }: PostNavsProps) => {
+  if (!adjacentPosts.next && !adjacentPosts.previous) return null;
   return (
     <section className="my-12 lg:my-24 px-4 flex flex-col gap-4 max-w-5xl w-full h-24 mx-auto justify-between">
       {adjacentPosts.previous ? (

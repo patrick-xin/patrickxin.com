@@ -17,14 +17,15 @@ const AboutPage = () => {
         <p>
           I&lsquo;m passionate about creating beautiful, user-friendly websites.
           I started my coding journey shortly before the pandemic began. I
-          immediately fall in love with React and NextJS. Since then, I&lsquo;ve
-          learnt technology like Typescript, Prisma, GraplQL, StyledComponent,
+          immediately fell in love with React and NextJS. Since then, I&lsquo;ve
+          learnt technologies like Typescript, Prisma, GraplQL, StyledComponent,
           TailwindCSS, etc.. My goal is to become a full-stack software engineer
           and have my own start-up!.
         </p>
         <p>
-          I decide to regularly write posts, sharing my daily life as well as
-          web technology, you are very welcome to leave a comment or email me.
+          I&lsquo;ve decide to regularly write posts, sharing my daily life as
+          well as web technology, you are very welcome to leave a comment or
+          email me.
         </p>
         <p>
           This website is a continuous working project and completely

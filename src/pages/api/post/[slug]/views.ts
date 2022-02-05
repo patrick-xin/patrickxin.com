@@ -23,12 +23,14 @@ handler.get(async ({ query, db }, res) => {
 
 handler.post(async ({ query, db }, res) => {
   const slug = query.slug as string;
+
   const data = await db.post.update({
     where: { slug },
     data: {
       view_count: { increment: 1 },
     },
   });
+  console.log(data);
 
   return res.status(200).json({
     views: data.view_count,

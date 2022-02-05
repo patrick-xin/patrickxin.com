@@ -13,7 +13,7 @@ const QuickNav = ({ setOpenDrawer }: QuickNavProps) => {
   const [headings, setHeadings] = useState<HTMLHeadingElement[]>([]);
   const router = useRouter();
   const [hash, setHash] = useState(router.asPath.split("#")[1] || "");
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" });
   useEffect(() => {
     const headingElements: HTMLHeadingElement[] = Array.from(
       document.querySelectorAll("[data-heading]")
