@@ -4,6 +4,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { NextSeo } from "next-seo";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
+import Image from "next/image";
 
 import { useMDXComponent } from "next-contentlayer/hooks";
 import components from "@post/components/mdx/mdxComponents";
@@ -23,7 +24,6 @@ import { getAdjacentPosts, getAllPostsPaths, getPost } from "@post/lib";
 import siteConfig from "../../../config/site";
 import { ease } from "@common/animation";
 import { Breadcrumbs } from "@common/components";
-import Image from "next/image";
 
 const MobileNav = dynamic(() => import("@post/components/mobil-nav"));
 
@@ -48,6 +48,7 @@ const PostPage = ({
   function handleScrollToComments() {
     ref.current.scrollIntoView({ behavior: "smooth" });
   }
+
   useEffect(() => {
     if (process.env.NODE_ENV === "production") return;
     const createPost = async () => {

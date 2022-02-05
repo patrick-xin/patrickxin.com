@@ -11,3 +11,4 @@ export { default as GithubIcon } from "./github";
 export { default as InstagramIcon } from "./instagram";
 export { default as TwitterIcon } from "./twitter";
 export { default as CopyRightIcon } from "./copyright";
+export { default as CheckSquareIcon } from "./check-squre";

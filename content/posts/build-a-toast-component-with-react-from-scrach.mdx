@@ -2,7 +2,7 @@
 title: build a toast component with react from scratch
 publishedAt: "2022-02-01"
 isPublished: true
-description: Build a react toast with tailwind, framer motion and zutstand by yourself.
+description: Build a react toast with tailwind, framer motion and zustand by yourself.
 toc: true
 thumbnail: {
     "author": "brandi-redd",
@@ -18,19 +18,20 @@ be used as a notification to display messages for the users. We may somewhat
 use libraries like [React Toastify](https://fkhadra.github.io/react-toastify/introduction) and [React Hot Toast](https://react-hot-toast.com/).
 But today in this article we will build one by ourselves.🔥 🔥 If you're interested, please keep reading.
 
-I've used it on my current website. To see what the final result looks like, you can leave a comment below!  If everything goes right, you will see the success message pops up on the right corner of the screen. Any comments or feedback are appreciated. 🙏  I've also made a repo in the [github](https://github.com/patrick-xin/react-toast-tailwind-framer-motion), feel free to check it out.
-
 > ✨ This tutorial assumes that you have a basic understanding of React.
 >
-> ✨ You may take a look at the documentation of [Framer Motion](https://www.framer.com/motion/), [Zutstand](https://github.com/pmndrs/zustand) if you are not familiar with them.
+> ✨ You may take a look at the documentation of [Framer Motion](https://www.framer.com/motion/), [Zustand](https://github.com/pmndrs/zustand) if you are not familiar with them.
+
+I've the same toast component on this website. To see what the final result looks like, you can leave a comment below!  If everything goes right, you will see the success message pops up on the right corner of the screen. Any comments or feedback are appreciated. 🙏  I've also made a repo in the [github](https://github.com/patrick-xin/react-toast-tailwind-framer-motion), feel free to check it out.
 
 
-## Tools we're gonna use
+
+## Tools We're Gonna Use
 
 - A Typescript React app. I will use NextJS. You can run `yarn create-next-app --example with-tailwindcss with-tailwindcss-app` in the command line. This repo has been updated using Typescript by default.
 - Animation Libary - [Framer Motion](https://www.framer.com/motion/)
 - Styling - [TailwindCSS](https://tailwindcss.com/)
-- State Managment [Zutstand](https://github.com/pmndrs/zustand) 
+- State Managment [Zustand](https://github.com/pmndrs/zustand) 
 
 After initializing the app, run `yarn add framer-motion zustand` to add _Framer Motion_ and _Zustand_ packages to our project.
 
@@ -192,7 +193,7 @@ export default HomePage
 ```
 The Toast component should be on the right top of the screen. We haven't styled it yet. It's probably the uglies toast you've ever seen. 😩 Let's use the store we just built to take full control of it.
 
-### Add Animation and connect it to the store
+### ### Add Animation, Connect Store
 
 ```tsx:components/toast.tsx {1, 4, 7-9, 12-14} showLineNumbers
 import {motion, AnimatePresence} from 'framer-motion'
@@ -372,7 +373,7 @@ const HomePage = () => {
 };
 ```
 
-### display different toast
+### Display Different Toasts
 
 Let's test all the toast with different positions and types.
 
@@ -430,7 +431,7 @@ To fix it, simply add a prop `key={toastType}` inside `motion.div` component. Be
 
 Congrats! 👏 👏 We just finished building a basic yet fully functional toast. This is just the fundamental setup, you can be as creative as you can, adding features like removing it automatically using `setTimeOut` inside `useEffect` hook, displaying multiple toasts at the same time, etc... Feel free to fork the [repo](https://github.com/patrick-xin/react-toast-tailwind-framer-motion) and add as many features as you want! 🎉 🎉
 
-## What we can improve?
+## What Can Be Improved?
 
 Thanks again for following along, below are just some personal thoughts as a web developer. I always like to think about what I can improve after writing the codes. Are my current codes easy to add more new features?
 
@@ -446,7 +447,7 @@ We have three functions in the `toast` object, each of them is receiving three a
 
 As you can see, our toast can be considered as _dialogs_, rendering it outside the main component tree can improve the performance of our apps.
 
-### Accessbility
+### Accessibility
 
 With the current setup, there is no way we can close the toast using the keyboard. We can make the close button inside the toast autofocus when it mounts, giving users a better experience. In my current website, I'm using [Headless UI](https://headlessui.dev/) to handle these problems.
 

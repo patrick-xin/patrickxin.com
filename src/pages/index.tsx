@@ -29,7 +29,7 @@ const HomePage = ({ post }: { post: Post }) => {
         </div>
         <div className="relative">
           <div className="text-xl font-heading tracking-wider lg:text-3xl leading-loose lg:leading-[3rem]">
-            Hello there! I&lsquo;m
+            Hi there! I&lsquo;m
           </div>
           <h1 className="text-3xl lg:text-6xl lg:my-4 font-bold text-gradient">
             Patrick Xin

@@ -4,7 +4,7 @@ import cuid from "cuid";
 import { fetcher } from "@common/utils/fetcher";
 
 import type { IPost, IComment } from "@post/types";
-import { useModalStore } from "@common/hooks";
+import { useToastStore } from "@common/hooks";
 
 export const postKeys = {
   all: ["posts"] as const,
@@ -28,7 +28,7 @@ export const useCommentMutation = ({
   cb: () => void;
 }) => {
   const queryClient = useQueryClient();
-  const { toast } = useModalStore();
+  const { toast } = useToastStore();
   return useMutation(
     () => {
       return fetch(`/api/post/${postSlug}/comments`, {
@@ -46,11 +46,17 @@ export const useCommentMutation = ({
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["post", postSlug]);
-        toast.success("Comment added! Thank you!", "topRight");
+        toast.success("Comment added! Thank you!", {
+          position: "topRight",
+          direction: "fadeLeft",
+        });
         cb();
       },
       onError: () => {
-        toast.error("Error occured, please try again later.", "topRight");
+        toast.error("Error occured, please try again later.", {
+          position: "topRight",
+          direction: "fadeLeft",
+        });
         cb();
       },
     }
@@ -163,7 +169,7 @@ export const usePosts = () => {
 
 export const useDeletePost = () => {
   const queryClient = useQueryClient();
-  const { toast } = useModalStore();
+  const { toast } = useToastStore();
   const { mutate, isLoading } = useMutation(
     (slug: string) => {
       return fetch(`/api/post/${slug}`, {
@@ -173,7 +179,7 @@ export const useDeletePost = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries([postKeys.all]);
-        toast.success("Post Deleted!", "topRight");
+        toast.success("Post Deleted!", {});
       },
     }
   );

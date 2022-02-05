@@ -1,7 +1,7 @@
 import useLockedBody from "./useLockedBody";
 import useOnClickOutside from "./useOnClickOutside";
 import useScrollDirection from "./useScrollDirection";
-import useModalStore from "./useModalStore";
+import useToastStore from "./useToastStore";
 import useEventListener from "./useEventListener";
 import useLocalStorage from "./useLocalStorage";
 import useSortData from "./useSortData";
@@ -12,6 +12,6 @@ export {
   useLockedBody,
   useOnClickOutside,
   useScrollDirection,
-  useModalStore,
+  useToastStore,
   useSortData,
 };
