@@ -16,7 +16,7 @@ const GoBackButton = ({ path, title }: GoBackButtonProps) => {
       <ArrowLeftIcon className="h-4 w-4 md:h-6 md:w-6 text-orange dark:text-mint" />
       <Link href={`${path}`}>
         <a className="group-hover:underline dark:text-gray-500 text-sm md:text-base underline-offset-4 decoration-2 transition-all ease-linear decoration-orange dark:decoration-mint">
-          Go back to {title}
+          {title}
         </a>
       </Link>
     </button>

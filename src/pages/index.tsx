@@ -35,7 +35,8 @@ const HomePage = ({ post }: { post: Post }) => {
             Patrick Xin
           </h1>
           <p className="text-xl font-heading tracking-wider lg:text-3xl leading-loose lg:leading-[3rem]">
-            a frontend developer, 🐱 lover and ☕ addict.
+            a frontend developer, who loves creating beautiful websites and
+            interesting web apps.
           </p>
         </div>
         <div className="my-24 lg:hidden">
