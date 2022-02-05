@@ -1,9 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useQueryClient, useMutation } from "react-query";
+
 import { Tooltip } from "@common/components";
 import { EyeIcon } from "@heroicons/react/outline";
-import { usePostViews, useUpdateViews } from "@post/hooks";
-import { useEffect } from "react";
+import { usePostViews } from "@post/hooks";
 
 const PostViews = ({ postSlug }: { postSlug: string }) => {
   const { views } = usePostViews(postSlug);
