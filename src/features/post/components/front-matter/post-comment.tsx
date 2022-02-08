@@ -17,7 +17,7 @@ const PostComment = ({
   const { comments } = usePostComments(postSlug);
 
   return (
-    <Tooltip position="bottom" color="purple" tooltipText="comments">
+    <Tooltip position="bottom" color="mint" tooltipText="comments">
       <AnimatePresence>
         {comments && (
           <motion.div

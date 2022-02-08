@@ -8,7 +8,7 @@ import { ease } from "@/common/animation";
 type TooltipProps = {
   tooltipText: string;
   position: "left" | "bottom" | "top" | "right";
-  color: "orange" | "red" | "purple" | "indigo" | "blue";
+  color: "orange" | "red" | "purple" | "indigo" | "blue" | "mint";
 };
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -24,6 +24,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     purple: "bg-orange dark:bg-purple-600",
     indigo: "bg-[#5f99cf]",
     blue: "bg-[#00aced]",
+    mint: "bg-mint",
   };
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" });
   return (
@@ -45,7 +46,7 @@ const Tooltip: React.FC<TooltipProps> = ({
               exit={{ opacity: 0 }}
               transition={{ ease }}
               className={classNames(
-                `absolute hidden lg:flex opacity-0 text-snow whitespace-nowrap px-1 lg:px-3 py-1 text-sm rounded items-center ${variants[color]}`,
+                `absolute hidden lg:flex opacity-0 text-white whitespace-nowrap px-1 lg:px-3 py-1 text-sm rounded items-center ${variants[color]}`,
                 {
                   "-left-20 ml-1": position === "left",
                   "top-10 -left-6": position === "bottom",
