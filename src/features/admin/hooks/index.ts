@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-import { fetcher } from "@common/utils/fetcher";
-import { IUser } from "features/admin/types";
+import { fetcher } from "@/utils/fetcher";
+import { IUser } from "@/admin/types";
 
 export const useLogout = () => {
   const router = useRouter();
@@ -34,7 +34,7 @@ export const useLogin = ({
   const queryClient = useQueryClient();
   const router = useRouter();
   const [message, setMessage] = useState("");
-  const { mutate } = useMutation(
+  const { mutate, isLoading } = useMutation(
     async () => {
       const res = await fetch("/api/auth/login", {
         method: "POST",
@@ -63,7 +63,7 @@ export const useLogin = ({
     }
   );
 
-  return { login: mutate, message };
+  return { login: mutate, message, isLoading };
 };
 
 export const useGetUsers = () => {
@@ -88,12 +88,4 @@ export const useDeleteUser = () => {
   );
 
   return { deleteUser: mutate, error, isDeleting: isLoading, data };
-};
-
-export const useResetViews = () => {
-  return useMutation((slug: string) => {
-    return fetch(`/api/post/${slug}/views`, {
-      method: "PATCH",
-    });
-  });
 };

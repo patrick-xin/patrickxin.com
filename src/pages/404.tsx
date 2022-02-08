@@ -1,5 +1,5 @@
-import Planet from "@common/components/svg/plant";
-import { GoBackButton } from "@post/components";
+import { Planet } from "@/common/components";
+import { GoBackButton } from "@/post/components";
 
 const NotFoundPage = () => {
   return (

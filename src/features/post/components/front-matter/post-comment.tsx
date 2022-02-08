@@ -1,8 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 
 import { ChatIcon } from "@heroicons/react/outline";
-import { Tooltip } from "@common/components";
-import { usePostComments } from "@post/hooks";
+import { Tooltip } from "@/common/components";
+
+import { usePostComments } from "@/post/hooks";
 
 type PostCommentProps = {
   postSlug: string;

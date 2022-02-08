@@ -1,7 +1,7 @@
 import Link from "next/link";
 import cn from "classnames";
 
-import { ArrowLeftIcon, ArrowRightIcon } from "@common/components/svg";
+import { ArrowLeftIcon, ArrowRightIcon } from "@/common/components/icon";
 
 type PostNavLinkProps = {
   slug: string;

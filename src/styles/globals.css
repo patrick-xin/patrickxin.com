@@ -8,7 +8,7 @@
   }
   body {
     @apply text-gray-600 bg-snow dark:bg-lead dark:text-snow/90
-     text-base antialiased font-body lg:text-lg leading-3 tracking-tight xl:tracking-wide;
+     text-base antialiased font-body  lg:text-lg leading-3 tracking-tight xl:tracking-wide;
   }
   h1,h2,h3,h4,h5{
     @apply font-heading tracking-wider
@@ -35,6 +35,9 @@
           rounded-md relative block w-full px-3 py-2 h-10 border border-gray-300 text-base
           dark:border-white/50 placeholder-gray-500 text-gray-900 dark:text-white/90 
           focus:outline-none focus:border-yellow-500 dark:focus:border-mint focus:border;
+  }
+  .icon-link {
+   @apply w-5 h-5 lg:h-6 lg:w-6 fill-current text-gray-400 group-hover:text-orange dark:hover:text-mint transition-colors ease-out
   }
 }
 @layer components {

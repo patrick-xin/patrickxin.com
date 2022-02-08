@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import cn from "classnames";
 
-import useScrollToTop from "@common/hooks/useScrollToTop";
+import { useScrollToTop } from "@/common/hooks";
 import { ArrowUpIcon } from "@heroicons/react/solid";
 
 type ScrollTopProps = {

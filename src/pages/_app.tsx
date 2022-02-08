@@ -1,20 +1,20 @@
+import { ReactElement, ReactNode, useState } from "react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+import { NextSeo } from "next-seo";
+import { ThemeProvider } from "next-themes";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import "@fontsource/dm-serif-display";
 import "@fontsource/space-mono";
 import "@fontsource/fira-code";
-import { NextSeo } from "next-seo";
-import { ThemeProvider } from "next-themes";
 
 import type { NextPage } from "next";
-import { ReactElement, ReactNode, useState } from "react";
 import type { AppProps } from "next/app";
 
-import { Progress, MessageModal } from "@common/components";
+import { Progress, MessageModal } from "@/common/components";
 
-import "@styles/globals.css";
-import siteConfig from "../../config/site";
+import "@/styles/globals.css";
+import siteConfig from "@/config/site";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;

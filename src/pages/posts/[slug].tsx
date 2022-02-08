@@ -7,7 +7,7 @@ import { useMediaQuery } from "react-responsive";
 import Image from "next/image";
 
 import { useMDXComponent } from "next-contentlayer/hooks";
-import components from "@post/components/mdx/mdxComponents";
+import components from "@/post/components/mdx/mdxComponents";
 
 import {
   FrontMatter,
@@ -16,18 +16,16 @@ import {
   PostNavs,
   ScrollToTop,
   PostLayout,
-} from "@post/components";
-const TableOfContent = dynamic(() => import("@post/components/toc"), {
+} from "@/post/components";
+const TableOfContent = dynamic(() => import("@/post/components/toc"), {
   ssr: false,
 });
-
-import { getAdjacentPosts, getAllPostsPaths, getPost } from "@post/lib";
-import siteConfig from "../../../config/site";
-import { ease } from "@common/animation";
-import { Breadcrumbs } from "@common/components";
+const MobileNav = dynamic(() => import("@/post/components/mobil-nav"));
+import { getAdjacentPosts, getAllPostsPaths, getPost } from "@/post/lib";
+import siteConfig from "../../config/site";
+import { ease } from "@/common/animation";
+import { Breadcrumbs } from "@/common/components";
 import { useMutation, useQueryClient } from "react-query";
-
-const MobileNav = dynamic(() => import("@post/components/mobil-nav"));
 
 const PostPage = ({
   post,
@@ -60,6 +58,7 @@ const PostPage = ({
   };
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" });
   const ref = useRef(null);
+
   function handleScrollToComments() {
     ref.current.scrollIntoView({ behavior: "smooth" });
   }
@@ -69,19 +68,16 @@ const PostPage = ({
     const createPost = async () => {
       await fetch(`/api/post/${post.slug}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          slug: post.slug,
-        }),
       });
     };
 
     createPost();
   }, [post.slug]);
   useEffect(() => {
-    if (process.env.NODE_ENV === "development") return;
     mutate(post.slug);
+    // eslint-disable-next-line
   }, [post.slug]);
+
   return (
     <motion.div
       initial={{ marginLeft: 0 }}

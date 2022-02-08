@@ -1,6 +1,6 @@
 import NavLink from "./nav-link";
 
-import type { IAdjacentPosts } from "@post/types";
+import type { IAdjacentPosts } from "@/post/types";
 
 type PostNavsProps = {
   adjacentPosts: IAdjacentPosts;

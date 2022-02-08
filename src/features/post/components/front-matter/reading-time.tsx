@@ -1,4 +1,4 @@
-import { Frontmatter } from "@post/types";
+import { Frontmatter } from "@/post/types";
 
 type ReadingTimeProps = Pick<Frontmatter, "readingTime">;
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Dialog } from "@headlessui/react";
+
 import { AnimatePresence, motion } from "framer-motion";
 
 import {
@@ -7,9 +7,8 @@ import {
   InformationCircleIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/outline";
-import { CheckSquareIcon } from "./svg";
 
-import { useToastStore } from "@common/hooks";
+import { useToastStore } from "@/common/hooks";
 
 const toastTypes = {
   success: "bg-green-500",
@@ -18,10 +17,10 @@ const toastTypes = {
 };
 
 const positions = {
-  topCenter: "top-4 mx-auto",
+  topCenter: "top-4 mx-auto right-0 left-0",
   topRight: "top-4 right-4",
-  bottomCenter: "bottom-0 mx-auto",
-  bottomRight: "bottom-0 right-0",
+  bottomCenter: "bottom-4 right-0 left-0 mx-auto",
+  bottomRight: "bottom-4 right-0",
 };
 
 const variants = {
@@ -30,7 +29,6 @@ const variants = {
       opacity: 0,
       x: "100%",
     },
-
     animate: {
       opacity: 1,
       x: 0,
@@ -43,7 +41,7 @@ const variants = {
   fadeUp: {
     initial: {
       opacity: 0,
-      y: 12,
+      y: 16,
     },
     animate: {
       opacity: 1,
@@ -71,51 +69,45 @@ const MessageModal = () => {
   }, [isToastOpen]);
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence>
       {isToastOpen && (
-        <Dialog
-          initialFocus={completeButtonRef}
-          open={isToastOpen}
-          as={motion.div}
+        <motion.div
           key={toastType}
           variants={variants[direction]}
           initial="initial"
           animate="animate"
-          className={`fixed w-72 z-100 ${positions[position]}`}
-          onClose={closeToast}
+          exit="exit"
+          className={`fixed text-white w-80 z-100 h-16 rounded-md flex items-center justify-around ${positions[position]} ${toastTypes[toastType]}`}
         >
-          <div
-            className={`flex h-12 w-full items-center rounded ${toastTypes[toastType]}`}
-          >
-            <div className="mx-2">
-              {toastType === "warning" && (
-                <ExclamationCircleIcon className="text-snow h-6 w-6" />
-              )}
-              {toastType === "success" && <CheckSquareIcon />}
-              {toastType === "error" && (
-                <InformationCircleIcon className="text-snow h-6 w-6" />
-              )}
-            </div>
-
-            {message && (
-              <Dialog.Title
-                as="h4"
-                className="text-sm font-medium mx-2 leading-6 text-snow"
-              >
-                {message}
-              </Dialog.Title>
+          <div className="mx-2">
+            {toastType === "warning" && (
+              <ExclamationCircleIcon className="text-snow h-6 w-6" />
             )}
-
-            <button
-              ref={completeButtonRef}
-              type="button"
-              className="absolute top-3 right-2"
-              onClick={closeToast}
-            >
-              <XIcon className="h-4 w-4 text-snow" />
-            </button>
+            {toastType === "success" && (
+              <div className="flex">
+                <span>🎉</span>
+              </div>
+            )}
+            {toastType === "error" && (
+              <InformationCircleIcon className="text-snow h-6 w-6" />
+            )}
           </div>
-        </Dialog>
+
+          {message && (
+            <p className="text-sm lg:text-base font-medium mx-2 leading-6">
+              {message}
+            </p>
+          )}
+
+          <button
+            ref={completeButtonRef}
+            type="button"
+            className="absolute top-1 right-2"
+            onClick={closeToast}
+          >
+            <XIcon className="h-4 w-4 text-snow" />
+          </button>
+        </motion.div>
       )}
     </AnimatePresence>
   );

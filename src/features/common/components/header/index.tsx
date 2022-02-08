@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import cn from "classnames";
 
-import ThemeToggle from "./theme-toggle";
+import { ThemeToggle } from "@/common/components";
 import MenuButton from "./menu-button";
 
-import { ROUTES } from "@common/constants";
-import { ease } from "@common/animation";
+import { ROUTES } from "@/common/constants";
+import { ease } from "@/common/animation";
 
 interface HeaderProps {
   openDrawer(isopen: boolean): void;
@@ -24,7 +24,7 @@ const Header = ({ openDrawer, isDrawerOpen }: HeaderProps) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ ease }}
-      className="h-16 md:h-24 w-full mx-auto shadow-sm bg-snow dark:bg-lead"
+      className="h-16 md:h-24 w-full mx-auto bg-snow dark:bg-lead"
     >
       <nav
         className="grid grid-cols-2 max-w-6xl mx-auto lg:grid-cols-6 items-center h-full w-full

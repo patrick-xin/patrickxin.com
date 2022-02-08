@@ -1,13 +1,14 @@
 import { useState } from "react";
-
-import { useLogin } from "features/admin/hooks";
 import Image from "next/image";
+
+import { useLogin } from "@/admin/hooks";
+import { SpinLoader } from "@/common/components/icon";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const { login, message } = useLogin({ username, email, password });
+  const { login, message, isLoading } = useLogin({ username, email, password });
 
   return (
     <div className="grid grid-cols-1 place-content-center lg:mx-24 lg:grid-cols-5 h-screen mx-auto">
@@ -54,9 +55,9 @@ const LoginPage = () => {
           />
           <button
             type="submit"
-            className="p-2 bg-orange rounded-md text-black/70 text-sm"
+            className="p-2 flex justify-center items-center bg-orange rounded-md text-black/70 text-sm"
           >
-            login
+            {isLoading ? <SpinLoader /> : "login"}
           </button>
         </form>
       </div>

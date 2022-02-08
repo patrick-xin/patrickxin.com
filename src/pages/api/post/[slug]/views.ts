@@ -1,9 +1,8 @@
 import { NextApiResponse } from "next";
 import nc from "next-connect";
 
-import { Request } from "@common/types";
-import middleware from "@common/lib/prisma/middleware";
-import auth from "@common/lib/prisma/middleware/auth";
+import { Request } from "@/common/types";
+import middleware from "@/lib/prisma/middleware";
 
 const handler = nc<Request, NextApiResponse>();
 
@@ -28,21 +27,6 @@ handler.post(async ({ query, db }, res) => {
     where: { slug },
     data: {
       view_count: { increment: 1 },
-    },
-  });
-  console.log(data);
-
-  return res.status(200).json({
-    views: data.view_count,
-  });
-});
-
-handler.use(auth).patch(async ({ query, db }, res) => {
-  const slug = query.slug as string;
-  const data = await db.post.update({
-    where: { slug },
-    data: {
-      view_count: 0,
     },
   });
 

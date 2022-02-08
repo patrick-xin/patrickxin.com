@@ -5,8 +5,9 @@ import { motion } from "framer-motion";
 import PostTitle from "./front-matter/post-title";
 import PublishTime from "./front-matter/publish-time";
 
-import { cardAnimation } from "@common/animation";
-import type { Frontmatter } from "@post/types";
+import { cardAnimation } from "@/common/animation";
+
+import type { Frontmatter } from "@/post/types";
 
 const PostCard = ({ post }: { post: Frontmatter }) => {
   return (

@@ -74,7 +74,7 @@ const QuickNav = ({ setOpenDrawer }: QuickNavProps) => {
               !hash,
           })}
         >
-          TOC
+          Table of Contents
         </h2>
         <motion.div
           initial={{ opacity: 0 }}

@@ -1,11 +1,12 @@
 import { ReactElement } from "react";
 import { motion } from "framer-motion";
-
-import { BasicLayout, Blob } from "@common/components";
-import { PostItem } from "@post/components";
-import { ease } from "@common/animation";
 import { GetStaticProps } from "next";
-import { getMostRecentPost } from "@post/lib";
+
+import { BasicLayout, Blob } from "@/common/components";
+import { PostItem } from "@/post/components";
+import { ease } from "@/common/animation";
+
+import { getMostRecentPost } from "@/post/lib";
 
 import { Post } from ".contentlayer/types";
 

@@ -5,7 +5,7 @@ import {
 } from "contentlayer/source-files";
 
 import readingTime from "reading-time";
-import mdxOptions from "./config/mdx";
+import mdxOptions from "./src/config/mdx";
 
 const computedFields: ComputedFields = {
   readingTime: { type: "json", resolve: (doc) => readingTime(doc.body.raw) },

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Header, Footer, MobileDrawer } from "@common/components";
+import { Header, Footer, MobileDrawer } from "@/common/components";
 
 const PostLayout: React.FC = ({ children }) => {
   const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false);

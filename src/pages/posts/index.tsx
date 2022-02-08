@@ -2,10 +2,10 @@ import { ReactElement, useState } from "react";
 import { GetStaticProps } from "next";
 import { AnimatePresence } from "framer-motion";
 
-import { PostCardList, PostItemList, PostViewOption } from "@post/components";
-import { BasicLayout, Breadcrumbs } from "@common/components";
+import { PostCardList, PostItemList, PostViewOption } from "@/post/components";
+import { BasicLayout, Breadcrumbs } from "@/common/components";
 
-import { getSortedPostsByDate } from "@post/lib";
+import { getSortedPostsByDate } from "@/post/lib";
 import type { Post } from ".contentlayer/types";
 
 const PostsPage = ({ posts }: { posts: Post[] }) => {

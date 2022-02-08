@@ -1,4 +1,4 @@
-import { useCloseDrawer } from "@common/hooks/useCloseDrawer";
+import { useCloseDrawer } from "@/common/hooks";
 import { AnimatePresence, motion } from "framer-motion";
 
 type MenuButtonProps = {

@@ -27,7 +27,7 @@ const useToastStore = create<ToastState>((set) => ({
   closeToast: () => set(() => ({ isToastOpen: false })),
   message: "",
   toastType: "success",
-  position: "bottomCenter",
+  position: "topRight",
   direction: "fadeUp",
   toast: {
     success: (message, { position, direction }: ToastOption) =>

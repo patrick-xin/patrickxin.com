@@ -3,10 +3,10 @@ import classNames from "classnames";
 
 import { HeartIcon } from "@heroicons/react/solid";
 import { HeartIcon as HeartIconOutline } from "@heroicons/react/outline";
-import { Tooltip } from "@common/components";
+import { Tooltip } from "@/common/components";
 
-import { useLocalStorage } from "@common/hooks";
-import { usePostLikes, useUpdateLikes } from "@post/hooks";
+import { useLocalStorage } from "@/common/hooks";
+import { usePostLikes, useUpdateLikes } from "@/post/hooks";
 
 const PostLikes = ({ postSlug }: { postSlug: string }) => {
   const [isLiked, setLike] = useLocalStorage(postSlug, false);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Header, Footer } from "@common/components";
+import { Header, Footer } from "@/common/components";
 import MobileDrawer from "./mobile-drawer";
 
 const BasicLayout: React.FC = ({ children }) => {

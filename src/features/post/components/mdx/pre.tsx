@@ -4,7 +4,7 @@ import cn from "classnames";
 
 import { ClipboardCopyIcon } from "@heroicons/react/outline";
 
-import { copyToClipboard } from "@post/lib/utils";
+import { copyToClipboard } from "@/utils/copyToClipboard";
 
 type PreProps = {
   children: JSX.Element;

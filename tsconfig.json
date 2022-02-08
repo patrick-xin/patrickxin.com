@@ -17,13 +17,14 @@
     "jsx": "preserve",
     "baseUrl": "./src",
     "paths": {
-      "@common/*": ["features/common/*"],
-      "@post/*": ["features/post/*"],
-      "@auth/*": ["features/auth/*"],
-      "@admin/*": ["features/admin/*"],
-      "@styles/*": ["styles/*"],
-      "@lib/*": ["lib/*"],
-      "@config/*": ["config/*"]
+      "@/common/*": ["features/common/*"],
+      "@/post/*": ["features/post/*"],
+      "@/auth/*": ["features/auth/*"],
+      "@/admin/*": ["features/admin/*"],
+      "@/styles/*": ["styles/*"],
+      "@/lib/*": ["lib/*"],
+      "@/utils/*": ["utils/*"],
+      "@/config/*": ["config/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

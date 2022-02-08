@@ -1,4 +1,4 @@
-import { IComment } from "@post/types";
+import { IComment } from "@/post/types";
 
 export interface IUser {
   username: string;
@@ -7,9 +7,17 @@ export interface IUser {
   comment: IComment[];
   id: string;
   _count: { comment: number };
+  title?: string;
 }
 
 enum Role {
   VISTOR = "VISTOR",
   ADMIN = "ADMIN",
 }
+export type NormalizedPost = {
+  views: number;
+  likes: number;
+  comments: number;
+  title: string;
+  id: string;
+};

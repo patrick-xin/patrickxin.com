@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-const useSortableData = (items: any[], config = null) => {
+function useSortableData<T>(items: T[], config = null) {
   const [sortConfig, setSortConfig] = useState(config);
 
   const sortedItems = useMemo(() => {
@@ -33,6 +33,6 @@ const useSortableData = (items: any[], config = null) => {
   };
 
   return { items: sortedItems, requestSort, sortConfig };
-};
+}
 
 export default useSortableData;

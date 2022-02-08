@@ -1,13 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
-
+import dynamic from "next/dynamic";
+const ToastForPost = dynamic(() => import("./toast-for-post"));
 import FeaturedText from "./featured-text";
 import Pre from "./pre";
-import { HashIcon, QuoteEndIcon, QuoteStartIcon } from "@common/components/svg";
+import {
+  HashIcon,
+  QuoteEndIcon,
+  QuoteStartIcon,
+} from "@/common/components/icon";
 
 const MDXComponents = {
   Image,
   FeaturedText,
+  ToastForPost,
   a: ({ ...props }) => {
     if (props.href.startsWith("https")) {
       return (

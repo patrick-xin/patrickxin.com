@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import PostTitle from "./front-matter/post-title";
 import PublishTime from "./front-matter/publish-time";
 import ReadingTime from "./front-matter/reading-time";
-import type { Frontmatter } from "@post/types";
+import type { Frontmatter } from "@/post/types";
 
 const PostItem = ({ post }: { post: Frontmatter }) => {
   return (

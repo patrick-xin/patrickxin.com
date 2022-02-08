@@ -1,5 +1,5 @@
-import { gridAnimation } from "@common/animation";
-import { Frontmatter } from "@post/types";
+import { gridAnimation } from "@/common/animation";
+import { Frontmatter } from "@/post/types";
 import { motion } from "framer-motion";
 
 import PostItem from "./post-item";

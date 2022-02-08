@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
 
-import type { IComment } from "@post/types";
+import type { IComment } from "@/post/types";
+
 type DashboradReplyProps = {
   comment: IComment;
   setActiveReply(): void;

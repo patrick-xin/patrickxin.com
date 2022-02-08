@@ -4,7 +4,9 @@ import {
   CopyRightIcon,
   InstagramIcon,
   TwitterIcon,
-} from "@common/components/svg";
+} from "@/common/components/icon";
+
+import { getYear } from "@/utils/getYear";
 
 type FooterProps = {
   hasMarginBottom: boolean;
@@ -58,17 +60,17 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
         </div>
       </div>
 
-      <div className="mt-2 gap-1 lg:mt-4 flex flex-col-reverse lg:flex-row items-center lg:gap-4">
+      <div className="mt-2 gap-1 flex flex-col-reverse lg:flex-row items-center lg:gap-4">
         <p>
           <CopyRightIcon />
-          <span className="mx-2">Patrick Xin 2022</span>
+          <span className="mx-2">Patrick Xin {getYear()}</span>
         </p>
         <ul className="flex gap-2 items-center">
           <li>
             <a
               rel="noreferrer noopener"
               target="_blank"
-              className="p-1 lg:p-2 dark:hover:bg-white/10 hover:bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+              className="p-1 group lg:p-2 dark:hover:bg-white/10 hover:bg-black/5 inline-flex rounded-md transition-colors ease-linear"
               href="https://github.com/patrick-xin"
             >
               <GithubIcon />
@@ -76,7 +78,7 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
           </li>
           <li>
             <a
-              className="p-1 lg:p-2 mt-[2px] dark:hover:bg-white/10 hover:bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+              className="p-1 group lg:p-2 mt-[2px] dark:hover:bg-white/10 hover:bg-black/5 inline-flex rounded-md transition-colors ease-linear"
               rel="noreferrer noopener"
               target="_blank"
               href="https://www.instagram.com/alpesdream/"
@@ -86,7 +88,7 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
           </li>
           <li>
             <a
-              className="p-1 lg:p-2 dark:hover:bg-white/10 hover:bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+              className="p-1 group lg:p-2 dark:hover:bg-white/10 hover:bg-black/5 inline-flex rounded-md transition-colors ease-linear"
               rel="noreferrer noopener"
               target="_blank"
               href="https://twitter.com/alpesdream"

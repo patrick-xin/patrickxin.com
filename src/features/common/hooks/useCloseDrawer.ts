@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
-export const useCloseDrawer = (cb: () => void) => {
+const useCloseDrawer = (cb: () => void) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -15,3 +15,5 @@ export const useCloseDrawer = (cb: () => void) => {
     };
   }, [router.events]);
 };
+
+export default useCloseDrawer;

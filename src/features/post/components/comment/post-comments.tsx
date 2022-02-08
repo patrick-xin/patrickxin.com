@@ -1,10 +1,11 @@
+import { forwardRef } from "react";
 import Avatar from "boring-avatars";
-import { usePostComments } from "@post/hooks";
 
 import CommentBox from "./comment-box";
 import CommentForm from "./comment-form";
-import SpinLoader from "@common/components/svg/spin-loader";
-import { forwardRef } from "react";
+import { SpinLoader } from "@/common/components/icon";
+
+import { usePostComments } from "@/post/hooks";
 
 type PostCommentsProps = {
   slug: string;

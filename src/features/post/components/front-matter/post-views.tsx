@@ -1,8 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
-
-import { Tooltip } from "@common/components";
 import { EyeIcon } from "@heroicons/react/outline";
-import { usePostViews } from "@post/hooks";
+
+import { Tooltip } from "@/common/components";
+
+import { usePostViews } from "@/post/hooks";
 
 const PostViews = ({ postSlug }: { postSlug: string }) => {
   const { views } = usePostViews(postSlug);
@@ -17,6 +18,7 @@ const PostViews = ({ postSlug }: { postSlug: string }) => {
             className="flex gap-1 items-center"
           >
             <EyeIcon className="h-6 w-6 text-mint dark:text-orange" />
+
             <motion.div
               className="font-black text-xs lg:text-sm"
               initial={{ y: 10, opacity: 0 }}

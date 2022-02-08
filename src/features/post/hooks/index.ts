@@ -1,10 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import cuid from "cuid";
 
-import { fetcher } from "@common/utils/fetcher";
+import { useToastStore } from "@/common/hooks";
+import { fetcher } from "@/utils/fetcher";
 
-import type { IPost, IComment } from "@post/types";
-import { useToastStore } from "@common/hooks";
+import type { IPost, IComment } from "@/post/types";
 
 export const postKeys = {
   all: ["posts"] as const,
@@ -81,7 +81,7 @@ export const useUpdateViews = (slug: string) => {
 
 export const useUpdateLikes = (slug: string) => {
   const queryClient = useQueryClient();
-
+  const { toast } = useToastStore();
   const { mutate, isLoading } = useMutation(
     () => {
       return fetch(`/api/post/${slug}/likes`, {
@@ -90,13 +90,8 @@ export const useUpdateLikes = (slug: string) => {
     },
     {
       onMutate: async () => {
-        // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
         await queryClient.cancelQueries(postKeys.single(slug));
-
-        // Snapshot the previous value
         const previousPost = queryClient.getQueryData(postKeys.single(slug));
-
-        // Optimistically update to the new value
         queryClient.setQueryData<{ likes: number }>(
           postKeys.single(slug),
           (old) => ({
@@ -105,19 +100,22 @@ export const useUpdateLikes = (slug: string) => {
           })
         );
 
-        // Return a context object with the snapshotted value
         return previousPost;
       },
-      // If the mutation fails, use the context returned from onMutate to roll back
+
       onError: (err, _, context: any) => {
         queryClient.setQueryData<{ likes: number }>(
           postKeys.single(slug),
           context.previousLikes
         );
       },
-      // Always refetch after error or success:
+
       onSettled: () => {
         queryClient.invalidateQueries(postKeys.single(slug));
+        toast.success("Thank you for your support!", {
+          position: "topRight",
+          direction: "fadeLeft",
+        });
       },
     }
   );
@@ -167,7 +165,7 @@ export const usePosts = () => {
   return { data };
 };
 
-export const useDeletePost = () => {
+export const useDeletePost = (cb: () => void) => {
   const queryClient = useQueryClient();
   const { toast } = useToastStore();
   const { mutate, isLoading } = useMutation(
@@ -179,7 +177,11 @@ export const useDeletePost = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries([postKeys.all]);
-        toast.success("Post Deleted!", {});
+        toast.success("Post Deleted!", {
+          position: "topRight",
+          direction: "fadeLeft",
+        });
+        cb();
       },
     }
   );

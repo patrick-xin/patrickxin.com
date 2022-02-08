@@ -13,7 +13,7 @@ const StatisticsCard = ({
   iconBg,
 }: StatisticsCardProps) => {
   return (
-    <div className="bg-dark-code-background rounded-xl flex flex-col items-center justify-around">
+    <div className="bg-white/10 rounded-xl py-6 flex flex-col items-center justify-around">
       <div className="flex gap-3 items-center">
         <div
           className={`rounded-2xl ${iconBg} h-10 w-10 text-white p-2 flex justify-center items-center`}
@@ -22,9 +22,10 @@ const StatisticsCard = ({
         </div>
         <h3>{title}</h3>
       </div>
-      {count && (
-        <div className="text-4xl font-heading tracking-wider">{count}</div>
-      )}
+
+      <div className="text-4xl font-heading tracking-wider">
+        {count ? count : 0}
+      </div>
     </div>
   );
 };

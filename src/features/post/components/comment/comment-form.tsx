@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { SpinLoader } from "@common/components/svg";
-import { useCommentMutation } from "@post/hooks";
+import { SpinLoader } from "@/common/components/icon";
+import { useCommentMutation } from "@/post/hooks";
 
 type CommentFormProps = {
   postSlug: string;

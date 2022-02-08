@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+
 import PostTitle from "./post-title";
 import Author from "./author";
 import PublishTime from "./publish-time";
@@ -7,11 +8,12 @@ import Avatar from "./avatar";
 import PostViews from "./post-views";
 import PostLikes from "./post-likes";
 import Description from "./description";
-
 import PostComment from "./post-comment";
+
 import type { Frontmatter } from "../../types";
 
-import { ease } from "@common/animation";
+import { ease } from "@/common/animation";
+import PostShare from "./post-share";
 
 type FrontMatterProps = {
   handleScrollToComments: () => void;
@@ -58,6 +60,9 @@ const FrontMatter = ({
                 postSlug={slug}
                 handleScrollToComments={handleScrollToComments}
               />
+            </div>
+            <div className="hidden lg:block">
+              <PostShare postSlug={slug} description={description} />
             </div>
           </div>
         </div>

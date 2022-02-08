@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 
-import { gridAnimation } from "@common/animation";
+import { gridAnimation } from "@/common/animation";
 import PostCard from "./post-card";
 
-import type { Frontmatter } from "@post/types";
+import type { Frontmatter } from "@/post/types";
 
 type PostCardListProps = {
   posts: Frontmatter[];

@@ -1,9 +1,9 @@
 import { NextApiResponse } from "next";
 import nc from "next-connect";
 
-import { Request } from "@common/types";
-import middleware from "@common/lib/prisma/middleware";
-import auth from "@common/lib/prisma/middleware/auth";
+import { Request } from "@/common/types";
+import middleware from "@/lib/prisma/middleware";
+import auth from "@/lib/prisma/middleware/auth";
 const handler = nc<Request, NextApiResponse>();
 
 handler.use(middleware);

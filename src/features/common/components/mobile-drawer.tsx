@@ -4,11 +4,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { usePreventScroll } from "@react-aria/overlays";
 import cn from "classnames";
 
-import ThemeToggle from "./header/theme-toggle";
+import ThemeToggle from "./theme-toggle";
 import { Blob, Footer } from ".";
 
-import { ease } from "@common/animation";
-import { ROUTES } from "@common/constants";
+import { ease } from "@/common/animation";
+import { ROUTES } from "@/common/constants";
 
 interface MobileDrawerProps {
   isDrawerOpen: boolean;
