@@ -9,7 +9,7 @@ const siteConfig = {
   },
   assets: {
     avatar: "/assets/images/seo-image.jpg",
-    favicon: "/assets/favicon.ico",
+    favicon: "/favicon.ico",
   },
   socialLinks: {
     twitter: "@alpesdream",
