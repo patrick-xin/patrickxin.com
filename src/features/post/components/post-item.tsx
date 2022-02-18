@@ -10,7 +10,7 @@ const PostItem = ({ post }: { post: Frontmatter }) => {
   return (
     <motion.li key={post.slug} className="py-4 list-none lg:py-6 w-full ">
       <Link href={`/posts/${post.slug}`}>
-        <a className="space-y-2 lg:space-y-4 group">
+        <a className="space-y-2 lg:space-y-4 group ">
           <div className="flex space-x-1 italic items-center">
             <PublishTime
               className="italic text-xs lg:text-sm"

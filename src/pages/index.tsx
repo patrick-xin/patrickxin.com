@@ -41,7 +41,7 @@ const HomePage = ({ post }: { post: Post }) => {
           </p>
         </div>
         <div className="my-24 lg:hidden">
-          <h2 className="text-xl">Latest Post</h2>
+          <h2 className="text-xl text-gradient">Latest Post</h2>
           <ul>
             <PostItem post={post} />
           </ul>

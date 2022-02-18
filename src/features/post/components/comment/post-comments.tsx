@@ -61,7 +61,9 @@ const PostComments = forwardRef<HTMLHeadingElement, PostCommentsProps>(
                       isAdmin={false}
                     />
 
-                    <p className="p-2">{comment.content}</p>
+                    <p className="p-2 leading-6 lg:leading-8">
+                      {comment.content}
+                    </p>
                     {comment.reply && (
                       <div className="ml-10 my-6">
                         <CommentBox
@@ -70,7 +72,9 @@ const PostComments = forwardRef<HTMLHeadingElement, PostCommentsProps>(
                           by={comment.reply.by}
                           isAdmin
                         />
-                        <p className="text-lg p-2">{comment.reply.content}</p>
+                        <p className="p-2 leading-6 lg:leading-8">
+                          {comment.reply.content}
+                        </p>
                       </div>
                     )}
                   </div>

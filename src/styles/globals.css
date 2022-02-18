@@ -37,7 +37,7 @@
           focus:outline-none focus:border-yellow-500 dark:focus:border-mint focus:border;
   }
   .icon-link {
-   @apply w-5 h-5 lg:h-6 lg:w-6 fill-current text-gray-400 group-hover:text-orange dark:hover:text-mint transition-colors ease-out
+   @apply w-5 h-5 lg:h-6 lg:w-6 fill-current text-gray-400 dark:hover:text-mint transition-colors ease-out
   }
 }
 @layer components {

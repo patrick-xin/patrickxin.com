@@ -1,8 +1,9 @@
-import React from "react";
 import Link from "next/link";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 
 import { IUser, NormalizedPost } from "../types";
+import ReplyModal from "./reply-modal";
+import { useToggle } from "@/common/hooks";
 
 type DashboardTableProps = {
   headings: string[];
@@ -85,51 +86,64 @@ const TableRow = ({
   setOpenModal: () => void;
   type: "users" | "posts";
 }) => {
-  console.log(item);
+  const [open, setOpen] = useToggle();
 
   return (
-    <tr className="hover:bg-black/5 dark:hover:bg-white/10 transition-colors ease-linear">
-      {type === "posts" && (
-        <>
-          <td className="py-4 px-2">
-            <div className="flex items-center h-full w-full">
-              <div className="font-semibold text-lg">
-                <Link href={`/admin/${item.title}`}>
-                  <a> {item.title}</a>
-                </Link>
+    <>
+      <ReplyModal
+        isOpen={open}
+        onClose={setOpen}
+        user={{ username: item.username, comment: item.comment }}
+      />
+      <tr className="hover:bg-black/5 dark:hover:bg-white/10 transition-colors ease-linear">
+        {type === "posts" && (
+          <>
+            <td className="py-4 px-2">
+              <div className="flex items-center h-full w-full">
+                <div className="font-semibold text-lg">
+                  <Link href={`/admin/${item.title}`}>
+                    <a> {item.title}</a>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </td>
-          <td className="px-6 py-4 whitespace-nowrap ">{item.views}</td>
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap ">{item.views}</td>
 
-          <td className="px-6 py-4 whitespace-nowrap">
-            <div>{item.likes}</div>
-          </td>
-          <td className="px-6 py-4 whitespace-nowrap">
-            <div>{item.comments}</div>
-          </td>
-        </>
-      )}
-      {type === "users" && (
-        <>
-          <td className="px-6 py-4 whitespace-nowrap">
-            <div>{item.username}</div>
-          </td>
-          <td className="px-6 py-4 whitespace-nowrap ">{item.email}</td>
-          <td className="px-6 py-4 whitespace-nowrap">
-            <div>{item.comment[0].content}</div>
-          </td>
-        </>
-      )}
+            <td className="px-6 py-4 whitespace-nowrap">
+              <div>{item.likes}</div>
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap">
+              <div>{item.comments}</div>
+            </td>
+          </>
+        )}
+        {type === "users" && (
+          <>
+            <td className="px-6 py-4 whitespace-nowrap">
+              <div>{item.username}</div>
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap ">{item.email}</td>
+            <td className="px-6 py-4 whitespace-nowrap">
+              <div>{item.comment[0].content}</div>
+              <button
+                onClick={setOpen}
+                className="bg-orange text-snow text-sm rounded px-2 py-1 inline-flex justify-center w-20"
+              >
+                reply
+              </button>
+            </td>
+          </>
+        )}
 
-      <td className="px-6 py-4 whitespace-nowrap">
-        <button
-          onClick={() => setOpenModal()}
-          className="bg-red-700 text-snow text-sm rounded px-2 py-1 inline-flex justify-center w-20"
-        >
-          delete
-        </button>
-      </td>
-    </tr>
+        <td className="px-6 py-4 whitespace-nowrap">
+          <button
+            onClick={() => setOpenModal()}
+            className="bg-red-700 text-snow text-sm rounded px-2 py-1 inline-flex justify-center w-20"
+          >
+            delete
+          </button>
+        </td>
+      </tr>
+    </>
   );
 };

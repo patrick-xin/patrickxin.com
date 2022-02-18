@@ -127,6 +127,7 @@ const PostPage = ({
             height={270}
             alt={`${post.title}-image`}
             objectFit="cover"
+            priority
           />
           <div className="text-center text-xs lg:text-sm mt-2 lg:mt-4">
             Image from

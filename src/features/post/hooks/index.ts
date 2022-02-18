@@ -46,7 +46,7 @@ export const useCommentMutation = ({
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["post", postSlug]);
-        toast.success("Comment added! Thank you!", {
+        toast.success("Comment added!", {
           position: "topRight",
           direction: "fadeLeft",
         });
@@ -112,7 +112,7 @@ export const useUpdateLikes = (slug: string) => {
 
       onSettled: () => {
         queryClient.invalidateQueries(postKeys.single(slug));
-        toast.success("Thank you for your support!", {
+        toast.success("You're awesome! Thank you!", {
           position: "topRight",
           direction: "fadeLeft",
         });
@@ -186,4 +186,41 @@ export const useDeletePost = (cb: () => void) => {
     }
   );
   return { deletePost: mutate, isDeleting: isLoading };
+};
+
+export const useReply = () => {
+  const queryClient = useQueryClient();
+  const { toast } = useToastStore();
+  const { mutate, isLoading } = useMutation(
+    ({
+      id,
+      slug,
+      content,
+      username,
+    }: {
+      id: string;
+      slug: string;
+      content: string;
+      username: string;
+    }) => {
+      return fetch(`/api/post/${slug}/comments/${id}`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ content, username }),
+      });
+    },
+    {
+      onSuccess: (_, { slug }) => {
+        toast.success("Successfully replied!", {
+          position: "topRight",
+          direction: "fadeLeft",
+        });
+        queryClient.invalidateQueries(postKeys.single(slug));
+      },
+    }
+  );
+  return { reply: mutate, isSubmitting: isLoading };
 };

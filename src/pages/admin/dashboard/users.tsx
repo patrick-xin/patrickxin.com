@@ -11,6 +11,7 @@ import ConfirmModal from "@/admin/components/confirm-modal";
 
 const DashboardUsers = () => {
   const { users, error } = useGetUsers();
+
   const [isOpen, setOpen] = useToggle();
   const [userId, setUserId] = useState(null);
   const { toast } = useToastStore();

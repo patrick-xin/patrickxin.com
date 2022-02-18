@@ -11,7 +11,7 @@ import {
 import { useToastStore } from "@/common/hooks";
 
 const toastTypes = {
-  success: "bg-green-500",
+  success: "bg-mint dark:bg-orange",
   error: "bg-red-500",
   warning: "bg-yellow-500",
 };

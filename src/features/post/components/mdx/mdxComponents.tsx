@@ -96,7 +96,7 @@ const MDXComponents = {
   },
   ul: ({ ...props }) => (
     <ul
-      className="my-4 md:my-6 leading-7 italic font-medium
+      className="my-4 md:my-6 leading-9 italic font-medium
        md:ml-4 md:pl-8 list-disc list-inside space-y-2 md:space-y-4"
       {...props}
     />

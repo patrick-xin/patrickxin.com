@@ -1,4 +1,4 @@
-import { HeartIcon } from "@heroicons/react/solid";
+import { HeartIcon, RssIcon } from "@heroicons/react/solid";
 import {
   GithubIcon,
   CopyRightIcon,
@@ -94,6 +94,16 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
               href="https://twitter.com/alpesdream"
             >
               <TwitterIcon />
+            </a>
+          </li>
+          <li>
+            <a
+              className="p-1 group lg:p-1.5 dark:hover:bg-white/10 hover:bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+              rel="noreferrer noopener"
+              target="_blank"
+              href="https://alpesdream.vercel.app/feed.xml"
+            >
+              <RssIcon className="icon-link" />
             </a>
           </li>
         </ul>

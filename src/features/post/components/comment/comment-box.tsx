@@ -13,10 +13,16 @@ const CommentBox = ({
   by?: string;
 }) => {
   return (
-    <motion.div className="flex justify-between items-center md:justify-start space-x-2 md:space-x-6 text-xs lg:text-sm bg-orange/60 dark:bg-mint/30 rounded-md w-full p-2 border-b border-gray-200 dark:border-gray-900/50">
+    <motion.div
+      className={`flex justify-between items-center md:justify-start space-x-2 md:space-x-6 text-xs lg:text-sm rounded-md w-full p-2 border-b border-gray-200 dark:border-gray-900/50 ${
+        isAdmin
+          ? "bg-mint/60 dark:bg-orange/60 "
+          : "bg-orange/60 dark:bg-mint/30 "
+      }`}
+    >
       {isAdmin && (
         <div className="inline-flex space-x-4">
-          <span className="font-semibold text-mint dark:text-orange">{by}</span>
+          <span className="font-semibold">{by}</span>
           <span className="hidden md:block dark:text-white/40">replied to</span>
         </div>
       )}

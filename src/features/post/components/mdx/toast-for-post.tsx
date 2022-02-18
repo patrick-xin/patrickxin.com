@@ -4,7 +4,7 @@ import React from "react";
 const ToastForPost = () => {
   const { toast } = useToastStore();
   return (
-    <div className="flex gap-4 my-4">
+    <span className="gap-4 my-4 inline-flex">
       <button
         onClick={() =>
           toast.success("I'm a success message!", {
@@ -38,7 +38,7 @@ const ToastForPost = () => {
       >
         warning
       </button>
-    </div>
+    </span>
   );
 };
 
