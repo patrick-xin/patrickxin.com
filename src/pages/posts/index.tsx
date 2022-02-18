@@ -7,6 +7,7 @@ import { BasicLayout, Breadcrumbs } from "@/common/components";
 
 import { getSortedPostsByDate } from "@/post/lib";
 import type { Post } from ".contentlayer/types";
+import { generateRSSFeed } from "@/utils/generateRSSFeed";
 
 const PostsPage = ({ posts }: { posts: Post[] }) => {
   const [isGridView, setGridView] = useState(false);
@@ -31,7 +32,7 @@ export default PostsPage;
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = getSortedPostsByDate();
-
+  generateRSSFeed(posts);
   return { props: { posts } };
 };
 

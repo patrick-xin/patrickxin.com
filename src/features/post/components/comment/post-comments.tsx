@@ -38,7 +38,7 @@ const PostComments = forwardRef<HTMLHeadingElement, PostCommentsProps>(
             className="text-xl font-heading tracking-wider md:text-2xl lg:text-3xl"
             ref={ref}
           >
-            Comments({comments.length})
+            Comments ({comments.length})
           </h3>
           {comments &&
             comments.map((comment) => (

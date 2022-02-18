@@ -1,5 +1,5 @@
 import { Post } from ".contentlayer/types";
-import { IUser } from "features/admin/types";
+import { IUser } from "@/admin/types";
 
 export type Frontmatter = Pick<
   Post,

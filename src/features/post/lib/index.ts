@@ -1,4 +1,4 @@
-import { allPosts } from ".contentlayer/data";
+import { allPosts } from "contentlayer/generated";
 
 export const getPost = (slug: string) =>
   allPosts.find((post) => post.slug === slug);
@@ -37,3 +37,5 @@ export const getMostRecentPost = () =>
   allPosts.sort(
     (a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
   )[0];
+
+export { allPosts };

@@ -13,7 +13,7 @@ import { useToastStore } from "@/common/hooks";
 const toastTypes = {
   success: "bg-mint dark:bg-orange",
   error: "bg-red-500",
-  warning: "bg-yellow-500",
+  warning: "bg-yellow-600",
 };
 
 const positions = {
@@ -77,9 +77,9 @@ const MessageModal = () => {
           initial="initial"
           animate="animate"
           exit="exit"
-          className={`fixed text-white w-80 z-100 h-16 rounded-md flex items-center justify-around ${positions[position]} ${toastTypes[toastType]}`}
+          className={`fixed text-white w-80 z-100 h-16 rounded-md flex items-center ${positions[position]} ${toastTypes[toastType]}`}
         >
-          <div className="mx-2">
+          <div className="mx-2 ml-8">
             {toastType === "warning" && (
               <ExclamationCircleIcon className="text-snow h-6 w-6" />
             )}
@@ -102,7 +102,7 @@ const MessageModal = () => {
           <button
             ref={completeButtonRef}
             type="button"
-            className="absolute top-1 right-2"
+            className="absolute top-2 right-3"
             onClick={closeToast}
           >
             <XIcon className="h-4 w-4 text-snow" />

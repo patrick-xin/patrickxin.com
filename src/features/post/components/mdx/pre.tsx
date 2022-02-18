@@ -15,7 +15,7 @@ const Pre = ({ children, className, ...props }: PreProps) => {
   const [copied, setCopied] = useState(false);
   const preRef = useRef<HTMLPreElement>(null);
   const onClick = () => {
-    copyToClipboard(preRef.current.innerText);
+    copyToClipboard(preRef.current.innerText.replace(/^(&nbsp;|\s)*/, ""));
     setCopied(true);
   };
   useEffect(() => {
@@ -34,7 +34,6 @@ const Pre = ({ children, className, ...props }: PreProps) => {
         <div className="absolute hidden lg:flex my-4 items-center space-x-2 top-0 right-6">
           <div className="relative">
             <motion.button
-              whileHover={{ scale: 1.05 }}
               type="button"
               aria-label="Copy to Clipboard"
               onClick={onClick}
@@ -59,10 +58,10 @@ const Pre = ({ children, className, ...props }: PreProps) => {
                 >
                   <div
                     role="tooltip"
-                    className="relative text-white max-w-xs break-words rounded bg-orange dark:bg-mint px-3 py-2 text-center text-xs font-medium shadow-lg outline-none"
+                    className="relative text-white max-w-xs break-words rounded bg-orange/80 dark:bg-mint/50 px-3 py-2 text-center text-xs font-medium shadow-lg outline-none"
                   >
                     <svg
-                      className="absolute text-orange dark:text-mint fill-current"
+                      className="absolute text-orange/80 dark:text-mint/50 fill-current"
                       style={{ transform: "translate3D(30px, -13px, 0px)" }}
                       width="10"
                       height="5"

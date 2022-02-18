@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Blog posts by Patrick Xin</title>
+        <link>https://alpesdream.vercel.app</link>
+        <description>Articles, thoughts about Web Development from a frontend developer.</description>
+        <lastBuildDate>Fri, 18 Feb 2022 18:01:36 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <copyright>All rights reserved 2022, Patrick Xin</copyright>
+        <item>
+            <title><![CDATA[Build A Toast Component With React From Scratch]]></title>
+            <link>https://alpesdream.vercel.app/build-a-toast-component-with-react-from-scrach</link>
+            <guid>https://alpesdream.vercel.app/build-a-toast-component-with-react-from-scrach</guid>
+            <pubDate>Tue, 01 Feb 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Create a react toast with tailwind, framer motion and zustand by yourself.]]></description>
+            <author>alpesdream@gmail.com (Patrick Xin)</author>
+        </item>
+    </channel>
+</rss>

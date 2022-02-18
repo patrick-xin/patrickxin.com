@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+
 const ToastForPost = dynamic(() => import("./toast-for-post"));
 import FeaturedText from "./featured-text";
 import Pre from "./pre";

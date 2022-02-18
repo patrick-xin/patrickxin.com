@@ -1,5 +1,4 @@
 import { useToastStore } from "@/common/hooks";
-import React from "react";
 
 const ToastForPost = () => {
   const { toast } = useToastStore();

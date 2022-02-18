@@ -10,7 +10,7 @@ const Avatar = () => {
         height={50}
         width={50}
         className="rounded-full"
-        priority={false}
+        priority
       />
     </div>
   );

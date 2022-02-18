@@ -19,47 +19,6 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
         hasMarginBottom ? "mb-16" : "mb-0"
       } py-4`}
     >
-      <div className="lg:flex lg:items-center">
-        <div className="text-center lg:flex items-center gap-2 lg:mr-2">
-          <span className="inline-block mb-1 lg:mb-0">Made with</span>
-
-          <HeartIcon className="text-red-600 inline-block h-4 w-4 mx-1 -mt-0.5" />
-        </div>
-        <div>
-          using{" "}
-          <span>
-            <a
-              rel="noreferrer noopener"
-              className="underline hover:text-orange dark:hover:text-mint transition-colors ease-linear"
-              href="https://nextjs.org/"
-            >
-              nextjs
-            </a>
-            {", "}
-          </span>
-          <span>
-            <a
-              rel="noreferrer noopener"
-              className="underline hover:text-orange dark:hover:text-mint transition-colors ease-linear"
-              href="https://tailwindcss.com/"
-            >
-              tailwind
-            </a>
-          </span>
-          {", "}
-          deployed by{" "}
-          <span>
-            <a
-              rel="noreferrer noopener"
-              className="underline hover:text-orange dark:hover:text-mint transition-colors ease-linear"
-              href="https://vercel.com/"
-            >
-              vercel
-            </a>
-          </span>
-        </div>
-      </div>
-
       <div className="mt-2 gap-1 flex flex-col-reverse lg:flex-row items-center lg:gap-4">
         <p>
           <CopyRightIcon />
@@ -101,12 +60,51 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
               className="p-1 group lg:p-1.5 dark:hover:bg-white/10 hover:bg-black/5 inline-flex rounded-md transition-colors ease-linear"
               rel="noreferrer noopener"
               target="_blank"
-              href="https://alpesdream.vercel.app/feed.xml"
+              href="https://alpesdream.vercel.app/rss.xml"
             >
               <RssIcon className="icon-link" />
             </a>
           </li>
         </ul>
+      </div>
+      <div className="lg:flex lg:items-center mt-2">
+        <div className="text-center lg:flex items-center gap-2 lg:mr-2">
+          <span className="inline-block mb-1 lg:mb-0">Made with</span>
+          <HeartIcon className="text-red-600 inline-block h-4 w-4 mx-1 -mt-0.5" />
+        </div>
+        <div>
+          using{" "}
+          <span>
+            <a
+              rel="noreferrer noopener"
+              className="underline hover:text-orange dark:hover:text-mint transition-colors ease-linear"
+              href="https://nextjs.org/"
+            >
+              nextjs
+            </a>
+            {", "}
+          </span>
+          <span>
+            <a
+              rel="noreferrer noopener"
+              className="underline hover:text-orange dark:hover:text-mint transition-colors ease-linear"
+              href="https://tailwindcss.com/"
+            >
+              tailwind
+            </a>
+          </span>
+          {", "}
+          deployed by{" "}
+          <span>
+            <a
+              rel="noreferrer noopener"
+              className="underline hover:text-orange dark:hover:text-mint transition-colors ease-linear"
+              href="https://vercel.com/"
+            >
+              vercel
+            </a>
+          </span>
+        </div>
       </div>
     </footer>
   );

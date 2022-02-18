@@ -24,7 +24,7 @@ const MobileNav = dynamic(() => import("@/post/components/mobil-nav"));
 import { getAdjacentPosts, getAllPostsPaths, getPost } from "@/post/lib";
 import siteConfig from "../../config/site";
 import { ease } from "@/common/animation";
-import { Breadcrumbs } from "@/common/components";
+import { Breadcrumbs, MessageModal } from "@/common/components";
 import { useMutation, useQueryClient } from "react-query";
 
 const PostPage = ({
@@ -44,6 +44,7 @@ const PostPage = ({
       },
     }
   );
+
   const Component = useMDXComponent(post.body.code);
   const [isTocOpen, setTocOpen] = useState(false);
   const frontmatter = {
@@ -107,6 +108,7 @@ const PostPage = ({
         }}
       />
       <div className="max-w-4xl mx-auto">
+        <MessageModal />
         <TableOfContent
           hasToc={frontmatter.toc}
           isTocOpen={isTocOpen}

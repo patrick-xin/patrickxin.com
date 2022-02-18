@@ -15,18 +15,19 @@
     "isolatedModules": true,
     "noUnusedLocals": true,
     "jsx": "preserve",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@/common/*": ["features/common/*"],
-      "@/post/*": ["features/post/*"],
-      "@/auth/*": ["features/auth/*"],
-      "@/admin/*": ["features/admin/*"],
-      "@/styles/*": ["styles/*"],
-      "@/lib/*": ["lib/*"],
-      "@/utils/*": ["utils/*"],
-      "@/config/*": ["config/*"]
+      "@/common/*": ["src/features/common/*"],
+      "@/post/*": ["src/features/post/*"],
+      "@/auth/*": ["src/features/auth/*"],
+      "@/admin/*": ["src/features/admin/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/config/*": ["src/config/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx",".contentlayer/generated"],
   "exclude": ["node_modules"]
 }

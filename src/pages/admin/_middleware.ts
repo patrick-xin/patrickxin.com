@@ -1,17 +1,17 @@
 import type { NextFetchEvent, NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
+import jwt from "@tsndr/cloudflare-worker-jwt";
 
 export function middleware(req: NextRequest, ev: NextFetchEvent) {
   const token = req.cookies["auth"];
+
   if (!token) {
-    return NextResponse.redirect("/");
+    return NextResponse.redirect("http://alpesdream.vercel.app/");
   } else {
-    return jwt.verify(token, process.env.JWT_SECRET, async (err) => {
-      if (err) {
-        return NextResponse.redirect("/");
-      }
-      return NextResponse.next();
-    });
+    const isValid = jwt.verify(token, process.env.JWT_SECRET);
+    if (!isValid) {
+      return NextResponse.redirect("http://alpesdream.vercel.app/");
+    }
+    return NextResponse.next();
   }
 }
