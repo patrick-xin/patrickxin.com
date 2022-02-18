@@ -5,10 +5,19 @@ import { BasicLayout, Breadcrumbs } from "@/common/components";
 import { ease } from "@/common/animation";
 import { usePosts } from "@/post/hooks";
 import { ChatIcon, EyeIcon, HeartIcon } from "@heroicons/react/solid";
+import { SpinLoader } from "@/common/components/icon";
 
 const AboutPage = () => {
-  const { data } = usePosts();
-
+  const { data, isLoading } = usePosts();
+  if (isLoading)
+    return (
+      <div className="h-screen w-screen absolute inset-0 overflow-hidden flex justify-center items-center">
+        <div className="flex gap-2 lg:gap-4 items-center">
+          <SpinLoader />
+          loading stats...
+        </div>
+      </div>
+    );
   return (
     <motion.div
       initial={{ opacity: 0 }}

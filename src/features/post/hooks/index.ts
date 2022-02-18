@@ -159,10 +159,10 @@ type Posts = {
 };
 
 export const usePosts = () => {
-  const { data } = useQuery<Posts>([postKeys.all], () =>
+  const { data, isLoading } = useQuery<Posts>([postKeys.all], () =>
     fetcher<Posts>(`/api/post`)
   );
-  return { data };
+  return { data, isLoading };
 };
 
 export const useDeletePost = (cb: () => void) => {
