@@ -12,3 +12,6 @@ public/feed.xml
 .contentlayer
 
 tsconfig.tsbuildinfo
+
+public/sitemap.xml
+public/rss.xml

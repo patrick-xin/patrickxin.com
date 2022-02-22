@@ -1,20 +1,21 @@
 const siteConfig = {
   details: {
-    title: "Patrick Xin",
-    tagLine: "Frontend Developer",
-    author: "Patrick Xin",
+    title: 'Patrick Xin',
+    tagLine: 'Frontend Developer',
+    author: 'Patrick Xin',
     description:
-      "Articles, thoughts about Web Development from a frontend developer.",
-    url: "https://www.patrickxin.com/",
+      'Articles, thoughts about Web Development from a frontend developer.',
+    url: 'https://www.patrickxin.com',
   },
   assets: {
-    avatar: "/assets/images/seo-image.jpg",
-    favicon: "/favicon.ico",
+    image: '/assets/images/seo-image.jpg',
+    avatar: '/assets/images/avatar.jpeg',
+    favicon: '/favicon.ico',
   },
   socialLinks: {
-    twitter: "@alpesdream",
-    github: "https://github.com/patrick-xin",
+    twitter: '@alpesdream',
+    github: 'https://github.com/patrick-xin',
   },
-};
+}
 
-export default siteConfig;
+export default siteConfig

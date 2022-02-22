@@ -1,39 +1,39 @@
-import { ReactElement, ReactNode, useState } from "react";
-import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
-import dynamic from "next/dynamic";
-import { NextSeo } from "next-seo";
-import { ThemeProvider } from "next-themes";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { ReactElement, ReactNode, useState } from 'react'
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
+import dynamic from 'next/dynamic'
+import { NextSeo } from 'next-seo'
+import { ThemeProvider } from 'next-themes'
+import { ReactQueryDevtools } from 'react-query/devtools'
 
-import "@fontsource/dm-serif-display";
-import "@fontsource/space-mono";
-import "@fontsource/fira-code";
+import '@fontsource/dm-serif-display'
+import '@fontsource/space-mono'
+import '@fontsource/fira-code'
 
-import type { NextPage } from "next";
-import type { AppProps } from "next/app";
+import type { NextPage } from 'next'
+import type { AppProps } from 'next/app'
 
-import { Progress } from "@/common/components";
+import { Progress } from '@/common/components'
 const MessageModal = dynamic(
-  () => import("@/common/components/message-modal"),
+  () => import('@/common/components/message-modal'),
   {
     ssr: false,
   }
-);
+)
 
-import "@/styles/globals.css";
-import siteConfig from "@/config/site";
+import '@/styles/globals.css'
+import siteConfig from '@/config/site'
 
 type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
+  getLayout?: (page: ReactElement) => ReactNode
+}
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-};
+  Component: NextPageWithLayout
+}
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const [queryClient] = useState(() => new QueryClient());
-  const getLayout = Component.getLayout ?? ((page) => page);
+  const [queryClient] = useState(() => new QueryClient())
+  const getLayout = Component.getLayout ?? ((page) => page)
   return (
     <>
       <NextSeo
@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         twitter={{
           handle: siteConfig.socialLinks.twitter,
           site: siteConfig.socialLinks.twitter,
-          cardType: "summary_large_image",
+          cardType: 'summary_large_image',
         }}
         openGraph={{
           url: siteConfig.details.url,
@@ -50,15 +50,16 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           description: siteConfig.details.description,
           images: [
             {
-              url: `${siteConfig.details.url}${siteConfig.assets.avatar}`,
+              url: `${siteConfig.details.url}${siteConfig.assets.image}`,
               width: 800,
               height: 600,
               alt: siteConfig.details.title,
+              type: 'image/jpg',
             },
           ],
           site_name: siteConfig.details.title,
-          type: "website",
-          locale: "en_IE",
+          type: 'website',
+          locale: 'en_IE',
         }}
       />
 
@@ -73,7 +74,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         </Hydrate>
       </QueryClientProvider>
     </>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

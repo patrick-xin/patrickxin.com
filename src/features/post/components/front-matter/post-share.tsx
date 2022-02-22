@@ -1,32 +1,28 @@
-import { Tooltip } from "@/common/components";
-import siteConfig from "@/config/site";
-import { motion } from "framer-motion";
-import { ShareIcon } from "@heroicons/react/outline";
+import { Tooltip } from '@/common/components'
+import siteConfig from '@/config/site'
+import { motion } from 'framer-motion'
+import { ShareIcon } from '@heroicons/react/outline'
 import {
   RedditShareButton,
   RedditIcon,
   TwitterShareButton,
   TwitterIcon,
-} from "next-share";
-import { Popover } from "@headlessui/react";
+} from 'next-share'
+import { Popover } from '@headlessui/react'
 
 type PostShareProps = {
-  postSlug: string;
-  description: string;
-};
+  postSlug: string
+  description: string
+}
 
 const PostShare = ({ postSlug, description }: PostShareProps) => {
   return (
     <Popover className="relative flex flex-col items-center">
       <Popover.Button>
         <Tooltip color="purple" position="bottom" tooltipText="share">
-          <button
-            type="button"
-            aria-label="share-article"
-            className="p-1 group lg:p-1.5 dark:bg-white/10 bg-black/5 inline-flex rounded-md transition-colors ease-linear"
-          >
+          <div className="p-1 group lg:p-1.5 dark:bg-white/10 bg-black/5 inline-flex rounded-md transition-colors ease-linear">
             <ShareIcon className="h-6 w-6 text-mint dark:text-purple-400" />
-          </button>
+          </div>
         </Tooltip>
       </Popover.Button>
       <div>
@@ -59,7 +55,7 @@ const PostShare = ({ postSlug, description }: PostShareProps) => {
         </Popover.Panel>
       </div>
     </Popover>
-  );
-};
+  )
+}
 
-export default PostShare;
+export default PostShare
