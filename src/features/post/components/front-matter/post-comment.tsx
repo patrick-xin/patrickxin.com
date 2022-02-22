@@ -25,10 +25,13 @@ const PostComment = ({
             animate={{ opacity: 1 }}
             className="flex gap-1 items-center"
           >
-            <ChatIcon
+            <button
+              type="button"
               onClick={handleScrollToComments}
-              className="h-6 w-6 text-orange dark:text-mint cursor-pointer"
-            />
+              className="p-1 group lg:p-1.5 dark:bg-white/10 bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+            >
+              <ChatIcon className="h-6 w-6 text-orange dark:text-mint cursor-pointer" />
+            </button>
 
             <motion.div
               className="font-black text-xs lg:text-sm"

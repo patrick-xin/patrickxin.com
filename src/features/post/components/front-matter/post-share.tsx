@@ -20,7 +20,13 @@ const PostShare = ({ postSlug, description }: PostShareProps) => {
     <Popover className="relative flex flex-col items-center">
       <Popover.Button>
         <Tooltip color="purple" position="bottom" tooltipText="share">
-          <ShareIcon className="h-5 w-5 text-mint dark:text-purple-400" />
+          <button
+            type="button"
+            aria-label="share-article"
+            className="p-1 group lg:p-1.5 dark:bg-white/10 bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+          >
+            <ShareIcon className="h-6 w-6 text-mint dark:text-purple-400" />
+          </button>
         </Tooltip>
       </Popover.Button>
       <div>

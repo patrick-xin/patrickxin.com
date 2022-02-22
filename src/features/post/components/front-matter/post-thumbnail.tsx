@@ -28,6 +28,7 @@ const PostThumbnail = ({
           width={200}
           objectFit="cover"
           className="rounded-md"
+          priority
         />
       </div>
       <p className="text-center my-4 lg:my-6 text-sm lg:text-base space-x-1 lg:space-x-2">

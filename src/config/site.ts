@@ -5,7 +5,7 @@ const siteConfig = {
     author: "Patrick Xin",
     description:
       "Articles, thoughts about Web Development from a frontend developer.",
-    url: "https://alpesdream.vercel.app/",
+    url: "https://www.patrickxin.com/",
   },
   assets: {
     avatar: "/assets/images/seo-image.jpg",

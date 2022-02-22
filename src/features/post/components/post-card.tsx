@@ -22,6 +22,7 @@ const PostCard = ({ post }: { post: Frontmatter }) => {
             height={270}
             alt={`${post.title}-image`}
             objectFit="cover"
+            priority
           />
           <div className="space-y-4 px-4 py-6 lg:p-4 xl:min-h-[16rem] flex flex-col justify-between rounded-md rounded-t-none dark:border dark:border-t-0 border-mint/20 ">
             <PublishTime

@@ -22,10 +22,16 @@ const MobileNav = ({
       <ul className="flex justify-around items-center w-full">
         {hasToc && (
           <li>
-            <ClipboardListIcon
-              className="h-6 w-6 text-plum dark:text-grape"
-              onClick={() => setOpenDrawer(true)}
-            />
+            <button
+              type="button"
+              aria-label="table-of-content"
+              className="p-1 group lg:p-1.5 dark:bg-white/10 bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+            >
+              <ClipboardListIcon
+                className="h-6 w-6 text-plum dark:text-grape"
+                onClick={() => setOpenDrawer(true)}
+              />
+            </button>
           </li>
         )}
         <li>

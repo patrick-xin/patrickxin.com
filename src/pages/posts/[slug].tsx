@@ -96,7 +96,7 @@ const PostPage = ({
           description: post.description,
           images: [
             {
-              url: `${siteConfig.details.url}assets/images/${post.slug}/cover.jpg`,
+              url: `https://www.patrickxin.com/assets/images/${post.slug}/cover.jpg`,
               width: 1200,
               height: 675,
               alt: post.title,

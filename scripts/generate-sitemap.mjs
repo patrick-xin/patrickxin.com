@@ -25,7 +25,7 @@ async function generate() {
             const route = path === "/index" ? "" : path;
             return `
               <url>
-                  <loc>${`alpesdream.vercel.app${route}`}</loc>
+                  <loc>${`https://www.patrickxin.com${route}`}</loc>
               </url>
             `;
           })

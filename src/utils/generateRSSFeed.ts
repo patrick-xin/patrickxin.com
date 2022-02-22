@@ -3,11 +3,11 @@ import fs from "fs";
 import type { Post } from "contentlayer/generated";
 
 export const generateRSSFeed = (posts: Post[]) => {
-  const baseUrl = "https://alpesdream.vercel.app";
+  const baseUrl = "https://www.patrickxin.com";
   const author = {
     name: "Patrick Xin",
     email: "alpesdream@gmail.com",
-    link: "https://twitter.com/ashleemboyer",
+    link: "https://twitter.com/alpesdream",
   };
 
   const feed = new Feed({

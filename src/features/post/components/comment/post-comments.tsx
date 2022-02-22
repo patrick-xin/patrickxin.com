@@ -33,7 +33,7 @@ const PostComments = forwardRef<HTMLHeadingElement, PostCommentsProps>(
     }
     return (
       <section className="my-12 max-w-4xl lg:my-20 mx-auto">
-        <div className="space-y-3 md:space-y-6">
+        <div className="space-y-6 md:space-y-8">
           <h3
             className="text-xl font-heading tracking-wider md:text-2xl lg:text-3xl"
             ref={ref}
@@ -61,18 +61,18 @@ const PostComments = forwardRef<HTMLHeadingElement, PostCommentsProps>(
                       isAdmin={false}
                     />
 
-                    <p className="p-2 leading-6 lg:leading-8">
+                    <p className="p-2 text-sm lg:text-base leading-6 lg:leading-8">
                       {comment.content}
                     </p>
                     {comment.reply && (
-                      <div className="ml-10 my-6">
+                      <div className="ml-4 lg:ml-10 my-2 lg:my-6">
                         <CommentBox
                           username={comment.reply.to}
                           createdAt={comment.reply.createdAt}
                           by={comment.reply.by}
                           isAdmin
                         />
-                        <p className="p-2 leading-6 lg:leading-8">
+                        <p className="p-2 text-sm lg:text-base leading-6 lg:leading-8">
                           {comment.reply.content}
                         </p>
                       </div>
@@ -83,7 +83,7 @@ const PostComments = forwardRef<HTMLHeadingElement, PostCommentsProps>(
             ))}
         </div>
 
-        <div className="my-4 lg:my-16 space-y-3 md:space-y-6">
+        <div className="my-10 lg:my-16 space-y-3 md:space-y-6">
           <h3 className="text-xl font-heading tracking-wider md:text-2xl">
             Questions? Thoughts? Welcome to drop a comment below!
           </h3>

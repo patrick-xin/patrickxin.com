@@ -39,6 +39,7 @@ const Header = ({ openDrawer, isDrawerOpen }: HeaderProps) => {
                 layout="fixed"
                 height={32}
                 width={32}
+                priority
               />
             </a>
           </Link>

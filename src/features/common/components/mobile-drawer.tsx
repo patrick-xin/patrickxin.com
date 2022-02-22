@@ -67,12 +67,11 @@ const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
 
             <div className="space-y-6">
               <div className="flex flex-col justify-center w-full space-y-4 text-center">
-                <h4 className="text-2xl">Say Hello</h4>
                 <a
-                  href="mailto:alpesdream@gmail.com"
+                  href="mailto:patrick.xin.dev@gmail.com"
                   className="underline text-orange dark:text-mint"
                 >
-                  alpesdream@gmail.com
+                  <h4 className="text-2xl">Say Hello</h4>
                 </a>
               </div>
               <motion.div

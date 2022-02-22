@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: alpesdream.vercel.app/sitemap.xml
+Sitemap: https://www.patrickxin.com/sitemap.xml

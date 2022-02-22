@@ -49,7 +49,7 @@ const Tooltip: React.FC<TooltipProps> = ({
                 `absolute hidden lg:flex opacity-0 text-white whitespace-nowrap px-1 lg:px-3 py-1 text-sm rounded items-center ${variants[color]}`,
                 {
                   "-left-20 ml-1": position === "left",
-                  "top-10 -left-6": position === "bottom",
+                  "top-14 -left-6": position === "bottom",
                   "left-10": position === "right",
                 }
               )}
@@ -59,7 +59,7 @@ const Tooltip: React.FC<TooltipProps> = ({
                   `h-3 w-3 absolute transform rotate-45 ${variants[color]}`,
                   {
                     "-right-[3px]": position === "left",
-                    "bottom-[20px] left-[32px] mt-[2px]": position === "bottom",
+                    "bottom-[20px] left-[34px] mt-[2px]": position === "bottom",
                     "-left-[3px]": position === "right",
                   }
                 )}

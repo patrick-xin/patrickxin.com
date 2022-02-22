@@ -40,6 +40,7 @@ const SidebarNav = () => {
           height={50}
           width={50}
           className="rounded-full"
+          priority
         />
       </div>
       <nav className="mt-20">

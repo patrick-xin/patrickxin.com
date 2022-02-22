@@ -27,17 +27,25 @@ const PostLikes = ({ postSlug }: { postSlug: string }) => {
             className="flex gap-1 items-center"
           >
             {isLiked ? (
-              <HeartIcon className="h-6 w-6 text-red-500 cursor-not-allowed" />
+              <div className="p-1 group lg:p-1.5 dark:bg-white/10 bg-black/5 inline-flex rounded-md transition-colors ease-linear">
+                <HeartIcon className="h-6 w-6 text-red-500 cursor-not-allowed" />
+              </div>
             ) : (
-              <HeartIconOutline
+              <button
                 onClick={() => {
                   setLike(true);
                   updateLikes();
                 }}
-                className={classNames("h-6 w-6 cursor-pointer text-red-500", {
-                  "cursor-not-allowed": isUpdatingLikes,
-                })}
-              />
+                type="button"
+                aria-label="like-post"
+                className="p-1 group lg:p-1.5 dark:bg-white/10 bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+              >
+                <HeartIconOutline
+                  className={classNames("h-6 w-6 cursor-pointer text-red-500", {
+                    "cursor-not-allowed": isUpdatingLikes,
+                  })}
+                />
+              </button>
             )}
             <motion.div
               className="font-black text-xs lg:text-sm"

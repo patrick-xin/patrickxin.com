@@ -26,7 +26,7 @@ const CommentForm = ({ postSlug }: CommentFormProps) => {
 
   return (
     <form
-      className="space-y-4 flex flex-col"
+      className="space-y-4 py-6 flex flex-col"
       onSubmit={async (e) => {
         e.preventDefault();
         mutate();

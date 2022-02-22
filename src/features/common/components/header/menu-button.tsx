@@ -14,6 +14,7 @@ const MenuButton = ({ openDrawer, isDrawerOpen }: MenuButtonProps) => {
     <AnimatePresence>
       <div className="lg:hidden col-span-1 flex justify-end">
         <motion.button
+          aria-label="close-overlay"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="cursor-pointer group z-200 h-6 w-6 flex flex-col md:top-32
