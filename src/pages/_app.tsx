@@ -50,7 +50,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           description: siteConfig.details.description,
           images: [
             {
-              url: `${siteConfig.details.url}${siteConfig.assets.image}`,
+              url: `https://www.patrickxin.com${siteConfig.assets.image}`,
               width: 800,
               height: 600,
               alt: siteConfig.details.title,

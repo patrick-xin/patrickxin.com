@@ -1,11 +1,11 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 const Avatar = () => {
   return (
     <div className="relative">
       <Image
         alt="author-avatar"
-        src={"/assets/images/avatar.jpeg"}
+        src={'/assets/images/avatar.jpg'}
         layout="fixed"
         height={50}
         width={50}
@@ -13,7 +13,7 @@ const Avatar = () => {
         priority
       />
     </div>
-  );
-};
+  )
+}
 
-export default Avatar;
+export default Avatar

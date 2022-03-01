@@ -9,7 +9,7 @@ const siteConfig = {
   },
   assets: {
     image: '/assets/images/seo-image.jpg',
-    avatar: '/assets/images/avatar.jpeg',
+    avatar: '/assets/images/avatar.jpg',
     favicon: '/favicon.ico',
   },
   socialLinks: {

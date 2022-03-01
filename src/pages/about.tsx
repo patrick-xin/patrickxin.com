@@ -8,7 +8,7 @@ import { ChatIcon, EyeIcon, HeartIcon } from '@heroicons/react/solid'
 import { SpinLoader } from '@/common/components/icon'
 
 const AboutPage = () => {
-  const { data, isLoading } = usePosts()
+  const { data, isLoading, isError } = usePosts()
 
   return (
     <motion.div
@@ -56,7 +56,12 @@ const AboutPage = () => {
 
       <section className="space-y-3 relative">
         <h5 className="text-2xl">Site Stats</h5>
-        {isLoading ? (
+
+        {isError ? (
+          <div className="my-12 flex gap-6 flex-col justify-center items-center text-red-600">
+            Error loading Stats
+          </div>
+        ) : isLoading ? (
           <div className="h-full w-full absolute bottom-0 overflow-hidden flex justify-center items-center">
             <div className="flex gap-2 lg:gap-4 items-center">
               <SpinLoader />

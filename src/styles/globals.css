@@ -10,8 +10,12 @@
     @apply text-gray-600 bg-snow dark:bg-lead dark:text-snow/90
      text-base antialiased font-body  lg:text-lg leading-3 tracking-tight xl:tracking-wide;
   }
-  h1,h2,h3,h4,h5{
-    @apply font-heading tracking-wider
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-heading tracking-wider;
   }
   code,
   pre {
@@ -37,7 +41,7 @@
           focus:outline-none focus:border-yellow-500 dark:focus:border-mint focus:border;
   }
   .icon-link {
-   @apply w-5 h-5 lg:h-6 lg:w-6 fill-current text-gray-400 hover:text-orange dark:hover:text-mint transition-colors ease-out
+    @apply w-5 h-5 lg:h-6 lg:w-6 fill-current text-gray-400 hover:text-orange dark:hover:text-mint transition-colors ease-out;
   }
 }
 @layer components {
@@ -61,7 +65,7 @@
 }
 
 :not(pre) > code {
-  @apply px-[0.2rem] py-[0.3rem] rounded whitespace-normal
+  @apply px-[0.2rem] py-[0.3rem] rounded whitespace-normal;
 }
 
 #nprogress {
@@ -72,12 +76,11 @@
   @apply bg-gradient-to-r from-orange to-pink-600 dark:from-mint dark:to-purple-700 fixed z-100 top-0 left-0 w-full h-[3px];
 }
 
-
-:not(pre) > code[class*="language-"] {
+:not(pre) > code[class*='language-'] {
   @apply rounded p-0.5;
 }
 
-pre[class*="language-"] {
+pre[class*='language-'] {
   @apply overflow-auto relative my-2 mx-0 py-[1.25rem] px-4;
 }
 
@@ -87,7 +90,7 @@ pre[class*="language-"] {
   @apply text-red-600;
 }
 
-[class*="language-"] .namespace {
+[class*='language-'] .namespace {
   @apply opacity-70;
 }
 
@@ -248,7 +251,7 @@ pre[class*="language-"] {
 }
 
 .code-highlight {
-  @apply float-left min-w-full
+  @apply float-left min-w-full;
 }
 
 .highlight-line {
@@ -259,6 +262,13 @@ pre[class*="language-"] {
   @apply inline-block w-4 text-right mr-5 -ml-2 text-gray-400;
   content: attr(line);
 }
-.rehype-code-title{
-  @apply dark:bg-mint/20 bg-orange/70 text-white rounded p-1 lg:py-2 flex items-center mt-4 -mb-1 lg:mt-6 w-fit text-sm lg:-mb-7
+.rehype-code-title {
+  @apply dark:bg-mint/20 bg-orange/70 text-white rounded p-1 lg:py-2 flex items-center mt-4 -mb-1 lg:mt-6 w-fit text-sm lg:-mb-7;
+}
+
+.gradient-link:after {
+  background-size: inherit;
+  background-image: inherit;
+  -webkit-animation: inherit;
+  animation: inherit;
 }

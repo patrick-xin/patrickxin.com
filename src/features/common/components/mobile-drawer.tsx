@@ -1,28 +1,29 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { AnimatePresence, motion } from "framer-motion";
-import { usePreventScroll } from "@react-aria/overlays";
-import cn from "classnames";
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { AnimatePresence, motion } from 'framer-motion'
+import { usePreventScroll } from '@react-aria/overlays'
+import cn from 'classnames'
 
-import ThemeToggle from "./theme-toggle";
-import { Blob, Footer } from ".";
+import ThemeToggle from './theme-toggle'
+import { Blob, Footer } from '.'
 
-import { ease } from "@/common/animation";
-import { ROUTES } from "@/common/constants";
+import { ease } from '@/common/animation'
+import { ROUTES } from '@/common/constants'
+import GradientLink from './gradient-link'
 
 interface MobileDrawerProps {
-  isDrawerOpen: boolean;
+  isDrawerOpen: boolean
 }
 
 const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
-  const router = useRouter();
-  usePreventScroll({ isDisabled: !isDrawerOpen });
+  const router = useRouter()
+  usePreventScroll({ isDisabled: !isDrawerOpen })
 
   return (
     <AnimatePresence exitBeforeEnter>
       {isDrawerOpen && (
         <motion.div
-          key={"drawer"}
+          key={'drawer'}
           initial={{ y: 1000 }}
           animate={{ y: 0, transition: { duration: 0.6 } }}
           exit={{
@@ -51,7 +52,7 @@ const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
                     <Link href={`${route.path}`}>
                       <a
                         className={cn({
-                          "underline underline-offset-2 decoration-orange dark:decoration-mint decoration-4":
+                          'underline underline-offset-2 decoration-orange dark:decoration-mint decoration-4':
                             route.exact === true
                               ? route.path === router.asPath
                               : router.asPath.startsWith(route.path),
@@ -68,10 +69,12 @@ const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
             <div className="space-y-6">
               <div className="flex flex-col justify-center w-full space-y-4 text-center">
                 <a
+                  rel="noreferrer noopener"
+                  target="_blank"
                   href="mailto:patrick.xin.dev@gmail.com"
                   className="underline text-orange dark:text-mint"
                 >
-                  <h4 className="text-2xl">Say Hello</h4>
+                  <GradientLink text="Say Hello" />
                 </a>
               </div>
               <motion.div
@@ -92,7 +95,7 @@ const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
         </motion.div>
       )}
     </AnimatePresence>
-  );
-};
+  )
+}
 
-export default MobileDrawer;
+export default MobileDrawer

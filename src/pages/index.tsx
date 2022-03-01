@@ -1,14 +1,14 @@
-import { ReactElement } from "react";
-import { motion } from "framer-motion";
-import { GetStaticProps } from "next";
+import { ReactElement } from 'react'
+import { motion } from 'framer-motion'
+import { GetStaticProps } from 'next'
 
-import { BasicLayout, Blob } from "@/common/components";
-import { PostItem } from "@/post/components";
-import { ease } from "@/common/animation";
+import { BasicLayout, Blob } from '@/common/components'
+import { PostItem } from '@/post/components'
+import { ease } from '@/common/animation'
 
-import { getMostRecentPost } from "@/post/lib";
+import { getMostRecentPost } from '@/post/lib'
 
-import { Post } from ".contentlayer/types";
+import { Post } from '.contentlayer/types'
 
 const HomePage = ({ post }: { post: Post }) => {
   return (
@@ -48,17 +48,17 @@ const HomePage = ({ post }: { post: Post }) => {
         </div>
       </section>
     </motion.div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage
 
 export const getStaticProps: GetStaticProps = async () => {
-  const post = getMostRecentPost();
+  const post = getMostRecentPost()
 
-  return { props: { post } };
-};
+  return { props: { post } }
+}
 
 HomePage.getLayout = function getLayout(page: ReactElement) {
-  return <BasicLayout>{page}</BasicLayout>;
-};
+  return <BasicLayout>{page}</BasicLayout>
+}
