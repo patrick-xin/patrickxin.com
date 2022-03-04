@@ -1,4 +1,4 @@
-import { Post } from '.contentlayer/types'
+import { Post } from 'contentlayer/generated'
 import { IUser } from '@/admin/types'
 
 export type Frontmatter = Pick<

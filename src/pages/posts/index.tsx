@@ -8,9 +8,11 @@ import { BasicLayout, Breadcrumbs } from '@/common/components'
 const PostViewOption = dynamic(() => import('@/post/components/view-option'), {
   ssr: false,
 })
+
 import { getSortedPostsByDate } from '@/post/lib'
-import type { Post } from '.contentlayer/types'
 import { generateRSSFeed } from '@/utils/generateRSSFeed'
+
+import type { Post } from 'contentlayer/generated'
 
 const PostsPage = ({ posts }: { posts: Post[] }) => {
   const [isGridView, setGridView] = useState(false)

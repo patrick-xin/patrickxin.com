@@ -8,7 +8,7 @@ import { ease } from '@/common/animation'
 import { getMostRecentPost } from '@/post/lib'
 
 import type { GetStaticProps } from 'next'
-import type { Post } from '.contentlayer/types'
+import type { Post } from 'contentlayer/generated'
 
 const HomePage = ({ post }: { post: Post }) => {
   return (
