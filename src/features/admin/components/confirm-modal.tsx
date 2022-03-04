@@ -1,17 +1,17 @@
-import { SpinLoader } from "@/common/components/icon";
-import { Dialog } from "@headlessui/react";
-import { AnimatePresence } from "framer-motion";
-import React from "react";
+import { SpinLoader } from '@/common/components/icon'
+import { Dialog } from '@headlessui/react'
+import { AnimatePresence } from 'framer-motion'
+import React from 'react'
 
 type ConfirmModalProps = {
-  onClose: () => void;
-  onConfirm: () => void;
-  isOpen: boolean;
-  title: string;
-  description?: string;
-  isLoading: boolean;
-  children?: JSX.Element;
-};
+  onClose: () => void
+  onConfirm: () => void
+  isOpen: boolean
+  title: string
+  description?: string
+  isLoading: boolean
+  children?: JSX.Element
+}
 
 const ConfirmModal = ({
   onClose,
@@ -23,7 +23,7 @@ const ConfirmModal = ({
   children,
 }: ConfirmModalProps) => {
   function closeModal() {
-    onClose();
+    onClose()
   }
 
   return (
@@ -32,11 +32,11 @@ const ConfirmModal = ({
         {isOpen && (
           <Dialog
             as="div"
-            className="fixed inset-0 z-10 overflow-y-auto"
+            className="overflow-y-auto fixed inset-0 z-10"
             onClose={closeModal}
             open={isOpen}
           >
-            <div className="min-h-screen px-4 text-center">
+            <div className="px-4 min-h-screen text-center">
               <Dialog.Overlay className="fixed inset-0 bg-black/30 dark:bg-black/90" />
 
               <span
@@ -46,11 +46,11 @@ const ConfirmModal = ({
                 &#8203;
               </span>
 
-              <div className="inline-block w-full max-w-md p-10 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-gray-800 shadow-xl rounded-lg">
-                <Dialog.Title className="text-xl mb-12 font-body text-gray-900 dark:text-white ">
-                  <span>{title.split(" ").slice(0, 5).join(" ")}</span>{" "}
+              <div className="inline-block overflow-hidden p-10 my-8 w-full max-w-md text-left align-middle bg-white dark:bg-gray-800 rounded-lg shadow-xl transition-all">
+                <Dialog.Title className="mb-12 font-body text-xl text-gray-900 dark:text-white ">
+                  <span>{title.split(' ').slice(0, 5).join(' ')}</span>{' '}
                   <span className="text-red-500">
-                    {title.split(" ").slice(5).join(" ")}
+                    {title.split(' ').slice(5).join(' ')}
                   </span>
                 </Dialog.Title>
                 {description && (
@@ -60,20 +60,20 @@ const ConfirmModal = ({
                 )}
                 {children}
 
-                <div className="mt-6 flex gap-4 justify-end">
+                <div className="flex gap-4 justify-end mt-6">
                   <button
                     type="button"
-                    className="inline-flex self-end justify-center items-center w-30 px-4 py-2 text-sm font-medium bg-red-500 text-white rounded-md "
+                    className="inline-flex justify-center items-center self-end py-2 px-4 w-32 text-sm font-medium text-white bg-red-500 rounded-md"
                     onClick={closeModal}
                   >
                     Cancel
                   </button>
                   <button
                     type="button"
-                    className="inline-flex  justify-center items-center w-30 px-4 py-2 text-sm font-medium bg-orange text-white dark:bg-mint rounded-md "
+                    className="inline-flex  justify-center items-center py-2 px-4 w-32 text-sm font-medium text-white bg-orange dark:bg-mint rounded-md"
                     onClick={onConfirm}
                   >
-                    {isLoading ? <SpinLoader /> : "Confirm"}
+                    {isLoading ? <SpinLoader /> : 'Confirm'}
                   </button>
                 </div>
               </div>
@@ -82,7 +82,7 @@ const ConfirmModal = ({
         )}
       </AnimatePresence>
     </div>
-  );
-};
+  )
+}
 
-export default ConfirmModal;
+export default ConfirmModal

@@ -23,17 +23,17 @@ const MobileNav = ({
   return (
     <AnimatePresence>
       {!isFetching && (
-        <motion.nav className="fixed lg:hidden -mx-6 md:-mx-12 rounded-t bottom-0 w-full h-12 md:h-16 bg-powder shadow-lg border-t border-gray-300 dark:border-none dark:bg-slate z-75 flex items-center">
+        <motion.nav className="flex fixed bottom-0 z-75 items-center -mx-6 w-full h-12 bg-powder dark:bg-slate rounded-t border-t border-gray-300 dark:border-none shadow-lg md:-mx-12 md:h-16 lg:hidden">
           <ul className="flex justify-around items-center w-full">
             {hasToc && (
               <li>
                 <button
                   type="button"
                   aria-label="table-of-content"
-                  className="p-1 group lg:p-1.5 dark:bg-white/10 bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+                  className="group inline-flex p-1 bg-black/5 dark:bg-white/10 rounded-md transition-colors ease-linear lg:p-1.5"
                 >
                   <ClipboardListIcon
-                    className="h-6 w-6 text-plum dark:text-grape"
+                    className="w-6 h-6 text-plum dark:text-grape"
                     onClick={() => setOpenDrawer(true)}
                   />
                 </button>

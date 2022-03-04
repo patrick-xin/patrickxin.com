@@ -1,40 +1,40 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useState } from 'react'
 
-import { AdminLayout } from "@/admin/components";
+import { AdminLayout } from '@/admin/components'
 
-import { deleteUser, useGetUsers } from "@/admin/hooks";
-import { useMutation, useQueryClient } from "react-query";
-import DashboardTable from "@/admin/components/table-component";
-import { USER_TABLE_HEADINGS } from "@/common/constants";
-import { useToastStore, useToggle } from "@/common/hooks";
-import ConfirmModal from "@/admin/components/confirm-modal";
+import { deleteUser, useGetUsers } from '@/admin/hooks'
+import { useMutation, useQueryClient } from 'react-query'
+import DashboardTable from '@/admin/components/table-component'
+import { USER_TABLE_HEADINGS } from '@/common/constants'
+import { useToastStore, useToggle } from '@/common/hooks'
+import ConfirmModal from '@/admin/components/confirm-modal'
 
 const DashboardUsers = () => {
-  const { users, error } = useGetUsers();
+  const { users, error } = useGetUsers()
 
-  const [isOpen, setOpen] = useToggle();
-  const [userId, setUserId] = useState(null);
-  const { toast } = useToastStore();
-  const queryClient = useQueryClient();
+  const [isOpen, setOpen] = useToggle()
+  const [userId, setUserId] = useState(null)
+  const { toast } = useToastStore()
+  const queryClient = useQueryClient()
   const { mutate, isLoading } = useMutation(deleteUser, {
     onSuccess: () => {
-      queryClient.invalidateQueries("users");
-      toast.success("User deleted", {
-        position: "topRight",
-        direction: "fadeLeft",
-      });
-      setOpen();
+      queryClient.invalidateQueries('users')
+      toast.success('User deleted', {
+        position: 'topRight',
+        direction: 'fadeLeft',
+      })
+      setOpen()
     },
-  });
+  })
   function openModal(id: string) {
-    setOpen();
-    setUserId(id);
+    setOpen()
+    setUserId(id)
   }
 
-  if (error) return <div>Erroe fetching users..</div>;
-  if (!users || (users && users.length === 0)) return <div>No users</div>;
+  if (error) return <div>Erroe fetching users..</div>
+  if (!users || (users && users.length === 0)) return <div>No users</div>
   return (
-    <div className="dark:text-snow max-w-6xl">
+    <div className="max-w-6xl dark:text-snow">
       <ConfirmModal
         title={`Are you sure to delete ${userId}?`}
         isOpen={isOpen}
@@ -49,11 +49,11 @@ const DashboardUsers = () => {
         rowItems={users}
       />
     </div>
-  );
-};
+  )
+}
 
-export default DashboardUsers;
+export default DashboardUsers
 
 DashboardUsers.getLayout = function getLayout(page: ReactElement) {
-  return <AdminLayout>{page}</AdminLayout>;
-};
+  return <AdminLayout>{page}</AdminLayout>
+}

@@ -3,6 +3,7 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
     "prettier"
   ],
   "rules": {

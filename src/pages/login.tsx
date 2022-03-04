@@ -1,17 +1,17 @@
-import { useState } from "react";
-import Image from "next/image";
+import { useState } from 'react'
+import Image from 'next/image'
 
-import { useLogin } from "@/admin/hooks";
-import { SpinLoader } from "@/common/components/icon";
+import { useLogin } from '@/admin/hooks'
+import { SpinLoader } from '@/common/components/icon'
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const { login, message, isLoading } = useLogin({ username, email, password });
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const { login, message, isLoading } = useLogin({ username, email, password })
 
   return (
-    <div className="grid grid-cols-1 place-content-center lg:mx-24 lg:grid-cols-5 h-screen mx-auto">
+    <div className="grid grid-cols-1 place-content-center mx-auto h-screen lg:grid-cols-5 lg:mx-24">
       <div className="col-span-2">
         <Image
           src="/assets/images/login.jpg"
@@ -22,13 +22,13 @@ const LoginPage = () => {
           objectFit="cover"
         />
       </div>
-      <div className="col-start-3 w-full flex flex-col justify-center items-center col-span-full">
+      <div className="flex flex-col col-span-full col-start-3 justify-center items-center w-full">
         {message && <div>{message}</div>}
         <form
-          className="space-y-4 flex flex-col w-1/2"
+          className="flex flex-col space-y-4 w-1/2"
           onSubmit={async (e) => {
-            e.preventDefault();
-            login();
+            e.preventDefault()
+            login()
           }}
         >
           <input
@@ -55,14 +55,14 @@ const LoginPage = () => {
           />
           <button
             type="submit"
-            className="p-2 flex justify-center items-center bg-orange rounded-md text-black/70 text-sm"
+            className="flex justify-center items-center p-2 text-sm text-black/70 bg-orange rounded-md"
           >
-            {isLoading ? <SpinLoader /> : "login"}
+            {isLoading ? <SpinLoader /> : 'login'}
           </button>
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage

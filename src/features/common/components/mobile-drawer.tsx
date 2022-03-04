@@ -31,14 +31,14 @@ const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
             transition: { delayChildren: 1, ease, delay: -0.2 },
           }}
           transition={{ duration: 1, ease }}
-          className="fixed z-100 top-0 h-screen w-screen px-4
-      flex flex-col justify-between inset-0 bg-snow dark:bg-lead"
+          className="flex fixed inset-0 top-0 z-100 flex-col justify-between
+      px-4 w-screen h-screen bg-snow dark:bg-lead lg:hidden"
         >
-          <div className="relative h-screen mt-16 flex flex-col justify-around px-6 overflow-hidden">
-            <div className="flex items-center justify-between">
-              <div className="relative h-full w-full mt-4">
+          <div className="flex overflow-hidden relative flex-col justify-around px-6 mt-16 h-screen">
+            <div className="flex justify-between items-center">
+              <div className="relative mt-4 w-full h-full">
                 <Blob color="mint" className="absolute inset-0 top-4" />
-                <div className="absolute z-50 w-48 h-48 rounded-full filter blur-xl bg-gradient-to-tl from-mint/50 to-orange/50 via-pink-900/50" />
+                <div className="absolute z-50 w-48 h-48 bg-gradient-to-tl from-mint/50 via-pink-900/50 to-orange/50 rounded-full blur-xl" />
                 <Blob
                   color="orange"
                   className="absolute -inset-4 top-6 left-6"
@@ -46,7 +46,7 @@ const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
                 />
               </div>
 
-              <ul className="flex justify-around flex-col items-end h-[30vh] text-xl">
+              <ul className="flex flex-col justify-around items-end h-[30vh] text-xl">
                 {ROUTES.map((route) => (
                   <li key={route.path}>
                     <Link href={`${route.path}`}>
@@ -67,18 +67,18 @@ const MobileDrawer = ({ isDrawerOpen }: MobileDrawerProps) => {
             </div>
 
             <div className="space-y-6">
-              <div className="flex flex-col justify-center w-full space-y-4 text-center">
+              <div className="flex flex-col justify-center space-y-4 w-full text-center">
                 <a
                   rel="noreferrer noopener"
                   target="_blank"
                   href="mailto:patrick.xin.dev@gmail.com"
-                  className="underline text-orange dark:text-mint"
+                  className="text-orange dark:text-mint underline"
                 >
                   <GradientLink text="Say Hello" />
                 </a>
               </div>
               <motion.div
-                className="mt-5 md:mt-9 w-full flex justify-center"
+                className="flex justify-center mt-5 w-full md:mt-9"
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: isDrawerOpen ? 1 : 0,

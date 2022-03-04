@@ -1,20 +1,20 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from 'framer-motion'
 
-import { ChatIcon } from "@heroicons/react/outline";
-import { Tooltip } from "@/common/components";
+import { ChatIcon } from '@heroicons/react/outline'
+import { Tooltip } from '@/common/components'
 
-import { usePostComments } from "@/post/hooks";
+import { usePostComments } from '@/post/hooks'
 
 type PostCommentProps = {
-  postSlug: string;
-  handleScrollToComments: () => void;
-};
+  postSlug: string
+  handleScrollToComments: () => void
+}
 
 const PostComment = ({
   postSlug,
   handleScrollToComments,
 }: PostCommentProps) => {
-  const { comments } = usePostComments(postSlug);
+  const { comments } = usePostComments(postSlug)
 
   return (
     <Tooltip position="bottom" color="mint" tooltipText="comments">
@@ -28,13 +28,13 @@ const PostComment = ({
             <button
               type="button"
               onClick={handleScrollToComments}
-              className="p-1 group lg:p-1.5 dark:bg-white/10 bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+              className="group inline-flex p-1 bg-black/5 dark:bg-white/10 rounded-md transition-colors ease-linear lg:p-1.5"
             >
-              <ChatIcon className="h-6 w-6 text-orange dark:text-mint cursor-pointer" />
+              <ChatIcon className="w-6 h-6 text-orange dark:text-mint cursor-pointer" />
             </button>
 
             <motion.div
-              className="font-black text-xs lg:text-sm"
+              className="text-xs font-black lg:text-sm"
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >
@@ -44,7 +44,7 @@ const PostComment = ({
         )}
       </AnimatePresence>
     </Tooltip>
-  );
-};
+  )
+}
 
-export default PostComment;
+export default PostComment

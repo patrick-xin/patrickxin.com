@@ -1,13 +1,13 @@
-import { Frontmatter } from "@/post/types";
+import { Frontmatter } from '@/post/types'
 
-type ReadingTimeProps = Pick<Frontmatter, "readingTime">;
+type ReadingTimeProps = Pick<Frontmatter, 'readingTime'>
 
 const ReadingTime = ({ readingTime }: ReadingTimeProps) => {
   return (
-    <span className="tracking-normal text-xs lg:text-sm">
+    <span className="text-xs tracking-normal lg:text-sm">
       {Math.ceil(readingTime.minutes)} minutes read
     </span>
-  );
-};
+  )
+}
 
-export default ReadingTime;
+export default ReadingTime

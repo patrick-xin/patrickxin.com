@@ -15,7 +15,7 @@ const AboutPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ ease, delay: 0.2 }}
-      className="space-y-6 lg:space-y-10 leading-relaxed max-w-4xl mx-auto"
+      className="mx-auto space-y-6 max-w-4xl leading-relaxed lg:space-y-10"
     >
       <Breadcrumbs title="about" />
       <section className="space-y-6">
@@ -46,7 +46,7 @@ const AboutPage = () => {
             rel="noreferrer noopener"
             target="_blank"
             href="https://github.com/patrick-xin/alpesdream"
-            className="dark:text-mint text-orange"
+            className="text-orange dark:text-mint"
           >
             here
           </a>
@@ -54,16 +54,16 @@ const AboutPage = () => {
         </p>
       </section>
 
-      <section className="space-y-3 relative">
+      <section className="relative space-y-3">
         <h5 className="text-2xl">Site Stats</h5>
 
         {isError ? (
-          <div className="my-12 flex gap-6 flex-col justify-center items-center text-red-600">
+          <div className="flex flex-col gap-6 justify-center items-center my-12 text-red-600">
             Error loading Stats
           </div>
         ) : isLoading ? (
-          <div className="h-full w-full absolute bottom-0 overflow-hidden flex justify-center items-center">
-            <div className="flex gap-2 lg:gap-4 items-center">
+          <div className="flex overflow-hidden absolute bottom-0 justify-center items-center w-full h-full">
+            <div className="flex gap-2 items-center lg:gap-4">
               <SpinLoader />
               loading stats...
             </div>
@@ -74,7 +74,7 @@ const AboutPage = () => {
               <h5>Total Views</h5>
               <div className="flex gap-2 items-center">
                 <div>
-                  <EyeIcon className="h-6 w-6 text-mint dark:text-orange" />
+                  <EyeIcon className="w-6 h-6 text-mint dark:text-orange" />
                 </div>
                 {data.data.viewsCount}
               </div>
@@ -83,7 +83,7 @@ const AboutPage = () => {
               <h5>Total Likes</h5>
               <div className="flex gap-2 items-center">
                 <div>
-                  <HeartIcon className="h-6 w-6 text-red-500" />
+                  <HeartIcon className="w-6 h-6 text-red-500" />
                 </div>
                 {data.data.likesCount}
               </div>
@@ -92,7 +92,7 @@ const AboutPage = () => {
               <h5>Total Comments</h5>
               <div className="flex gap-2 items-center">
                 <div>
-                  <ChatIcon className="h-6 w-6 text-orange dark:text-mint" />
+                  <ChatIcon className="w-6 h-6 text-orange dark:text-mint" />
                 </div>
                 {data.data.commentsCount}
               </div>

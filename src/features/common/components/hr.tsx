@@ -1,7 +1,5 @@
 const Hr = () => {
-  return (
-    <hr className="h-[2px] lg:my-20 bg-plum dark:bg-black w-3/4 mx-auto" />
-  );
-};
+  return <hr className="mx-auto w-3/4 h-[2px] bg-plum dark:bg-black lg:my-20" />
+}
 
-export default Hr;
+export default Hr

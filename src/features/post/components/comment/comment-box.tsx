@@ -23,13 +23,13 @@ const CommentBox = ({
       {isAdmin && (
         <div className="inline-flex space-x-3 lg:space-x-4">
           <span className="font-semibold">{by}</span>
-          <span className="dark:text-white/40 pl-6">replied to</span>
+          <span className="pl-6 dark:text-white/40">replied to</span>
         </div>
       )}
       <div className="font-semibold">{username}</div>
       {!isAdmin && <div className="dark:text-white/40">commented on</div>}
       {!isAdmin && (
-        <div className="dark:text-white/40 mt-0.5 italic text-xs tracking-tighter">
+        <div className="mt-0.5 text-xs italic tracking-tighter dark:text-white/40">
           {formatDistanceToNow(parseISO(createdAt), {
             addSuffix: true,
           })}

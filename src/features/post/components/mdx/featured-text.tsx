@@ -1,5 +1,5 @@
 const FeaturedText = ({ text }: { text: string }) => {
-  return <span className="dark:text-orange text-mint text-xl">{text}</span>;
-};
+  return <span className="text-xl text-mint dark:text-orange">{text}</span>
+}
 
-export default FeaturedText;
+export default FeaturedText

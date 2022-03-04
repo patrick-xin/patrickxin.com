@@ -1,25 +1,25 @@
-import { HeartIcon, RssIcon } from "@heroicons/react/solid";
+import { HeartIcon, RssIcon } from '@heroicons/react/solid'
 import {
   GithubIcon,
   CopyRightIcon,
   InstagramIcon,
   TwitterIcon,
-} from "@/common/components/icon";
+} from '@/common/components/icon'
 
-import { getYear } from "@/utils/getYear";
+import { getYear } from '@/utils/getYear'
 
 type FooterProps = {
-  hasMarginBottom: boolean;
-};
+  hasMarginBottom: boolean
+}
 
 const Footer = ({ hasMarginBottom }: FooterProps) => {
   return (
     <footer
       className={`flex flex-col lg:mb-0 justify-center text-xs lg:text-sm items-center border-t dark:border-mint/20 ${
-        hasMarginBottom ? "mb-16" : "mb-0"
+        hasMarginBottom ? 'mb-16' : 'mb-0'
       } py-4`}
     >
-      <div className="mt-2 gap-1 flex flex-col-reverse lg:flex-row items-center lg:gap-4">
+      <div className="flex flex-col-reverse gap-1 items-center mt-2 lg:flex-row lg:gap-4">
         <p>
           <CopyRightIcon />
           <span className="mx-2">Patrick Xin {getYear()}</span>
@@ -29,7 +29,7 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
             <a
               rel="noreferrer noopener"
               target="_blank"
-              className="p-1 group lg:p-2 dark:hover:bg-white/10 hover:bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+              className="group inline-flex p-1 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors ease-linear lg:p-2"
               href="https://github.com/patrick-xin"
             >
               <GithubIcon />
@@ -37,7 +37,7 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
           </li>
           <li>
             <a
-              className="p-1 group lg:p-2 mt-[2px] dark:hover:bg-white/10 hover:bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+              className="group inline-flex p-1 mt-[2px] hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors ease-linear lg:p-2"
               rel="noreferrer noopener"
               target="_blank"
               href="https://www.instagram.com/alpesdream/"
@@ -47,7 +47,7 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
           </li>
           <li>
             <a
-              className="p-1 group lg:p-2 dark:hover:bg-white/10 hover:bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+              className="group inline-flex p-1 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors ease-linear lg:p-2"
               rel="noreferrer noopener"
               target="_blank"
               href="https://twitter.com/alpesdream"
@@ -57,7 +57,7 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
           </li>
           <li>
             <a
-              className="p-1 group lg:p-1.5 dark:hover:bg-white/10 hover:bg-black/5 inline-flex rounded-md transition-colors ease-linear"
+              className="group inline-flex p-1 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors ease-linear lg:p-1.5"
               rel="noreferrer noopener"
               target="_blank"
               href="https://alpesdream.vercel.app/rss.xml"
@@ -67,38 +67,38 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
           </li>
         </ul>
       </div>
-      <div className="lg:flex lg:items-center mt-2">
-        <div className="text-center lg:flex items-center gap-2 lg:mr-2">
+      <div className="mt-2 lg:flex lg:items-center">
+        <div className="gap-2 items-center text-center lg:flex lg:mr-2">
           <span className="inline-block mb-1 lg:mb-0">Made with</span>
-          <HeartIcon className="text-red-600 inline-block h-4 w-4 mx-1 -mt-0.5" />
+          <HeartIcon className="inline-block mx-1 -mt-0.5 w-4 h-4 text-red-600" />
         </div>
         <div>
-          using{" "}
+          using{' '}
           <span>
             <a
               rel="noreferrer noopener"
-              className="underline hover:text-orange dark:hover:text-mint transition-colors ease-linear"
+              className="hover:text-orange dark:hover:text-mint underline transition-colors ease-linear"
               href="https://nextjs.org/"
             >
               nextjs
             </a>
-            {", "}
+            {', '}
           </span>
           <span>
             <a
               rel="noreferrer noopener"
-              className="underline hover:text-orange dark:hover:text-mint transition-colors ease-linear"
+              className="hover:text-orange dark:hover:text-mint underline transition-colors ease-linear"
               href="https://tailwindcss.com/"
             >
               tailwind
             </a>
           </span>
-          {", "}
-          deployed by{" "}
+          {', '}
+          deployed by{' '}
           <span>
             <a
               rel="noreferrer noopener"
-              className="underline hover:text-orange dark:hover:text-mint transition-colors ease-linear"
+              className="hover:text-orange dark:hover:text-mint underline transition-colors ease-linear"
               href="https://vercel.com/"
             >
               vercel
@@ -107,7 +107,7 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

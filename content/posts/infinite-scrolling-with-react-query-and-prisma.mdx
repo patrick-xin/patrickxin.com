@@ -1,0 +1,535 @@
+---
+title: Infinite Scrolling With React Query And Prisma In Next.js
+publishedAt: '2022-03-03'
+isPublished: true
+description: Add infinite scrolling feature to your next React project.
+toc: true
+thumbnail:
+  {
+    'author': 'Andras Vas',
+    'url': '/assets/images/infinite-scrolling-with-react-query-and-prisma/cover.jpg',
+    'from': 'https://unsplash.com/@wasdrew',
+  }
+---
+
+## Intro
+
+Infinite scrolling is a common technique used in many web apps, especially on large social websites. It allows users to keep scrolling to the page without clicking pagination buttons. While in the background it loads content continuously. The homepage of [Twitter](https://twitter.com/) and [DevTo](https://dev.to/) are two good examples. I'm a big fan of it simply because sometimes I'm just too lazy to click a button. No doubt there are downsides to it, or maybe some people even hate it. But it's always fun trying something new, especially putting the technology you love together.
+If you also love the tools I'm using, please keep reading and follow along. I'll try my best to provide detailed explanations.
+
+One reason I love Next.js is that it can serve static pages and server-side rendering. In the scenario where you have a large amount of dataset that you don't want to render all at a time. By only generating a fraction of it at request time or build time, then on the client-side implementing the infinite scrolling technique to fetch more data seems to be a solid option.
+
+> ✨ This article assumes that you are comfortable working with Next.js, React Query and Prisma. If not, I've listed some links at the very bottom of the page for you to reference.
+>
+> 🌱 For saving your time, I've created ready-to-use repo in Github. Clone the [starter](https://github.com/patrick-xin/infinite-scroll-with-react-query-nextjs) branch as I've set up all the tools and packages we need. You can also view the folder structure and create a new app yourself based on what you need.
+
+## What's Inside Repo?
+
+Skip this section if you're going to clone the repo.
+
+- Next.js app with Typescript.
+- Prisma. For local database connection, follow steps [here](https://www.prisma.io/docs/getting-started/quickstart) and create a `Post Model`.
+- React Query. For using it within a NextJS app, add [code blocks](https://react-query.tanstack.com/guides/ssr) to the `_app.tsx`
+- Tailwind CSS. I have completely given up writing pure css or styled components now. 😎
+
+## Setup Backend
+
+### Connect Prisma
+
+I'm assuming you are ready to get started. First thing first, we need to connect to the local database. Create an `.env` in the root folder and add your local database url: `DATABASE_URL=YOUR_DATABASE_URL`. Run `yarn` to install packages. Then `yarn prisma migrate dev --name 'init'` to sync your local database with Prisma. It will also seed the fake posts data inside `_mock_` folder into the database. After that run `yarn prisma studio`, a browser window will pop up. You'll see 18 posts if everying works fine.
+
+### Create API Route
+
+Inside `pages`, create a folder called `api`, then create a file `posts.ts` inside.
+
+```ts:api/posts.ts
+import prisma from '../../src/lib/prisma'
+import type { NextApiHandler } from 'next'
+
+const handler: NextApiHandler = async (req, res) => {
+   try {
+    const posts = await prisma.post.findMany()
+
+    res.status(200).json(posts)
+
+  } catch (error) {
+    res.status(400).end()
+  }
+}
+export default handler
+```
+
+This API route is the only route we're going to use. For now, it will return all 18 posts, but we'll make it return the correct data we need later.
+
+### Render Posts
+
+```tsx:pages/index.tsx
+import { useQuery } from 'react-query'
+import PostCard from '../src/components/PostCard'
+import type { Post } from '@prisma/client'
+import type { NextPage } from 'next'
+
+const getPosts = async (): Promise<Post[]> => {
+  const res = await fetch(`/api/posts`)
+  const data = await res.json()
+
+  return data
+}
+
+const Home: NextPage = () => {
+  const { data: posts } = useQuery(['posts'], getPosts)
+
+  return (
+    <div className="mx-auto max-w-4xl bg-gray-50">
+      <div className="m-6 mx-auto grid grid-cols-2 gap-6">
+        {posts && posts.map((post) => <PostCard key={post.id} {...post} />)}
+      </div>
+    </div>
+  )
+}
+
+export default Home
+```
+
+Now we got the app running and ready to implement infinite scrolling.
+
+## Infinite Scrolling
+
+Under the hood, infinite scrolling is just another form of pagination. They all use the same technique querying the database. Two types of most common infinite scrolling are:
+
+- adding a load more button
+- placing a hidden `div` at the bottom of the page.
+
+The difference is that the latter uses intersection observer to detect whether there are more contents in the view. If so, you can keep scrolling until there is no data. In order to understand how infinite scrolling works, we have to dive into how pagination works in Prisma first.
+
+### How Pagination Works In Prisma?
+
+There are two types of pagination in Prisma: _offset pagination_ and _cursor-based pagination_. In order to make React Query work, we will use the latter. You can check the details of what are the differences between these two in the [doc](https://www.prisma.io/docs/concepts/components/prisma-client/pagination).
+I have to admit the first time when I read the documentation I was still muddled. If you are too, I've created some illustrations of how it works.
+
+<Image
+  src="/assets/images/infinite-scrolling-with-react-query-and-prisma/illustration.png"
+  layout="responsive"
+  className="rounded-md"
+  width={300}
+  height={270}
+  alt={`pagination-illustration`}
+  objectFit="contain"
+  priority
+/>
+
+In the code:
+
+```ts:sudo
+// Sudo code
+
+// First query
+const firstQueryResult = await prisma.post.findMany({
+  skip: 0,
+  take: 4,
+  cursor: {
+    id: post4.id,
+  },
+})
+
+// Second query
+const secondQueryResult = await prisma.post.findMany({
+  // skip post4
+  skip: 1,
+  take: 4,
+  cursor: {
+    id: post8.id,
+  },
+})
+```
+
+- `take` is how many posts we want to have in each query.
+- always `skip 1` after first query, but not in the last query.
+- `cursor` is an `object` where it will be used as the starting point in the next query.
+
+We can keep fetching more posts as long as the `cursor` is not `undefined`.
+Hopefully, the picture and the code are clear enough to understand, not the other way around.
+
+If you're still confused, read the [doc](https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination) or leave a comment below. If not, let's continue and add the following code to the `posts.ts` file.
+
+```ts:api/posts.ts {3-6, 10-12}
+// ......
+const handler: NextApiHandler = async (req, res) => {
+  const take = 4
+  const cursorQuery = (req.query.cursor as string) ?? undefined
+  const skip = cursorQuery ? 1 : 0
+  const cursor = cursorQuery ? { id: cursorQuery } : undefined
+
+  try {
+    const posts = await prisma.post.findMany({
+      skip,
+      take,
+      cursor,
+    })
+
+    res.status(200).json({
+      posts,
+    })
+  } catch (error) {
+    res.status(400).end()
+  }
+}
+// ......
+```
+
+In the above code, `cursorQuery` is the query string we pass from the client. If you remember from the picture above, it's just a simple `postId` string.
+
+### useInfiniteQuery
+
+React Query comes with a hook in handy called `useInfiniteQuery`, which takes care of all the complicated logic for us already. You may want to take a look at the [doc](https://react-query.tanstack.com/guides/infinite-queries) if you've never used it before. Like `useQuery` hook, this hook takes a unique `key` as
+it's `queryKey`. But the query function now receives an `object` with `pageParam` property inside. We'll pass `postId` as an argumment into this function later. The basic manner looks like this:
+
+```ts
+const {
+  fetchNextPage,
+  fetchPreviousPage,
+  hasNextPage,
+  hasPreviousPage,
+  isFetchingNextPage,
+  isFetchingPreviousPage,
+} = useInfiniteQuery(queryKey, ({ pageParam = 1 }) => fetchPage(pageParam), {
+  ...options,
+  getNextPageParam: (lastPage, allPages) => lastPage.nextCursor,
+  getPreviousPageParam: (firstPage, allPages) => firstPage.prevCursor,
+})
+```
+
+Let's refactor the `getPosts` function to make it match the shape of `useInfiniteQuery`. It will take `pageParam` as the parameter and uses it as the query string. (Don't forget it's `cursorQuery` on the API route). In addtion to the returned posts, it also return another property `nextId`. `nextId` will be used in the `getNextPageParam` function in React Query to decide if there will be more data to fetch or not.
+
+```tsx:index.tsx {2-6}
+const getPosts = async ({
+  pageParam = '',
+}: {
+  pageParam: string
+}): Promise<{ posts: Post[]; nextId: string | undefined }> => {
+  const res = await fetch(`/api/posts?cursor=${pageParam}`)
+  const data = await res.json()
+
+  return data
+}
+```
+
+Replace `useQuery` with `useInfiniteQuery`.
+
+```tsx:index.tsx
+const {
+  data: posts,
+} = useInfiniteQuery(
+  ['posts'],
+  ({ pageParam = '' }) => getPosts({ pageParam }),
+  {
+    // lastPage is the data returned from getPosts function
+    getNextPageParam: (lastPage) => lastPage.nextId ?? false,
+  }
+)
+```
+
+Back to `posts.ts`, we need to return `nextId`.
+
+```ts:api/posts.ts {10, 15}
+//......
+try {
+  const posts = await prisma.post.findMany({
+    skip,
+    take,
+    cursor,
+  })
+  // Don't forget 0 based index
+  // posts.length < take means there are no more posts to fetch
+  const nextId = posts.length < take ? undefined : posts[take - 1].id
+  // posts.length is either equals or less than take, this code below will also work
+  // const nextId = posts.length === take ? posts[take - 1].id : undefined
+  res.status(200).json({
+    posts,
+    nextId,
+  })
+} catch (error) {
+  res.status(400).end()
+}
+//.....
+```
+
+Not sure what happened? Here is the visualization of how it works under the hood:
+
+<Image
+  src="/assets/images/infinite-scrolling-with-react-query-and-prisma/illustration-1.png"
+  layout="responsive"
+  className="rounded-md"
+  width={300}
+  height={270}
+  alt={`pagination-illustration`}
+  objectFit="contain"
+  priority
+/>
+<Image
+  src="/assets/images/infinite-scrolling-with-react-query-and-prisma/illustration-2.png"
+  layout="responsive"
+  className="rounded-md"
+  width={300}
+  height={270}
+  alt={`pagination-illustration`}
+  objectFit="contain"
+  priority
+/>
+
+Finally, in the last query:
+
+<Image
+  src="/assets/images/infinite-scrolling-with-react-query-and-prisma/illustration-3.png"
+  className="rounded-md"
+  layout="responsive"
+  width={300}
+  height={200}
+  alt={`pagination-illustration`}
+  priority
+/>
+
+I hope these illustrations will help you better understand the code we've written so far. If you find there's
+more to improve, or still not clear, please feel free to leave a comment!
+
+### Add Intersection Observer
+
+We're almost done! The last piece is to add intersection observer to fetch more posts when we're scrolling to the bottom of the page. Open a new terminal and run `yarn add react-intersection-observer`.
+
+```tsx:pages/index.tsx {1-2, 25, 27, 29, 38-44, 48-61} showLineNumbers
+import { useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
+import { useInfiniteQuery } from 'react-query'
+
+import PostCard from '../src/components/PostCard'
+
+import type { Post } from '@prisma/client'
+
+const getPosts = async ({
+  pageParam = '',
+}: {
+  pageParam: string
+}): Promise<{ posts: Post[]; nextId: string }> => {
+
+  const res = await fetch(`/api/posts?cursor=${pageParam}`)
+  const data = await res.json()
+
+  return data
+}
+
+const Home = () => {
+  const {
+    data: posts,
+    // call this function to get another 4 posts
+    fetchNextPage,
+    // flag to decide if there is more posts
+    hasNextPage,
+    // flag to indicate if we're fetching or not
+    isFetchingNextPage
+  } = useInfiniteQuery(
+    ['posts'],
+    ({ pageParam = '' }) => getPosts({ pageParam }),
+    {
+      getNextPageParam: (lastPage) => lastPage.nextId ?? false,
+    }
+  )
+
+  const { inView, ref } = useInView()
+
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage()
+    }
+  }, [inView, hasNextPage])
+
+  return (
+    <div className="mx-auto max-w-4xl bg-gray-50">
+      {posts &&
+        posts.pages?.flatMap((page, i) => {
+          return (
+            <div key={i} className="m-6 mx-auto grid grid-cols-2 gap-6">
+              {page.posts.map((post) => {
+                return <PostCard key={post.id} {...post} />
+              })}
+            </div>
+          )
+        })}
+      <div
+        className="mx-auto flex max-w-6xl justify-center opacity-0"
+        ref={ref}
+      />
+    </div>
+  )
+}
+
+export default Home
+```
+
+Since the data returned from the server has changed, we need also change `mapping` function. Now the `posts` have `pages` property that contains all the data we need.
+
+### Add Loading Indicator
+
+Go back to browser you may won't notice any difference, that's because in our dev evironment, the connection to the database is pretty fast. To simulate a slow network and test the result, we can defer 2000ms in the `getPosts` function before it returns data.
+
+```tsx:pages/index.tsx {7}
+// ......
+const getPosts = async ({
+  pageParam = '',
+}: {
+  pageParam: string
+}): Promise<{ posts: Post[]; nextId: string }> => {
+  await new Promise((resolve) => setTimeout(resolve, 2000))
+  const res = await fetch(`/api/posts?cursor=${pageParam}`)
+  const data = await res.json()
+
+  return data
+}
+// ......
+```
+
+```tsx:pages/index.tsx {2, 14}
+// ......
+import PostCardLoader from '../src/components/PostCardLoader'
+// ......
+{posts &&
+  posts.pages?.flatMap((page, i) => {
+      return (
+        <div key={i} className="m-6 mx-auto grid grid-cols-2 gap-6">
+          {page.posts.map((post) => {
+            return <PostCard key={post.id} {...post} />
+          })}
+        </div>
+      )
+})}
+ {isFetchingNextPage && <PostCardLoader />}
+<div
+  className="mx-auto flex max-w-6xl justify-center opacity-0"
+  ref={ref}
+/>
+//....
+```
+
+If you look at the browser again, we now have a nice loading indicator to tell users there are more posts to see.
+
+🎉 That's it if for the React part. You can use it in a pure React app. The only thing needs to change is add your own backend API. 🎉
+
+### Add GetServerSideProps
+
+The following part is for Next.js. For better SEO, we can pre-render the first query result(4 posts in our case) on the server. Or if you have a large amount of data set that doesn't change frequently, and you don't want to render them all at once, you can use GetStaticProps to generate some static data at build time.
+
+If you take a look at the source code of page now you will notice that there are no contents between the divs. That's because intially `posts` is `undefined` and there's nothing to render until we get data from API route. It will work just fine if you don't care about it at all. But we're using NextJS, we have more control over what we need. That's why we love it so much, isn't it? Since we can write server-side code directly inside either `getServerSideProps` or `getStaticProps`, we can pre-render the first 4 posts and let React Query take care of the rest. The final code looks like this:
+
+```tsx:pages/index.tsx {7, 9, 26-30, 54-58, 82-94} showLineNumbers
+import { useEffect } from 'react'
+import { useInfiniteQuery } from 'react-query'
+import { useInView } from 'react-intersection-observer'
+
+import PostCardLoader from '../src/components/PostCardLoader'
+import PostCard from '../src/components/PostCard'
+import prisma from '../src/lib/prisma'
+
+import type { GetServerSideProps } from 'next'
+import type { Post } from '@prisma/client'
+
+const getPosts = async ({
+  pageParam = '',
+}: {
+  pageParam: string
+}): Promise<{ posts: Post[]; nextId: string }> => {
+  await new Promise((resolve) => setTimeout(resolve, 2000))
+
+  const res = await fetch(`/api/posts?cursor=${pageParam}`)
+  const data = await res.json()
+
+  return data
+}
+
+const Home = ({
+  initialData,
+  nextId,
+}: {
+  initialData: Post[]
+  nextId: string
+}) => {
+  const {
+    data: posts,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery(
+    ['posts'],
+    ({ pageParam = nextId }) => getPosts({ pageParam }),
+    {
+      getNextPageParam: (lastPage) => lastPage.nextId ?? false,
+    }
+  )
+
+  const { inView, ref } = useInView({ threshold: 1, rootMargin: '0px' })
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage()
+    }
+  }, [inView, hasNextPage])
+
+  return (
+    <div className="mx-auto max-w-4xl bg-gray-50">
+      <div className="m-6 mx-auto grid grid-cols-2 gap-6">
+        {initialData.map((post) => (
+          <PostCard key={post.id} {...post} />
+        ))}
+      </div>
+
+      {posts &&
+        posts.pages?.flatMap((page, i) => {
+          return (
+            <div key={i} className="m-6 mx-auto grid grid-cols-2 gap-6">
+              {page.posts.map((post) => {
+                return <PostCard key={post.id} {...post} />
+              })}
+            </div>
+          )
+        })}
+
+      {isFetchingNextPage && <PostCardLoader />}
+      <div
+        className="mx-auto flex max-w-6xl justify-center opacity-0"
+        ref={ref}
+      />
+    </div>
+  )
+}
+
+export default Home
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const posts = await prisma.post.findMany({
+    take: 4,
+    select: { content: true, title: true, imageUrl: true, id: true },
+  })
+  const nextId = posts[3].id
+  return {
+    props: {
+      initialData: posts,
+      nextId,
+    },
+  }
+}
+
+```
+
+Now you have added a fully functional infinite scroll feature in the Next.js app and React app.
+
+## Final Touch
+
+If you have a large project, you may want to put the `getPosts` function in its own file and extract `useInfiniteQuery` hook to make it more generic. Also, we may create a `PostList` component that recieve an array of `PostCard` since we are using it twice inside one page. Besides, notice that as we are always fetching 4 posts in each query, we can define a `const` that holds the value of how many posts we want to have, let's call it `POST_LIMIT` or `POST_TAKE`, then we can use it both in the API route and other pages. By doing so, we avoid using [magic number](<https://en.wikipedia.org/wiki/Magic_number_(programming)>) and see what the code does.
+
+Infinite scrolling may not be suitable for every website. I found this [article](https://www.nngroup.com/articles/infinite-scrolling/) explains quite well about when to use it.
+
+Some useful links on this article
+
+1. [Infinite Scrolling](https://www.smashingmagazine.com/2013/05/infinite-scrolling-lets-get-to-the-bottom-of-this/)
+2. [Prisma Pagination](https://www.prisma.io/docs/concepts/components/prisma-client/pagination)
+3. [React Query Infinite Scroll](https://react-query.tanstack.com/examples/load-more-infinite-scroll)
+4. [Data fetching in Next.js](https://nextjs.org/docs/basic-features/data-fetching/overview)
+
+That's it for today, thanks for reading!

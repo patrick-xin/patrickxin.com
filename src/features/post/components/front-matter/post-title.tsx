@@ -15,16 +15,13 @@ const PostTitle = ({
 }: PostTitleProps) => {
   return (
     <h1
-      className={cn(
-        `capitalize text-gradient font-heading ${className ? className : ''}`,
-        {
-          'text-3xl py-4 font-black md:text-5xl xl:leading-14 lg:text-6xl':
-            size === 'lg',
-          'text-2xl font-medium xl:text-3xl': size === 'md',
-          'text-xl font-medium xl:text-2xl': size === 'sm',
-          'text-gradient': isGradient,
-        }
-      )}
+      className={cn(`capitalize font-heading ${className ? className : ''}`, {
+        'text-3xl py-4 font-black md:text-5xl xl:leading-14 lg:text-6xl':
+          size === 'lg',
+        'text-2xl font-medium xl:text-3xl': size === 'md',
+        'text-xl font-medium xl:text-2xl': size === 'sm',
+        'text-gradient': isGradient,
+      })}
     >
       {title}
     </h1>

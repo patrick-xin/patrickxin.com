@@ -1,30 +1,30 @@
-import { useDeletePost, usePosts } from "@/post/hooks";
+import { useDeletePost, usePosts } from '@/post/hooks'
 
-import { ReactElement, useState } from "react";
-import { StatisticsCard, PostTable, AdminLayout } from "@/admin/components";
-import { ChatIcon, EyeIcon, HeartIcon } from "@heroicons/react/solid";
-import { useToggle } from "@/common/hooks";
-import ConfirmModal from "@/admin/components/confirm-modal";
-import { SpinLoader } from "@/common/components/icon";
+import { ReactElement, useState } from 'react'
+import { StatisticsCard, PostTable, AdminLayout } from '@/admin/components'
+import { ChatIcon, EyeIcon, HeartIcon } from '@heroicons/react/solid'
+import { useToggle } from '@/common/hooks'
+import ConfirmModal from '@/admin/components/confirm-modal'
+import { SpinLoader } from '@/common/components/icon'
 
 const DashboardPage = () => {
-  const { data } = usePosts();
-  const [isOpen, setOpen] = useToggle();
-  const [postSlug, setPostSlug] = useState(null);
-  const { deletePost, isDeleting } = useDeletePost(setOpen);
+  const { data } = usePosts()
+  const [isOpen, setOpen] = useToggle()
+  const [postSlug, setPostSlug] = useState(null)
+  const { deletePost, isDeleting } = useDeletePost(setOpen)
   function openModal(slug: string) {
-    setOpen();
-    setPostSlug(slug);
+    setOpen()
+    setPostSlug(slug)
   }
   if (!data)
     return (
-      <div className="absolute inset-0 flex justify-center items-center h-screen w-screen overflow-hidden">
-        <div className="flex items-center gap-4 text-center">
+      <div className="flex overflow-hidden absolute inset-0 justify-center items-center w-screen h-screen">
+        <div className="flex gap-4 items-center text-center">
           <SpinLoader />
-          <span className="dark:text-mint text-orange">loading...</span>
+          <span className="text-orange dark:text-mint">loading...</span>
         </div>
       </div>
-    );
+    )
   return (
     <div>
       <ConfirmModal
@@ -59,11 +59,11 @@ const DashboardPage = () => {
         <PostTable posts={data.posts} openModal={openModal} />
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default DashboardPage;
+export default DashboardPage
 
 DashboardPage.getLayout = function getLayout(page: ReactElement) {
-  return <AdminLayout>{page}</AdminLayout>;
-};
+  return <AdminLayout>{page}</AdminLayout>
+}

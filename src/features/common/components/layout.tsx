@@ -1,25 +1,27 @@
-import { useState } from "react";
-
-import { Header, Footer } from "@/common/components";
-import MobileDrawer from "./mobile-drawer";
+import { useState } from 'react'
+import dynamic from 'next/dynamic'
+const MobileDrawer = dynamic(() => import('./mobile-drawer'), {
+  ssr: false,
+})
+import { Header, Footer } from '@/common/components'
 
 const BasicLayout: React.FC = ({ children }) => {
-  const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <Header
         openDrawer={(isopen) => setDrawerOpen(isopen)}
         isDrawerOpen={isDrawerOpen}
       />
       <MobileDrawer isDrawerOpen={isDrawerOpen} />
 
-      <main className="mx-6 md:mx-12 lg:mx-0 mt-8 mb-12 lg:my-16 flex-grow">
+      <main className="grow mx-6 mt-8 mb-12 md:mx-12 lg:my-16 lg:mx-0">
         {children}
       </main>
       <Footer hasMarginBottom={false} />
     </div>
-  );
-};
+  )
+}
 
-export default BasicLayout;
+export default BasicLayout

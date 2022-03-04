@@ -17,22 +17,22 @@ type PostShareProps = {
 
 const PostShare = ({ postSlug, description }: PostShareProps) => {
   return (
-    <Popover className="relative flex flex-col items-center">
+    <Popover className="flex relative flex-col items-center">
       <Popover.Button>
         <Tooltip color="purple" position="bottom" tooltipText="share">
-          <div className="p-1 group lg:p-1.5 dark:bg-white/10 bg-black/5 inline-flex rounded-md transition-colors ease-linear">
-            <ShareIcon className="h-6 w-6 text-mint dark:text-purple-400" />
+          <div className="group inline-flex p-1 bg-black/5 dark:bg-white/10 rounded-md transition-colors ease-linear lg:p-1.5">
+            <ShareIcon className="w-6 h-6 text-mint dark:text-purple-400" />
           </div>
         </Tooltip>
       </Popover.Button>
       <div>
-        <Popover.Panel className="absolute z-10 w-fit h-full px-4 transform translate-x-[3rem] left-1/2 -top-6 sm:px-0">
-          <div className="relative flex flex-col">
+        <Popover.Panel className="absolute -top-6 left-1/2 z-10 px-4 w-fit h-full translate-x-[3rem] sm:px-0">
+          <div className="flex relative flex-col">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col gap-4 absolute inset-0"
+              className="flex absolute inset-0 flex-col gap-4"
             >
               <Tooltip tooltipText="Reddit" position="right" color="indigo">
                 <RedditShareButton

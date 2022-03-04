@@ -19,7 +19,7 @@
   }
   code,
   pre {
-    @apply font-code text-cherry bg-gray-50 dark:bg-slate  rounded-md dark:text-grape;
+    @apply font-code text-cherry bg-gray-50 dark:bg-slate rounded-md dark:text-grape;
   }
 
   pre {
@@ -41,7 +41,7 @@
           focus:outline-none focus:border-yellow-500 dark:focus:border-mint focus:border;
   }
   .icon-link {
-    @apply w-5 h-5 lg:h-6 lg:w-6 fill-current text-gray-400 hover:text-orange dark:hover:text-mint transition-colors ease-out;
+    @apply w-5 h-5 lg:h-6 lg:w-6 fill-current text-gray-400 dark:group-hover:text-mint group-hover:text-orange transition-colors ease-out;
   }
 }
 @layer components {
@@ -255,7 +255,7 @@ pre[class*='language-'] {
 }
 
 .highlight-line {
-  @apply dark:bg-gray-600/50 bg-black/5 min-w-max -mx-5 border-l-rose-400 dark:border-l-teal-600 border-l-8;
+  @apply dark:bg-mint/10 bg-orange/10 min-w-max -mx-5 border-l-rose-400 dark:border-l-teal-600 border-l-8;
 }
 
 .line-number::before {

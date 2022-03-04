@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode, useState } from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
-import dynamic from 'next/dynamic'
+
 import { NextSeo } from 'next-seo'
 import { ThemeProvider } from 'next-themes'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -13,12 +13,6 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 
 import { Progress } from '@/common/components'
-const MessageModal = dynamic(
-  () => import('@/common/components/message-modal'),
-  {
-    ssr: false,
-  }
-)
 
 import '@/styles/globals.css'
 import siteConfig from '@/config/site'
@@ -67,8 +61,8 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         <Hydrate state={pageProps.dehydratedState}>
           <ThemeProvider attribute="class">
             {getLayout(<Component {...pageProps} />)}
+
             <Progress />
-            <MessageModal />
           </ThemeProvider>
           <ReactQueryDevtools />
         </Hydrate>

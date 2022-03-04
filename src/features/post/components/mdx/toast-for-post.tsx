@@ -1,44 +1,44 @@
-import { useToastStore } from "@/common/hooks";
+import { useToastStore } from '@/common/hooks'
 
 const ToastForPost = () => {
-  const { toast } = useToastStore();
+  const { toast } = useToastStore()
   return (
-    <span className="gap-4 my-4 inline-flex">
+    <span className="inline-flex gap-4 my-4">
       <button
         onClick={() =>
           toast.success("I'm a success message!", {
-            position: "topRight",
-            direction: "fadeLeft",
+            position: 'topRight',
+            direction: 'fadeLeft',
           })
         }
-        className="px-2 py-2 text-white rounded shadow-lg bg-green-600"
+        className="p-2 text-white bg-green-600 rounded shadow-lg"
       >
         success
       </button>
       <button
         onClick={() =>
-          toast.error("Opps, something went wrong!", {
-            position: "topCenter",
-            direction: "fadeUp",
+          toast.error('Opps, something went wrong!', {
+            position: 'topCenter',
+            direction: 'fadeUp',
           })
         }
-        className="px-2 py-2 text-white rounded shadow-lg bg-red-600"
+        className="p-2 text-white bg-red-600 rounded shadow-lg"
       >
         error
       </button>
       <button
         onClick={() =>
           toast.warning("You've been warned!", {
-            position: "bottomRight",
-            direction: "fadeLeft",
+            position: 'bottomRight',
+            direction: 'fadeLeft',
           })
         }
-        className="px-2 py-2 text-white rounded shadow-lg bg-yellow-600"
+        className="p-2 text-white bg-yellow-600 rounded shadow-lg"
       >
         warning
       </button>
     </span>
-  );
-};
+  )
+}
 
-export default ToastForPost;
+export default ToastForPost

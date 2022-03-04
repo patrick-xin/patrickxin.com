@@ -1,15 +1,15 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { EyeIcon } from "@heroicons/react/outline";
+import { AnimatePresence, motion } from 'framer-motion'
+import { EyeIcon } from '@heroicons/react/outline'
 
-import { Tooltip } from "@/common/components";
+import { Tooltip } from '@/common/components'
 
-import { usePostViews } from "@/post/hooks";
+import { usePostViews } from '@/post/hooks'
 
 const PostViews = ({ postSlug }: { postSlug: string }) => {
-  const { views } = usePostViews(postSlug);
+  const { views } = usePostViews(postSlug)
 
   return (
-    <Tooltip tooltipText={"views"} position="bottom" color="orange">
+    <Tooltip tooltipText={'views'} position="bottom" color="orange">
       <AnimatePresence>
         {views !== undefined && (
           <motion.div
@@ -17,12 +17,12 @@ const PostViews = ({ postSlug }: { postSlug: string }) => {
             animate={{ opacity: 1 }}
             className="flex gap-1 items-center"
           >
-            <div className="p-1 group lg:p-1.5 dark:bg-white/10 bg-black/5 inline-flex rounded-md transition-colors ease-linear">
-              <EyeIcon className="h-6 w-6 text-mint dark:text-orange" />
+            <div className="group inline-flex p-1 bg-black/5 dark:bg-white/10 rounded-md transition-colors ease-linear lg:p-1.5">
+              <EyeIcon className="w-6 h-6 text-mint dark:text-orange" />
             </div>
 
             <motion.div
-              className="font-black text-xs lg:text-sm"
+              className="text-xs font-black lg:text-sm"
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >
@@ -32,7 +32,7 @@ const PostViews = ({ postSlug }: { postSlug: string }) => {
         )}
       </AnimatePresence>
     </Tooltip>
-  );
-};
+  )
+}
 
-export default PostViews;
+export default PostViews

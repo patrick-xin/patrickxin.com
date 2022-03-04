@@ -1,16 +1,16 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { ViewGridIcon, ViewListIcon } from "@heroicons/react/solid";
+import { AnimatePresence, motion } from 'framer-motion'
+import { ViewGridIcon, ViewListIcon } from '@heroicons/react/solid'
 
 type PostViewOptionProps = {
-  isGridView: boolean;
-  setGridView: (isGridView: boolean) => void;
-};
+  isGridView: boolean
+  setGridView: (isGridView: boolean) => void
+}
 
 const PostViewOption = ({ isGridView, setGridView }: PostViewOptionProps) => {
   return (
-    <div className="flex justify-end gap-4 mb-4">
-      <AnimatePresence exitBeforeEnter>
-        {isGridView ? (
+    <div className="flex gap-4 justify-end mb-4">
+      {isGridView ? (
+        <AnimatePresence>
           <motion.button
             key="list-icon"
             initial={{ opacity: 0 }}
@@ -19,9 +19,11 @@ const PostViewOption = ({ isGridView, setGridView }: PostViewOptionProps) => {
             type="button"
             onClick={() => setGridView(false)}
           >
-            <ViewListIcon className="h-7 w-7 text-orange dark:text-mint" />
+            <ViewListIcon className="w-7 h-7 text-orange dark:text-mint" />
           </motion.button>
-        ) : (
+        </AnimatePresence>
+      ) : (
+        <AnimatePresence>
           <motion.button
             key="grid-icon"
             initial={{ opacity: 0 }}
@@ -30,12 +32,12 @@ const PostViewOption = ({ isGridView, setGridView }: PostViewOptionProps) => {
             type="button"
             onClick={() => setGridView(true)}
           >
-            <ViewGridIcon className="h-6 w-6 text-orange dark:text-mint" />
+            <ViewGridIcon className="w-6 h-6 text-orange dark:text-mint" />
           </motion.button>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default PostViewOption;
+export default PostViewOption

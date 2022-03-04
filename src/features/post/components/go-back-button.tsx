@@ -1,26 +1,26 @@
-import Link from "next/link";
+import Link from 'next/link'
 
-import { ArrowLeftIcon } from "@heroicons/react/solid";
+import { ArrowLeftIcon } from '@heroicons/react/solid'
 
 type GoBackButtonProps = {
-  path: string;
-  title: string;
-};
+  path: string
+  title: string
+}
 
 const GoBackButton = ({ path, title }: GoBackButtonProps) => {
   return (
     <button
       type="button"
-      className="inline-flex gap-2 items-center group mb-4 z-100"
+      className="group inline-flex z-100 gap-2 items-center mb-4"
     >
-      <ArrowLeftIcon className="h-4 w-4 md:h-6 md:w-6 text-orange dark:text-mint" />
+      <ArrowLeftIcon className="w-4 h-4 text-orange dark:text-mint md:w-6 md:h-6" />
       <Link href={`${path}`}>
-        <a className="group-hover:underline dark:text-gray-500 text-sm md:text-base underline-offset-4 decoration-2 transition-all ease-linear decoration-orange dark:decoration-mint">
+        <a className="text-sm dark:text-gray-500 group-hover:underline decoration-orange dark:decoration-mint decoration-2 underline-offset-4 transition-all ease-linear md:text-base">
           {title}
         </a>
       </Link>
     </button>
-  );
-};
+  )
+}
 
-export default GoBackButton;
+export default GoBackButton

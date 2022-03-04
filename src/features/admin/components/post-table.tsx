@@ -1,18 +1,18 @@
-import DashboardTable from "./table-component";
+import DashboardTable from './table-component'
 
-import { useSortData } from "@/common/hooks";
-import { POST_TABLE_HEADINGS } from "@/common/constants";
+import { useSortData } from '@/common/hooks'
+import { POST_TABLE_HEADINGS } from '@/common/constants'
 
-import type { NormalizedPost } from "../types";
-import type { IPost } from "@/post/types";
+import type { NormalizedPost } from '../types'
+import type { IPost } from '@/post/types'
 
 interface TableProps {
-  posts: IPost[];
-  openModal: (slug: string) => void;
+  posts: IPost[]
+  openModal: (slug: string) => void
 }
 
 const PostTable = ({ posts, openModal }: TableProps) => {
-  let normalizedPosts = [
+  const normalizedPosts = [
     ...posts.map((post) => ({
       views: post.view_count,
       likes: post.like_count,
@@ -20,11 +20,11 @@ const PostTable = ({ posts, openModal }: TableProps) => {
       title: post.slug,
       id: post.slug,
     })),
-  ];
-  const { items, requestSort } = useSortData<NormalizedPost>(normalizedPosts);
+  ]
+  const { items, requestSort } = useSortData<NormalizedPost>(normalizedPosts)
 
   return (
-    <div className="flex flex-col min-h-screen max-w-full mx-auto">
+    <div className="flex flex-col mx-auto max-w-full min-h-screen">
       <DashboardTable
         rowItems={items}
         type="posts"
@@ -33,7 +33,7 @@ const PostTable = ({ posts, openModal }: TableProps) => {
         openModal={openModal}
       />
     </div>
-  );
-};
+  )
+}
 
-export default PostTable;
+export default PostTable
