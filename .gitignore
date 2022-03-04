@@ -2,9 +2,6 @@
 .DS_Store
 .next
 node_modules
-public/rss.xml
-public/feed.xml
-public/sitemap-0.xml
 .vercel
 .env
 .vscode
@@ -16,3 +13,4 @@ tsconfig.tsbuildinfo
 
 public/sitemap.xml
 public/rss.xml
+public/sitemap-0.xml
