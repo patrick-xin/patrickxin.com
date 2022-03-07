@@ -1,12 +1,12 @@
-import { gridAnimation } from "@/common/animation";
-import { Frontmatter } from "@/post/types";
-import { motion } from "framer-motion";
+import { gridAnimation } from '@/common/animation'
+import { Frontmatter } from '@/post/types'
+import { motion } from 'framer-motion'
 
-import PostItem from "./post-item";
+import PostItem from './PostItem'
 
 type PostListProps = {
-  posts: Frontmatter[];
-};
+  posts: Frontmatter[]
+}
 
 const PostList = ({ posts }: PostListProps) => {
   return (
@@ -22,7 +22,7 @@ const PostList = ({ posts }: PostListProps) => {
         ))}
       </motion.ul>
     </section>
-  );
-};
+  )
+}
 
-export default PostList;
+export default PostList

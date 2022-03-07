@@ -4,12 +4,12 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { usePreventScroll } from '@react-aria/overlays'
 import cn from 'classnames'
 
-import ThemeToggle from './theme-toggle'
+import ThemeToggle from './ThemeToggle'
 import { Blob, Footer } from '.'
 
 import { ease } from '@/common/animation'
 import { ROUTES } from '@/common/constants'
-import GradientLink from './gradient-link'
+import GradientLink from './GradientLink'
 
 interface MobileDrawerProps {
   isDrawerOpen: boolean

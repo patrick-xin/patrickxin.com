@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-import PostTitle from './front-matter/post-title'
-import PublishTime from './front-matter/publish-time'
-import ReadingTime from './front-matter/reading-time'
+import PostTitle from './front-matter/PostTitle'
+import PublishTime from './front-matter/PublishTime'
+import ReadingTime from './front-matter/ReadingTime'
+
 import type { Frontmatter } from '@/post/types'
 
 const PostItem = ({ post }: { post: Frontmatter }) => {

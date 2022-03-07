@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 
 import { gridAnimation } from '@/common/animation'
-import PostCard from './post-card'
+import PostCard from './PostCard'
 
 import type { Frontmatter } from '@/post/types'
 

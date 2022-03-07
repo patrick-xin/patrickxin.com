@@ -1,18 +1,15 @@
 import { motion } from 'framer-motion'
 
-import PostTitle from './post-title'
-import Author from './author'
-import PublishTime from './publish-time'
-import ReadingTime from './reading-time'
-import Avatar from './avatar'
-import Description from './description'
-import PostViews from './post-views'
-import PostLikes from './post-likes'
-import PostComment from './post-comment'
-import PostShare from './post-share'
+import PostTitle from './PostTitle'
+import Author from './Author'
+import PublishTime from './PublishTime'
+import ReadingTime from './ReadingTime'
+import Avatar from './Avatar'
+import Description from './Description'
+import { PostStats } from '@/post/components/stats'
 
-import type { Frontmatter } from '../../types'
 import { ease } from '@/common/animation'
+import type { Frontmatter } from '@/post/types'
 
 type FrontMatterProps = {
   handleScrollToComments: () => void
@@ -47,24 +44,11 @@ const FrontMatter = ({
             </div>
           </div>
 
-          <div className="flex col-span-3 gap-4 justify-end items-center text-sm">
-            <div className="hidden lg:block">
-              <PostViews postSlug={slug} />
-            </div>
-
-            <div className="hidden lg:block">
-              <PostLikes postSlug={slug} />
-            </div>
-            <div className="hidden lg:block">
-              <PostComment
-                postSlug={slug}
-                handleScrollToComments={handleScrollToComments}
-              />
-            </div>
-            <div className="hidden lg:block">
-              <PostShare postSlug={slug} description={description} />
-            </div>
-          </div>
+          <PostStats
+            slug={slug}
+            description={description}
+            handleScrollToComments={handleScrollToComments}
+          />
         </div>
       </div>
       <Description description={description} />

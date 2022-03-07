@@ -4,7 +4,7 @@ import { ReactElement, useState } from 'react'
 import { StatisticsCard, PostTable, AdminLayout } from '@/admin/components'
 import { ChatIcon, EyeIcon, HeartIcon } from '@heroicons/react/solid'
 import { useToggle } from '@/common/hooks'
-import ConfirmModal from '@/admin/components/confirm-modal'
+import ConfirmModal from '@/admin/components/ConfirmModal'
 import { SpinLoader } from '@/common/components/icon'
 
 const DashboardPage = () => {

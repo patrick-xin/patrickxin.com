@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
 import Avatar from 'boring-avatars'
 
-import CommentBox from './comment-box'
-import CommentForm from './comment-form'
+import CommentBox from './CommentBox'
+import CommentForm from './CommentForm'
 import { SpinLoader } from '@/common/components/icon'
 
 import { usePostComments } from '@/post/hooks'
@@ -14,9 +14,9 @@ type PostCommentsProps = {
 
 const PostComments = forwardRef<HTMLHeadingElement, PostCommentsProps>(
   function PostComments({ slug }, ref) {
-    const { comments, isLoading, isError } = usePostComments(slug)
+    const { comments, isLoadingComments, isError } = usePostComments(slug)
 
-    if (isLoading) {
+    if (isLoadingComments) {
       return (
         <div className="flex flex-col gap-6 justify-center items-center my-12">
           <SpinLoader />

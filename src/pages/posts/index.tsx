@@ -5,9 +5,12 @@ import dynamic from 'next/dynamic'
 
 import { PostCardList, PostItemList } from '@/post/components'
 import { BasicLayout, Breadcrumbs } from '@/common/components'
-const PostViewOption = dynamic(() => import('@/post/components/view-option'), {
-  ssr: false,
-})
+const PostViewOption = dynamic(
+  () => import('@/post/components/PostViewOption'),
+  {
+    ssr: false,
+  }
+)
 
 import { getSortedPostsByDate } from '@/post/lib'
 import { generateRSSFeed } from '@/utils/generateRSSFeed'
@@ -21,11 +24,13 @@ const PostsPage = ({ posts }: { posts: Post[] }) => {
     <div className="mx-auto md:max-w-4xl xl:max-w-6xl">
       <Breadcrumbs title="posts" />
       <PostViewOption isGridView={isGridView} setGridView={setGridView} />
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence>
         {isGridView ? (
           <PostCardList posts={posts} />
         ) : (
-          <PostItemList posts={posts} />
+          <div className="mx-auto md:max-w-3xl">
+            <PostItemList posts={posts} />
+          </div>
         )}
       </AnimatePresence>
     </div>

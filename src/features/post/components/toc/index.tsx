@@ -1,19 +1,19 @@
-import { useMediaQuery } from "react-responsive";
-import TocButton from "./toc-button";
-import TocDrawer from "./toc-drawer";
+import { useMediaQuery } from 'react-responsive'
+import TocButton from './TocButton'
+import TocDrawer from './TocDrawer'
 
 type TableOfContentProps = {
-  hasToc: boolean;
-  isTocOpen: boolean;
-  setTocOpen: (isOpen: boolean) => void;
-};
+  hasToc: boolean
+  isTocOpen: boolean
+  setTocOpen: (isOpen: boolean) => void
+}
 const TableOfContent = ({
   hasToc,
   isTocOpen,
   setTocOpen,
 }: TableOfContentProps) => {
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" });
-  if (!hasToc) return null;
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' })
+  if (!hasToc) return null
   return (
     <>
       {!isTocOpen && !isTabletOrMobile && (
@@ -25,7 +25,7 @@ const TableOfContent = ({
         setOpenDrawer={(openDrawer) => setTocOpen(openDrawer)}
       />
     </>
-  );
-};
+  )
+}
 
-export default TableOfContent;
+export default TableOfContent

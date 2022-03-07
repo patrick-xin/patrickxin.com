@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import cn from 'classnames'
 
 import { ThemeToggle } from '@/common/components'
-import MenuButton from './menu-button'
+import MenuButton from './MenuButton'
 
 import { ROUTES } from '@/common/constants'
 import { ease } from '@/common/animation'

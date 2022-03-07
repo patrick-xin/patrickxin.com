@@ -53,7 +53,7 @@ const QuickNav = ({ setOpenDrawer }: QuickNavProps) => {
                 'underline underline-offset-2 text-orange decoration-orange dark:text-mint dark:decoration-mint':
                   hash === heading.id,
                 'text-base lg:text-lg': getLevel(heading.nodeName) === 2,
-                'ml-3 lg:ml-6 text-xs lg:text-sm':
+                'ml-3 lg:ml-4 text-xs lg:text-sm':
                   getLevel(heading.nodeName) === 3,
               }
             )}

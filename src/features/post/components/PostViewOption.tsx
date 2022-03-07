@@ -10,7 +10,7 @@ const PostViewOption = ({ isGridView, setGridView }: PostViewOptionProps) => {
   return (
     <div className="flex gap-4 justify-end mb-4">
       {isGridView ? (
-        <AnimatePresence>
+        <AnimatePresence exitBeforeEnter>
           <motion.button
             key="list-icon"
             initial={{ opacity: 0 }}
@@ -23,7 +23,7 @@ const PostViewOption = ({ isGridView, setGridView }: PostViewOptionProps) => {
           </motion.button>
         </AnimatePresence>
       ) : (
-        <AnimatePresence>
+        <AnimatePresence exitBeforeEnter>
           <motion.button
             key="grid-icon"
             initial={{ opacity: 0 }}

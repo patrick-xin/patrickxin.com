@@ -3,9 +3,9 @@ import { ClipboardListIcon } from '@heroicons/react/outline'
 
 import { motion, AnimatePresence } from 'framer-motion'
 
-import PostComment from './front-matter/post-comment'
-import PostLikes from './front-matter/post-likes'
-import PostViews from './front-matter/post-views'
+import PostComment from './stats/PostCommentStats'
+import PostLikes from './stats/PostLikeStats'
+import PostViews from './stats/PostViewStats'
 
 type MobileNavProps = {
   setOpenDrawer: (openDrawer: boolean) => void

@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
               width: 800,
               height: 600,
               alt: siteConfig.details.title,
-              type: 'image/jpg',
+              type: 'image/png',
             },
           ],
           site_name: siteConfig.details.title,

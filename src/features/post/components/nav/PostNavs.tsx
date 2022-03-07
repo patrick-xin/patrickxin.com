@@ -1,4 +1,4 @@
-import NavLink from './nav-link'
+import NavLink from './NavLink'
 
 import type { IAdjacentPosts } from '@/post/types'
 

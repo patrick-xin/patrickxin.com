@@ -96,18 +96,11 @@ export const useUpdateLikes = (slug: string) => {
           postKeys.single(slug),
           (old) => ({
             ...old,
-            likes: old!.likes + 1,
+            likes: old.likes + 1,
           })
         )
 
         return previousPost
-      },
-
-      onError: (err, _, context: any) => {
-        queryClient.setQueryData<{ likes: number }>(
-          postKeys.single(slug),
-          context.previousLikes
-        )
       },
 
       onSettled: () => {
@@ -136,16 +129,20 @@ export const usePost = (
   )
 
 export const usePostLikes = (slug: string) => {
-  const { data } = usePost(slug, (post) => post.like_count)
-  return { likes: data as number }
+  const { data, isLoading } = usePost(slug, (post) => post.like_count)
+  return { likes: data as number, isLoadingLikes: isLoading }
 }
 export const usePostViews = (slug: string) => {
-  const { data } = usePost(slug, (post) => post.view_count)
-  return { views: data as number }
+  const { data, isLoading } = usePost(slug, (post) => post.view_count)
+  return { views: data as number, isLoadingViews: isLoading }
 }
 export const usePostComments = (slug: string) => {
   const { data, isLoading, isError } = usePost(slug, (post) => post.comments)
-  return { comments: data as IComment[], isLoading, isError }
+  return {
+    comments: data as IComment[],
+    isLoadingComments: isLoading,
+    isError,
+  }
 }
 
 type Posts = {

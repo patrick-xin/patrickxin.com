@@ -21,24 +21,23 @@ import { Breadcrumbs } from '@/common/components'
 const TableOfContent = dynamic(() => import('@/post/components/toc'), {
   ssr: false,
 })
-const MobileNav = dynamic(() => import('@/post/components/mobil-nav'), {
+const MobileNav = dynamic(() => import('@/post/components/MobileNav'), {
   ssr: false,
 })
-const ScrollToTop = dynamic(() => import('@/post/components/scroll-top'), {
+const ScrollToTop = dynamic(() => import('@/post/components/ScrollTop'), {
   ssr: false,
 })
-const MessageModal = dynamic(
-  () => import('@/common/components/message-modal'),
-  {
-    ssr: false,
-  }
-)
+const MessageModal = dynamic(() => import('@/common/components/MessageModal'), {
+  ssr: false,
+})
 
 import { getAdjacentPosts, getAllPostsPaths, getPost } from '@/post/lib'
 import siteConfig from '@/config/site'
 import { ease } from '@/common/animation'
 
 import type { IAdjacentPosts, IPost } from '@/post/types'
+import { PostLikeStats } from '@/post/components/stats'
+import PostShare from '@/post/components/front-matter/PostShare'
 
 type PostPageProps = {
   adjacentPosts: IAdjacentPosts
@@ -97,7 +96,7 @@ const PostPage = ({ post, adjacentPosts }: PostPageProps) => {
     <motion.div
       initial={{ marginLeft: 0 }}
       animate={{
-        marginLeft: isTocOpen && !isTabletOrMobile ? '20rem' : 0,
+        marginLeft: isTocOpen && !isTabletOrMobile ? '24rem' : 0,
       }}
       transition={{ type: 'tween' }}
     >
@@ -148,7 +147,16 @@ const PostPage = ({ post, adjacentPosts }: PostPageProps) => {
         >
           <Component components={components} />
         </motion.article>
-
+        <div className="hidden gap-4 items-center my-12 lg:flex">
+          <h4 className="font-heading text-xl tracking-wider text-mint dark:text-orange md:text-2xl">
+            Is this post helpful?
+          </h4>
+          <PostLikeStats postSlug={frontmatter.slug} />
+          <PostShare
+            postSlug={frontmatter.slug}
+            description={frontmatter.description}
+          />
+        </div>
         <PostComments slug={frontmatter.slug} ref={ref} />
         <GoBackButton path="/posts" title="Go back to posts" />
         <PostNavs adjacentPosts={adjacentPosts} />

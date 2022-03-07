@@ -1,4 +1,4 @@
-import DashboardTable from './table-component'
+import DashboardTable from './DashboardTable'
 
 import { useSortData } from '@/common/hooks'
 import { POST_TABLE_HEADINGS } from '@/common/constants'

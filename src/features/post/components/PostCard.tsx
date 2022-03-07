@@ -2,8 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-import PostTitle from './front-matter/post-title'
-import PublishTime from './front-matter/publish-time'
+import PostTitle from './front-matter/PostTitle'
+import PublishTime from './front-matter/PublishTime'
 
 import { cardAnimation } from '@/common/animation'
 

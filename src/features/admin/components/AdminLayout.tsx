@@ -1,4 +1,4 @@
-import { Header } from '../components'
+import { Header } from '.'
 
 const AdminLayout: React.FC = ({ children }) => {
   return (

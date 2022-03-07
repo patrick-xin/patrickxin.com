@@ -1,13 +1,12 @@
 import { ReactElement, useState } from 'react'
 
-import { AdminLayout } from '@/admin/components'
+import { ConfirmModal, DashboardTable, AdminLayout } from '@/admin/components'
 
 import { deleteUser, useGetUsers } from '@/admin/hooks'
 import { useMutation, useQueryClient } from 'react-query'
-import DashboardTable from '@/admin/components/table-component'
+
 import { USER_TABLE_HEADINGS } from '@/common/constants'
 import { useToastStore, useToggle } from '@/common/hooks'
-import ConfirmModal from '@/admin/components/confirm-modal'
 
 const DashboardUsers = () => {
   const { users, error } = useGetUsers()

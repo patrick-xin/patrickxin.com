@@ -10,7 +10,7 @@ type PostCommentProps = {
   handleScrollToComments: () => void
 }
 
-const PostComment = ({
+const PostCommentStats = ({
   postSlug,
   handleScrollToComments,
 }: PostCommentProps) => {
@@ -19,20 +19,19 @@ const PostComment = ({
   return (
     <Tooltip position="bottom" color="mint" tooltipText="comments">
       <AnimatePresence>
-        {comments && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="flex gap-1 items-center"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex gap-1 items-center"
+        >
+          <button
+            type="button"
+            onClick={handleScrollToComments}
+            className="group inline-flex p-1 bg-black/5 dark:bg-white/10 rounded-md transition-colors ease-linear lg:p-1.5"
           >
-            <button
-              type="button"
-              onClick={handleScrollToComments}
-              className="group inline-flex p-1 bg-black/5 dark:bg-white/10 rounded-md transition-colors ease-linear lg:p-1.5"
-            >
-              <ChatIcon className="w-6 h-6 text-orange dark:text-mint cursor-pointer" />
-            </button>
-
+            <ChatIcon className="w-6 h-6 text-orange dark:text-mint cursor-pointer" />
+          </button>
+          {comments && (
             <motion.div
               className="text-xs font-black lg:text-sm"
               initial={{ y: 10, opacity: 0 }}
@@ -40,11 +39,11 @@ const PostComment = ({
             >
               {comments.length}
             </motion.div>
-          </motion.div>
-        )}
+          )}
+        </motion.div>
       </AnimatePresence>
     </Tooltip>
   )
 }
 
-export default PostComment
+export default PostCommentStats

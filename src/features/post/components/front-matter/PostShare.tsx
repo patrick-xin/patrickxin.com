@@ -26,7 +26,7 @@ const PostShare = ({ postSlug, description }: PostShareProps) => {
         </Tooltip>
       </Popover.Button>
       <div>
-        <Popover.Panel className="absolute -top-6 left-1/2 z-10 px-4 w-fit h-full translate-x-[3rem] sm:px-0">
+        <Popover.Panel className="absolute -top-6 -left-5 z-10 px-4 w-fit h-full translate-x-[3rem] sm:px-0 md:left-1/2">
           <div className="flex relative flex-col">
             <motion.div
               initial={{ opacity: 0 }}
@@ -44,7 +44,7 @@ const PostShare = ({ postSlug, description }: PostShareProps) => {
               </Tooltip>
               <Tooltip tooltipText="Twitter" position="right" color="blue">
                 <TwitterShareButton
-                  url={`${siteConfig.details.url}posts/${postSlug}`}
+                  url={`${siteConfig.details.url}/posts/${postSlug}`}
                   title={description}
                 >
                   <TwitterIcon size={32} round />

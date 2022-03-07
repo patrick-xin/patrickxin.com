@@ -8,7 +8,7 @@ const siteConfig = {
     url: 'https://www.patrickxin.com',
   },
   assets: {
-    image: '/assets/images/seo-image.jpg',
+    image: '/assets/images/seo-image.png',
     avatar: '/assets/images/avatar.jpg',
     favicon: '/favicon.ico',
   },

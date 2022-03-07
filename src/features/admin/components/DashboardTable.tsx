@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid'
 
-import ReplyModal from './reply-modal'
+import ReplyModal from './ReplyModal'
 
 import { useToggle } from '@/common/hooks'
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-const MobileDrawer = dynamic(() => import('./mobile-drawer'), {
+const MobileDrawer = dynamic(() => import('./MobileDrawer'), {
   ssr: false,
 })
 import { Header, Footer } from '@/common/components'

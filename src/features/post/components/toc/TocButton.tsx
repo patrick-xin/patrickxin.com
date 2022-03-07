@@ -1,9 +1,9 @@
-import { AnnotationIcon } from "@heroicons/react/outline";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnnotationIcon } from '@heroicons/react/outline'
+import { AnimatePresence, motion } from 'framer-motion'
 
 type TocButtonProps = {
-  onClick: () => void;
-};
+  onClick: () => void
+}
 
 const TocButton = ({ onClick }: TocButtonProps) => {
   return (
@@ -20,7 +20,7 @@ const TocButton = ({ onClick }: TocButtonProps) => {
         <AnnotationIcon className="h-4 w-4 md:h-6 md:w-6 fill-current text-snow" />
       </motion.button>
     </AnimatePresence>
-  );
-};
+  )
+}
 
-export default TocButton;
+export default TocButton
