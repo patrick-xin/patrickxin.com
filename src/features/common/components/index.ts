@@ -1,5 +1,4 @@
 export { default as Progress } from './Progress'
-export { default as Hr } from './Hr'
 export { default as Blob } from './Blob'
 export { default as Tooltip } from './Tooltip'
 export { default as Header } from './header'
