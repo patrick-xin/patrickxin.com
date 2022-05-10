@@ -27,7 +27,7 @@ const Header = ({ openDrawer, isDrawerOpen }: HeaderProps) => {
       className="mx-auto w-full h-16 bg-snow dark:bg-lead md:h-24"
     >
       <nav
-        className="grid grid-cols-2 items-center px-8 mx-auto w-full max-w-6xl h-full
+        className="grid grid-cols-2 items-center px-8 mx-auto w-full max-w-7xl h-full
        md:px-12 lg:grid-cols-6 lg:px-32"
       >
         <div>

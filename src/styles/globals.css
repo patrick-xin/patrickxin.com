@@ -19,7 +19,7 @@
   }
   code,
   pre {
-    @apply font-code text-cherry bg-gray-50 dark:bg-slate rounded-md dark:text-grape;
+    @apply font-code text-cherry bg-gray-50 dark:bg-slate rounded-md dark:text-[#c0caf5];
   }
 
   pre {
@@ -42,6 +42,9 @@
   }
   .icon-link {
     @apply w-5 h-5 lg:h-6 lg:w-6 fill-current text-gray-400 dark:group-hover:text-mint group-hover:text-orange transition-colors ease-out;
+  }
+  .text-outline {
+    -webkit-text-stroke: 1px rgba(107, 114, 128, 0.25);
   }
 }
 @layer components {
@@ -179,7 +182,7 @@ pre[class*='language-'] {
 }
 
 .token.number {
-  color: #fd9170;
+  @apply text-orange;
 }
 
 .token.operator {

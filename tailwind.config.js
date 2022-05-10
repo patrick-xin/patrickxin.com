@@ -11,10 +11,10 @@ module.exports = {
       colors: {
         snow: '#f0f1f4',
         powder: '#ededed',
-        lead: '#040115',
+        lead: '#1A1A26',
         orange: '#e59500',
         mint: '#4dcead',
-        slate: '#0c0020',
+        slate: '#24283b',
         plum: '#d3bbe5',
         cherry: '#ff6188',
         grape: '#7c5ff5',
