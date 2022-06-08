@@ -101,7 +101,7 @@ const PostPage = ({ post, adjacentPosts }: PostPageProps) => {
       transition={{ type: 'tween' }}
     >
       <NextSeo
-        title={`${post.title}`}
+        title={`${post.title} | ${siteConfig.details.author}`}
         description={post.description}
         openGraph={{
           url: `${siteConfig.details.url}`,
@@ -120,7 +120,7 @@ const PostPage = ({ post, adjacentPosts }: PostPageProps) => {
           locale: 'en_IE',
         }}
       />
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto lg:max-w-prose">
         <MessageModal />
         <TableOfContent
           hasToc={frontmatter.toc}

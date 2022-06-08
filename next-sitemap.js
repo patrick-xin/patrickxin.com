@@ -1,5 +1,5 @@
 module.exports = {
   siteUrl: 'https://patrickxin.com',
   generateRobotsTxt: true,
-  exclude: ['/admin/*', '/login'],
+  exclude: ['/admin/*', '/login', '/api/*'],
 }

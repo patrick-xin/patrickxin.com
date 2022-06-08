@@ -1,4 +1,5 @@
 ---
+type: Post
 title: Infinite Scrolling With React Query And Prisma In Next.js
 publishedAt: '2022-03-03'
 isPublished: true
@@ -30,7 +31,7 @@ Skip this section if you're going to clone the repo.
 - Next.js app with Typescript.
 - Prisma. For local database connection, follow steps [here](https://www.prisma.io/docs/getting-started/quickstart) and create a `Post Model`.
 - React Query. For using it within a NextJS app, add [code blocks](https://react-query.tanstack.com/guides/ssr) to the `_app.tsx`
-- Tailwind CSS. I have completely given up writing pure css or styled components now. 😎
+- Tailwind CSS. I have completely given up writing pure css or styled components now.
 
 ## Setup Backend
 
@@ -296,7 +297,7 @@ more to improve, or still not clear, please feel free to leave a comment!
 
 We're almost done! The last piece is to add intersection observer to fetch more posts when we're scrolling to the bottom of the page. Open a new terminal and run `yarn add react-intersection-observer`.
 
-```tsx:pages/index.tsx {1-2, 25, 27, 29, 38-44, 48-61} showLineNumbers
+```tsx:pages/index.tsx {1-2, 25, 27, 29, 38-44, 48-61}
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useInfiniteQuery } from 'react-query'
@@ -411,7 +412,7 @@ import PostCardLoader from '../src/components/PostCardLoader'
 
 If you look at the browser again, we now have a nice loading indicator to tell users there are more posts to see.
 
-🎉 That's it if for the React part. You can use it in a pure React app. The only thing needs to change is add your own backend API. 🎉
+🎉🎉 That's it if for the React part. You can use it in a pure React app. The only thing needs to change is add your own backend API.
 
 ### Add GetServerSideProps
 
@@ -419,7 +420,7 @@ The following part is for Next.js. For better SEO, we can pre-render the first q
 
 If you take a look at the source code of page now you will notice that there are no contents between the divs. That's because intially `posts` is `undefined` and there's nothing to render until we get data from API route. It will work just fine if you don't care about it at all. But we're using NextJS, we have more control over what we need. That's why we love it so much, isn't it? Since we can write server-side code directly inside either `getServerSideProps` or `getStaticProps`, we can pre-render the first 4 posts and let React Query take care of the rest. The final code looks like this:
 
-```tsx:pages/index.tsx {7, 9, 26-30, 54-58, 82-94} showLineNumbers
+```tsx:pages/index.tsx {7, 9, 26-30, 54-58, 82-94}
 import { useEffect } from 'react'
 import { useInfiniteQuery } from 'react-query'
 import { useInView } from 'react-intersection-observer'

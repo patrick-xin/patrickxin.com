@@ -1,8 +1,23 @@
 {
-  "private": false,
-  "name": "personal-website",
+  "private": true,
+  "name": "patrickxin.com",
   "description": "Personal website of Patrick Xin",
-  "author": "Patrick Xin <patrick.xin.dev@gmail.com>",
+  "author": {
+    "email": "patrick.xin.dev@gmail.com",
+    "name": "Patrick Xin",
+    "url": "https://patrickxin.com/"
+  },
+  "homepage": "https://patrickxin.com/",
+  "bugs": {
+    "url": "https://github.com/patrick-xin/patrickxin.com/issues"
+  },
+  "keywords": [
+    "tailwindcss",
+    "react",
+    "nextjs",
+    "portfolio",
+    "personal-site"
+  ],
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
@@ -15,16 +30,16 @@
   "dependencies": {
     "@headlessui/react": "^1.5.0",
     "@prisma/client": "^3.9.2",
-    "contentlayer": "^0.1.1",
+    "contentlayer": "^0.2.5",
     "feed": "^4.2.2",
     "framer-motion": "^6.2.8",
-    "next": "12.1.0",
+    "next": "^12.1.6",
     "next-connect": "^0.12.1",
-    "next-contentlayer": "^0.1.1",
+    "next-contentlayer": "^0.2.5",
     "next-seo": "^5.1.0",
     "next-share": "^0.13.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "react-intersection-observer": "^8.33.1",
     "react-query": "^3.34.15",
     "rss": "^1.2.2",
@@ -56,7 +71,7 @@
     "jsonwebtoken": "^8.5.1",
     "lint-staged": "^12.3.4",
     "next-sitemap": "^2.4.6",
-    "next-themes": "^0.0.15",
+    "next-themes": "^1.0.0-beta.0",
     "nprogress": "^0.2.0",
     "postcss": "^8.4.6",
     "prettier": "^2.5.1",

@@ -25,7 +25,7 @@ const Pre = ({ children, className, ...props }: PreProps) => {
   }, [copied])
 
   return (
-    <div className="relative lg:my-8">
+    <div className="relative -mx-6 md:mx-0 lg:my-8">
       <pre
         {...props}
         ref={preRef}

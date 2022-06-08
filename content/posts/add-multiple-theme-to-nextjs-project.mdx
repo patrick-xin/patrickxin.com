@@ -1,0 +1,322 @@
+---
+type: Post
+title: Add Multiple Theme To Next.JS and Tailwind Project
+publishedAt: '2022-6-06'
+isPublished: true
+description: Add multiple theme to your next Next.JS project.
+toc: true
+thumbnail:
+  {
+    'author': 'Keila Hötzel',
+    'url': '/assets/images/add-multiple-theme-to-nextjs-project/cover.jpg',
+    'from': 'https://unsplash.com/@keilahoetzel',
+  }
+---
+
+## Intro
+
+Nowadays we have a lot of projects that need to be styled with Tailwind. In some case you may need to add multiple themes to your project. In today's article I will show you how easy it is do so with a few setups. The easiest way is to use [`next-themes`](https://github.com/pacocoursey/next-themes).
+
+> 🌱 Checkout [deployed version](https://github.com/patrick-xin/infinite-scroll-with-react-query-nextjs) to see the what final result looks like.
+
+## Crate a New Project
+
+Initialize a new Next.JS project with Tailwind by running `npx create-next-app with-tailwind multiple-themes`.
+
+### Add Theme Provider
+
+```tsx:pages/_app.tsx {3, 7, 9}
+import '../styles/globals.css'
+import type { AppProps } from 'next/app'
+import { ThemeProvider } from 'next-themes'
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <ThemeProvider enableSystem={false} disableTransitionOnChange>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  )
+}
+
+export default MyApp
+```
+
+## Configure Tailwind CSS
+
+### Add CSS Variables
+
+We need to define CSS variables inside `globals.css` file so that Tailwind knows how to access them.
+
+```css:globals.css {22-24}
+@layer base {
+  :root {
+    --bg-color: #f4f4f0;
+    --text-color: #212121;
+  }
+
+  [data-theme='dark'] {
+    --bg-color: #212121;
+    --text-color: #f4f4f0;
+  }
+
+  [data-theme='yellow'] {
+    --bg-color: #ffc300;
+    --text-color: #f4f4f0;
+  }
+
+  [data-theme='purple'] {
+    --bg-color: #39009e;
+    --text-color: #15b2fb;
+  }
+
+  body {
+    @apply relative text-pageText bg-pageBG;
+  }
+}
+```
+
+These are arbitrary CSS variables that I created, feel free to change them based on your personal taste. Don't forget to apply those variables to the `body` element.
+
+### Define CSS Variables Inside Tailwind Config
+
+Add the highlighted lines to your `tailwind.config.js` file.
+
+```js:tailwind.config.js {8-11}
+module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        BackgroundColor: "var(--bg-color)",
+        TextColor: "var(--text-color)",
+      },
+    },
+  },
+  plugins: [],
+};
+```
+
+With current configuration, we are ready to change themes.
+
+## Define Theme Object
+
+In order to switch between themes, we need to define a theme object which contains the themes that our component can access.
+
+```tsx:constants/theme.tsx
+export const themes: ITheme[] = [
+  {
+    title: "Light",
+    name: "light",
+    emoji: <span>🌞</span>,
+  },
+  {
+    title: "Dark",
+    name: "dark",
+    emoji: <span>🌙</span>,
+  },
+  {
+    title: "Yellow",
+    name: "yellow",
+    emoji: <span>🌼</span>,
+  },
+  {
+    title: "Purple",
+    name: "purple",
+    emoji: <span>🦄</span>,
+  },
+];
+```
+
+As I'm using TypeScript, I've also create a theme interface. If you are unfamiliar with TypeScript, you can skip this type definition.
+
+```ts:types/theme.ts
+export type ThemeName = "light" | "dark" | "yellow" | "purple";
+export type ThemeTitle = Capitalize<ThemeName>;
+
+export interface ITheme {
+  title: ThemeTitle;
+  name: ThemeName;
+  emoji: React.ReactNode;
+}
+```
+
+For more type safty, we're using [`Template Literal Types`](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#capitalizestringtype) to define the type of the `title` and `name` properties. `title` will be shown in the UI and `name` will be used to tell `next-themes` what current theme we are using.
+
+## Create ThemeSwtich Component
+
+There are various ways create a switcher, you can either use a dropdown select or a button. I will create both.
+
+### ThemeSwtichButton Component
+
+Let's create a switch button first.
+
+```tsx:components/ThemeSwtichButton.tsx {8-9}
+import React from "react";
+import { useTheme } from "next-themes";
+import { themes } from "../constants/theme";
+import { useHasMounted } from "../hooks";
+
+const ThemeSwitchButton = () => {
+
+  const { theme, setTheme } = useTheme();
+  const hasMounted = useHasMounted();
+  if (!hasMounted || !theme) return null;
+  const currentIndex = Math.abs(themes.findIndex((t) => t.name === theme));
+  const currentTheme = themes[currentIndex];
+  const nextTheme = themes[(currentIndex + 1) % themes.length];
+
+  return (
+    <div>
+      <button
+        className="border inline-flex gap-2 justify-center w-32 items-center border-TextColor px-4 py-2 rounded-md"
+        onClick={() => setTheme(nextTheme.name)}
+      >
+        {currentTheme.emoji}
+        <span>{currentTheme.name}</span>
+      </button>
+    </div>
+  );
+};
+
+export default ThemeSwitchButton;
+```
+
+Notice we have a custom hook inside the component. We're using `useHasMounted` to make sure the component is mounted before we set the theme. The [doc](https://github.com/pacocoursey/next-themes) explains pretty well why we need this.
+
+> Because we cannot know the theme on the server, many of the values returned from useTheme will be undefined until mounted on the client. This means if you try to render UI based on the current theme before mounting on the client, you will see a hydration mismatch error.
+
+Then we need to know what current theme is by using `useTheme` and accessing the `themes` properties defined earlier(title, name and emoji). We're using `findIndex` to find the index of the current theme in the `themes` array. Then we use `mod` to get the next theme. Once the button is clicked, we use `setTheme` to change the theme.
+
+### ThemeSwtichSelect Component
+
+I will use Headless UI Kit's `Select` component to create a dropdown select as it provide easy to use API and great accessibility. You can refer to the [Headless UI Kit](https://headlessui.dev/react/listbox) for more information.
+
+```tsx:components/ThemeSwtichSelect.tsx
+import { useTheme } from "next-themes";
+import React, { useEffect, useState } from "react";
+import { Listbox } from "@headlessui/react";
+import { CheckIcon } from "@heroicons/react/solid";
+import { useHasMounted, useMultipleTheme } from "../hooks";
+import { themes } from "../constants/theme";
+
+const ThemeSwitchSelect = () => {
+
+  const { theme, setTheme } = useTheme();
+  const hasMounted = useHasMounted();
+  if (!hasMounted || !theme) return null;
+  const currentIndex = Math.abs(themes.findIndex((t) => t.name === theme));
+  const currentTheme = themes[currentIndex];
+
+  return (
+    <div className="w-40">
+      <Listbox
+        value={theme}
+        onChange={(theme) => {
+          setTheme(theme);
+        }}
+      >
+        <div className="relative border border-TextColor rounded-lg">
+          <Listbox.Button className="relative w-full cursor-default rounded-lg py-2 pl-3 pr-10 inline-flex gap-6 shadow-md">
+            {currentTheme.emoji}
+            <span>{currentTheme.title}</span>
+          </Listbox.Button>
+          <Listbox.Options className="absolute max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg border-t-0 border rounded-t-none border-TextColor">
+            {themes.map((theme) => (
+              <Listbox.Option
+                key={theme.name}
+                value={theme.name}
+                className={({ active }) =>
+                  `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
+                    active ? "opacity-100" : "opacity-80"
+                  }`
+                }
+              >
+                {({ selected }) => (
+                  <div className="inline-flex gap-4">
+                    {theme.emoji}
+                    <span
+                      className={`block truncate ${
+                        selected ? "font-bold" : "font-normal"
+                      }`}
+                    >
+                      {theme.title}
+                    </span>
+
+                    {selected ? (
+                      <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                      </span>
+                    ) : null}
+                  </div>
+                )}
+              </Listbox.Option>
+            ))}
+          </Listbox.Options>
+        </div>
+      </Listbox>
+    </div>
+  );
+};
+
+export default ThemeSwitchSelect;
+
+```
+
+In the select component we no longer need to calculate `nextTheme` as `ListBox` contains all the themes we need to use.
+
+Let's render both components on the screen.
+
+```tsx:pages/index.tsx
+import type { NextPage } from "next";
+
+import ThemeSwitchSelect from "../components/ThemeSwitchSelect";
+import ThemeSwitchButton from "../components/ThemeSwitchButton";
+
+const Home: NextPage = () => {
+  return (
+    <div className="flex min-h-screen gap-6 flex-col items-center justify-center">
+      <h1 className="text-3xl">Theme Switch</h1>
+      <div className="flex gap-6">
+        <ThemeSwitchSelect />
+        <ThemeSwitchButton />
+      </div>
+    </div>
+  );
+};
+
+export default Home;
+
+```
+
+## Final Touch
+
+You may notice that we are reusing the same logic in both components, it's a good idea to use a custom hook to avoid duplicate code. We can create a custom hook called `useMultipleTheme` to handle multiple themes changes.
+
+```tsx:hooks/index.ts
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { ITheme } from "../types";
+
+export const useMultipleTheme = (themes: ITheme[]) => {
+
+  const { theme, setTheme } = useTheme();
+  const currentIndex = Math.abs(themes.findIndex((t) => t.name === theme));
+  const currentTheme = themes[currentIndex];
+  const nextTheme = themes[(currentIndex + 1) % themes.length];
+
+  return {
+    theme,
+    setTheme,
+    currentTheme,
+    nextTheme,
+  };
+};
+
+```
+
+In the component simply replace `useTheme` with `useMultipleTheme` and pass the `themes` array as an argument.
+
+That's it for today, thanks for reading and happy coding!

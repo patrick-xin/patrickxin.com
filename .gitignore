@@ -10,7 +10,3 @@ node_modules
 .contentlayer
 
 tsconfig.tsbuildinfo
-
-public/sitemap.xml
-public/rss.xml
-public/sitemap-0.xml

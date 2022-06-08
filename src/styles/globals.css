@@ -23,7 +23,7 @@
   }
 
   pre {
-    @apply my-4 overflow-auto rounded-md shadow-sm pb-2 md:pb-6;
+    @apply my-4 overflow-auto rounded shadow-sm pb-2 md:pb-6;
   }
 
   code {
@@ -84,7 +84,7 @@
 }
 
 pre[class*='language-'] {
-  @apply overflow-auto relative my-2 mx-0 py-[1.25rem] px-4;
+  @apply overflow-auto relative my-2 -mx-1 md:-mx-0 py-6 px-4;
 }
 
 .language-css > code,
@@ -178,7 +178,7 @@ pre[class*='language-'] {
 }
 
 .token.keyword {
-  @apply text-purple-500 dark:text-pink-300;
+  @apply text-purple-500 dark:text-red-300;
 }
 
 .token.number {
@@ -242,7 +242,7 @@ pre[class*='language-'] {
 }
 
 .code-line {
-  @apply block px-5 -mx-[13px] border-l border-gray-600/20;
+  @apply block px-5 -mx-[13px];
 }
 
 .code-line.inserted {
@@ -258,7 +258,7 @@ pre[class*='language-'] {
 }
 
 .highlight-line {
-  @apply dark:bg-mint/10 bg-orange/10 min-w-max -mx-5 border-l-rose-400 dark:border-l-teal-600 border-l-8;
+  @apply dark:bg-mint/10 bg-orange/10 min-w-max -mx-3 md:-mx-4 border-l-rose-400 dark:border-l-teal-600 border-l-4;
 }
 
 .line-number::before {
@@ -266,7 +266,7 @@ pre[class*='language-'] {
   content: attr(line);
 }
 .rehype-code-title {
-  @apply dark:bg-mint/20 bg-orange/70 text-white rounded p-1 lg:py-2 flex items-center mt-4 -mb-1 lg:mt-6 w-fit text-sm lg:-mb-7;
+  @apply dark:bg-slate bg-[#F9FAFB] text-orange dark:text-mint rounded-sm rounded-b-none p-1.5 lg:py-2 flex items-center mt-6 -mb-2 -ml-3 md:ml-2 lg:mt-6 w-fit text-sm lg:-mb-8 lg:ml-4;
 }
 
 .gradient-link:after {

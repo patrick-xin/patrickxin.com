@@ -16,24 +16,31 @@ import { getSortedPostsByDate } from '@/post/lib'
 import { generateRSSFeed } from '@/utils/generateRSSFeed'
 
 import type { Post } from 'contentlayer/generated'
+import { NextSeo } from 'next-seo'
 
 const PostsPage = ({ posts }: { posts: Post[] }) => {
-  const [isGridView, setGridView] = useState(false)
+  const [isGridView, setGridView] = useState(true)
 
   return (
-    <div className="mx-auto md:max-w-4xl xl:max-w-6xl">
-      <Breadcrumbs title="posts" />
-      <PostViewOption isGridView={isGridView} setGridView={setGridView} />
-      <AnimatePresence>
-        {isGridView ? (
-          <PostCardList posts={posts} />
-        ) : (
-          <div className="mx-auto md:max-w-3xl">
-            <PostItemList posts={posts} />
-          </div>
-        )}
-      </AnimatePresence>
-    </div>
+    <>
+      <NextSeo
+        title="Blog | Patrick Xin"
+        description="Blog posts from Patrick Xin"
+      />
+      <div className="mx-auto md:max-w-4xl xl:max-w-6xl">
+        <PostViewOption isGridView={isGridView} setGridView={setGridView} />
+        <AnimatePresence>
+          {isGridView ? (
+            <PostCardList posts={posts} />
+          ) : (
+            <div className="mx-auto md:max-w-3xl">
+              <Breadcrumbs title="posts" />
+              <PostItemList posts={posts} />
+            </div>
+          )}
+        </AnimatePresence>
+      </div>
+    </>
   )
 }
 
@@ -41,7 +48,9 @@ export default PostsPage
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = getSortedPostsByDate()
+
   generateRSSFeed(posts)
+
   return { props: { posts } }
 }
 

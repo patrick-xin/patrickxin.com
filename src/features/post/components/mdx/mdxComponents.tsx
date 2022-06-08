@@ -69,9 +69,7 @@ const MDXComponents = {
     )
   },
   p: ({ ...props }) => {
-    return (
-      <p {...props} className="my-2 leading-7 md:my-4 lg:my-6 lg:leading-8" />
-    )
+    return <p {...props} className="my-6 leading-8 md:my-6 lg:my-8  xl:my-10" />
   },
   em: ({ ...props }) => {
     return <em {...props} className="italic" />
@@ -82,7 +80,7 @@ const MDXComponents = {
   blockquote: ({ ...props }) => {
     return (
       <div
-        className="flex relative p-2 my-4 mx-auto font-serif font-medium bg-gray-50 dark:bg-white/5 rounded-lg lg:my-12 lg:text-xl
+        className="flex relative p-2 my-4 mx-auto font-body font-semibold bg-gray-50 dark:bg-white/5 rounded-lg lg:my-12 lg:text-xl
 "
       >
         <div>

@@ -1,3 +1,5 @@
+import { allSites } from 'contentlayer/generated'
+
 const siteConfig = {
   details: {
     title: 'Patrick Xin',
@@ -19,3 +21,7 @@ const siteConfig = {
 }
 
 export default siteConfig
+
+export const getSiteAboutInfo = () => {
+  return allSites.find((site) => site.slug === 'about')
+}

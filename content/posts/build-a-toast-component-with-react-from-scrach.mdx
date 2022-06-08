@@ -1,14 +1,16 @@
 ---
+type: Post
 title: Build A Toast Component With React From Scratch
-publishedAt: "2022-02-01"
+publishedAt: '2022-02-01'
 isPublished: true
 description: Create a react toast with tailwind, framer motion and zustand by yourself.
 toc: true
-thumbnail: {
-    "author": "brandi-redd",
-    "url": "/assets/images/build-a-toast-component-with-react-from-scrach/cover.jpg",
-    "from": "https://unsplash.com/@brandi1",
-}
+thumbnail:
+  {
+    'author': 'brandi-redd',
+    'url': '/assets/images/build-a-toast-component-with-react-from-scrach/cover.jpg',
+    'from': 'https://unsplash.com/@brandi1',
+  }
 ---
 
 ## What is toast?
@@ -16,30 +18,28 @@ thumbnail: {
 A toast is a common react component we see on the website. It can
 be used as a notification to display messages for the users. We may somewhat
 use libraries like [React Toastify](https://fkhadra.github.io/react-toastify/introduction) and [React Hot Toast](https://react-hot-toast.com/).
-But today in this article we will build one by ourselves.🔥 🔥 If you're interested, please keep reading.
+But today in this article we will build one by ourselves. 🔥 If you're interested, please keep reading.
 
 > ✨ This tutorial assumes that you have a basic understanding of React.
 >
 > ✨ You may take a look at the documentation of [Framer Motion](https://www.framer.com/motion/), [Zustand](https://github.com/pmndrs/zustand) if you are not familiar with them.
 
-I've used the same toast component on this website. To see what the final result looks like, you can click the 
+I've used the same toast component on this website. To see what the final result looks like, you can click the
 these buttons: <ToastForPost/> Or
- you can leave a comment in the comment section, you will see either a success message or a error message pops up on the right corner of the screen. Any comments or feedback are appreciated. 🙏  I've also made a repo in the [github](https://github.com/patrick-xin/react-toast-tailwind-framer-motion), feel free to check it out.
-
-
+you can leave a comment in the comment section, you will see either a success message or a error message pops up on the right corner of the screen. Any comments or feedback are appreciated. 🙏 I've also made a repo in the [github](https://github.com/patrick-xin/react-toast-tailwind-framer-motion), feel free to check it out.
 
 ## Tools We're Gonna Use
 
 - A Typescript React app. I will use NextJS. You can run `yarn create-next-app --example with-tailwindcss with-tailwindcss-app` in the command line. This repo has been updated using Typescript by default.
 - Animation Libary - [Framer Motion](https://www.framer.com/motion/)
 - Styling - [TailwindCSS](https://tailwindcss.com/)
-- State Managment [Zustand](https://github.com/pmndrs/zustand) 
+- State Managment [Zustand](https://github.com/pmndrs/zustand)
 
 After initializing the app, run `yarn add framer-motion zustand` to add _Framer Motion_ and _Zustand_ packages to our project.
 
-You can also use other state management libraries like _Redux_ or _Context API_. The idea is the same: we don't have to pass props to the child components and avoid 😒_Prop Drilling_. If you are not sure what _Prop Drilling_ is, check this [article](https://kentcdodds.com/blog/prop-drilling) written by Kent C. Dodds. Personally, I think he gave the best explanation of it.
+You can also use other state management libraries like _Redux_ or _Context API_. The idea is the same: we don't have to pass props to the child components and avoid 😒*Prop Drilling*. If you are not sure what _Prop Drilling_ is, check this [article](https://kentcdodds.com/blog/prop-drilling) written by Kent C. Dodds. Personally, I think he gave the best explanation of it.
 
-Enough talking, let's get started! 💪
+Enough talking, let's get started!
 
 ## Define Toast State
 
@@ -54,9 +54,10 @@ export const useToastStore = create((set) => ({
   message: "",
 }));
 ```
+
 Quickly you wll notice the error on `set` function, simply ignore it, we will fix it later when we define types of the store.
 
-The basic state of our toast store is if the toast opens or not. We will use the flag `isToastOpen` to control the state of the toast. Initially, we set it `false`. The toast will open once its value is set to `true`. We will also need a function to close the toast, which means we set `isToastOpen` back to its default state. We will also need the actual _message_ to display. 
+The basic state of our toast store is if the toast opens or not. We will use the flag `isToastOpen` to control the state of the toast. Initially, we set it `false`. The toast will open once its value is set to `true`. We will also need a function to close the toast, which means we set `isToastOpen` back to its default state. We will also need the actual _message_ to display.
 
 You may notice that we don't have a function to open it. Yes we can change `closeToast` function to `toggleToast` and make it toggle current `isToastOpen` state.
 But bear with me, I have a better option. Let's continue.
@@ -75,7 +76,8 @@ export const useToastStore = create((set) => ({
   direction: "fadeUp",
 }));
 ```
-`toastType` is the option that we can decide based on what we need, it could be one of ✅success, ❌error, or ⛔️warning, but it is not limited, we can display all kinds of toast if we want! 
+
+`toastType` is the option that we can decide based on what we need, it could be one of ✅success, ❌error, or ⛔️warning, but it is not limited, we can display all kinds of toast if we want!
 
 We can also display the toast in various positions and decide how it pops up with the `position` and `direction` properties.
 
@@ -119,7 +121,8 @@ export const useToastStore = create((set) => ({
   },
 }));
 ```
-`toast` is an object that has all the methods we can use later, the syntax will be like `toast. success('success message', 'bottomCenter', 'fadeUp')`. The toast component will be different if we pass different arguments. Notice the `set` function can take a state argument that we can access the current state. Each function inside the toast object 
+
+`toast` is an object that has all the methods we can use later, the syntax will be like `toast. success('success message', 'bottomCenter', 'fadeUp')`. The toast component will be different if we pass different arguments. Notice the `set` function can take a state argument that we can access the current state. Each function inside the toast object
 
 > ❓ Question mark after the parameters means this argument is optional, if we don't pass it, it will be `undefined`.
 >
@@ -153,7 +156,8 @@ type ToastState = {
   };
 };
 ```
-Then we can add `type ToastState` to the `create` function. 
+
+Then we can add `type ToastState` to the `create` function.
 
 ```diff:store/toast-store.ts
 
@@ -164,6 +168,7 @@ Then we can add `type ToastState` to the `create` function.
   ...
 }));
 ```
+
 Now the error is gone and Typescript will help us avoid making typos and prevent us pass wrong types of arguments. It's simple, isn't it? That's it for the store. We are halfway there! We can start building the toast component now.
 
 ## Make Toast Component
@@ -179,6 +184,7 @@ const Toast = ()=>{
 }
 export default Toast;
 ```
+
 ### Render Toast Component On Screen
 
 ```tsx:pages/index.tsx showLineNumbers
@@ -193,7 +199,8 @@ const HomePage = ()=>{
 }
 export default HomePage
 ```
-The Toast component should be on the right top of the screen. We haven't styled it yet. It's probably the uglies toast you've ever seen. 😩 Let's use the store we just built to take full control of it.
+
+The Toast component should be on the right top of the screen. We haven't styled it yet. It's probably the uglies toast you've ever seen. Let's use the store we just built to take full control of it.
 
 ### Add Animation, Connect Store
 
@@ -204,7 +211,7 @@ import {useToastStore} from '../store/toast-store'
 const Toast = ()=>{
     const { isToastOpen, message, toastType, position, direction, closeToast } =
     useToastStore();
-       
+
     return (
         <AnimatePresence>
             {isToastOpen && (
@@ -219,7 +226,7 @@ const Toast = ()=>{
 export default Toast;
 ```
 
-Toast Component will always be hidden until we set `isToastOpen` to `true` inside the store. As you can see, we don't have to pass any props to the component itself, the _show/hide_ state is completely managed by our store. 
+Toast Component will always be hidden until we set `isToastOpen` to `true` inside the store. As you can see, we don't have to pass any props to the component itself, the _show/hide_ state is completely managed by our store.
 
 > [AnimatePresence](https://www.framer.com/docs/animate-presence/) allows components to animate out when they're removed from the React tree.
 
@@ -227,12 +234,11 @@ It is perfect to animate the component when it's mounting and unmounting. Also, 
 
 Now it's time to add some configurations to it to make it beautiful and functional.
 
-
 ### Wrire Configrations
 
 ```tsx:components/toast.tsx
 
- const toastTypes = {    
+ const toastTypes = {
     success: 'bg-green-500',
     error: 'bg-red-500',
     warning: 'bg-yellow-500'
@@ -279,7 +285,7 @@ Now it's time to add some configurations to it to make it beautiful and function
 
 ### Add Configrations To Toast Component
 
-Now we are ready to add config to the toast component. We will define configurations as objects so that we can easily combine them with the options in our toast store and use `template literal` inside Tailwind classNames. 
+Now we are ready to add config to the toast component. We will define configurations as objects so that we can easily combine them with the options in our toast store and use `template literal` inside Tailwind classNames.
 
 ```tsx:components/toast.tsx {7-13} showLineNumbers
 const Toast = () => {
@@ -307,10 +313,8 @@ const Toast = () => {
 };
 export default Toast;
 ```
->Dont' forget to remove `top-0 right-0` from the `className`, otherwise it will overwrite the position we passed in.
 
-
-
+> Dont' forget to remove `top-0 right-0` from the `className`, otherwise it will overwrite the position we passed in.
 
 If you are confused by the props we pass inside `motion.div` like `variants`, `initial`, `animate`, `exit`,
 have a look at [this](https://www.framer.com/docs/examples/#variants) as reference.
@@ -419,9 +423,10 @@ const HomePage = () => {
   );
 };
 ```
-There is a small issue. If you keep clicking buttons without clicking the close button, you will notice that sometimes the position like `fadeLeft` doesn't work, the animation is also clunky. That's because the toast component is never unmounted, so the `exit` property on the `motion.div` is never animated. 
 
->In React, changing a component's key makes React treat it as an entirely new component. 
+There is a small issue. If you keep clicking buttons without clicking the close button, you will notice that sometimes the position like `fadeLeft` doesn't work, the animation is also clunky. That's because the toast component is never unmounted, so the `exit` property on the `motion.div` is never animated.
+
+> In React, changing a component's key makes React treat it as an entirely new component.
 
 To fix it, simply add a prop `key={toastType}` inside `motion.div` component. Be careful that the `key` has to be unique! This is similar when we map an array of components, I'm sure you have seen the error in the console that says `each component must have a unique key property. In our case, we keep changing `toastType` so it has no problems.
 
@@ -431,7 +436,7 @@ To fix it, simply add a prop `key={toastType}` inside `motion.div` component. Be
   ...
 ```
 
-Congrats! 👏 👏 We just finished building a basic yet fully functional toast. This is just the fundamental setup, you can be as creative as you can, adding features like removing it automatically using `setTimeOut` inside `useEffect` hook, displaying multiple toasts at the same time, etc... Feel free to fork the [repo](https://github.com/patrick-xin/react-toast-tailwind-framer-motion) and add as many features as you want! 🎉 🎉
+Congrats! 👏 👏 We just finished building a basic yet fully functional toast. This is just the fundamental setup, you can be as creative as you can, adding features like removing it automatically using `setTimeOut` inside `useEffect` hook, displaying multiple toasts at the same time, etc... Feel free to fork the [repo](https://github.com/patrick-xin/react-toast-tailwind-framer-motion) and add as many features as you want!
 
 ## What Can Be Improved?
 
@@ -453,5 +458,4 @@ As you can see, our toast can be considered as _dialogs_, rendering it outside t
 
 With the current setup, there is no way we can close the toast using the keyboard. We can make the close button inside the toast autofocus when it mounts, giving users a better experience. In my current website, I'm using [Headless UI](https://headlessui.dev/) to handle these problems.
 
-
-That's it for this post. Hope you enjoy reading it. If you have any questions or thoughts feel free to leave a comment below. Cheers! 👻
+That's it for this post. Hope you enjoy reading it. If you have any questions or thoughts feel free to leave a comment below. Cheers!
