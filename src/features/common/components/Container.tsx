@@ -13,7 +13,7 @@ const Container = ({ children, className }: ContainerProps) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ ease, delay: 0.2 }}
-      className={`relative mx-auto max-w-4xl ${className ? className : ''}`}
+      className={`${className ? className : ''} relative mx-auto max-w-prose `}
     >
       {children}
     </motion.div>

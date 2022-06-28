@@ -1,0 +1,10 @@
+[
+  {
+    "id": "1",
+    "title": "PX Groove",
+    "description": "Small music player app built with Next.JS and Tailwind.",
+    "website": "https://px-groove.vercel.app/",
+    "githubUrl": "https://github.com/patrick-xin/nextjs-music-player",
+    "image": "/assets/images/project-music.jpg"
+  }
+]

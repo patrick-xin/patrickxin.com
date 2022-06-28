@@ -1,16 +1,8 @@
 import { ReactElement, useState } from 'react'
 import { GetStaticProps } from 'next'
-import { AnimatePresence } from 'framer-motion'
-import dynamic from 'next/dynamic'
 
-import { PostCardList, PostItemList } from '@/post/components'
-import { BasicLayout, Breadcrumbs } from '@/common/components'
-const PostViewOption = dynamic(
-  () => import('@/post/components/PostViewOption'),
-  {
-    ssr: false,
-  }
-)
+import { PostItemList } from '@/post/components'
+import { BasicLayout, Container, PageHeader } from '@/common/components'
 
 import { getSortedPostsByDate } from '@/post/lib'
 import { generateRSSFeed } from '@/utils/generateRSSFeed'
@@ -19,27 +11,39 @@ import type { Post } from 'contentlayer/generated'
 import { NextSeo } from 'next-seo'
 
 const PostsPage = ({ posts }: { posts: Post[] }) => {
-  const [isGridView, setGridView] = useState(true)
-
+  const [search, setSearch] = useState('')
+  //const [result, setResult] = useState(posts)
+  const result = posts.filter((p) =>
+    p.title.trim().toLowerCase().includes(search.trim().toLowerCase())
+  )
   return (
     <>
       <NextSeo
         title="Blog | Patrick Xin"
         description="Blog posts from Patrick Xin"
       />
-      <div className="mx-auto md:max-w-4xl xl:max-w-6xl">
-        <PostViewOption isGridView={isGridView} setGridView={setGridView} />
-        <AnimatePresence>
-          {isGridView ? (
-            <PostCardList posts={posts} />
-          ) : (
-            <div className="mx-auto md:max-w-3xl">
-              <Breadcrumbs title="posts" />
-              <PostItemList posts={posts} />
-            </div>
-          )}
-        </AnimatePresence>
-      </div>
+      <Container>
+        <PageHeader
+          title="posts"
+          titleInfo="I write things about"
+          titleInfoMain="React"
+        >
+          <div className="w-72 lg:my-4">
+            <input
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value)
+
+                //setResult(result)
+              }}
+              type="text"
+              placeholder="Search title..."
+              className="w-72 form-input"
+            />
+          </div>
+        </PageHeader>
+        <PostItemList posts={result} />
+      </Container>
     </>
   )
 }

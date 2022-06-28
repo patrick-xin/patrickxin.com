@@ -1,10 +1,5 @@
 import { HeartIcon, RssIcon } from '@heroicons/react/solid'
-import {
-  GithubIcon,
-  CopyRightIcon,
-  InstagramIcon,
-  TwitterIcon,
-} from '@/common/components/icon'
+import { GithubIcon, CopyRightIcon } from '@/common/components/icon'
 
 import { getYear } from '@/utils/getYear'
 
@@ -33,26 +28,6 @@ const Footer = ({ hasMarginBottom }: FooterProps) => {
               href="https://github.com/patrick-xin"
             >
               <GithubIcon />
-            </a>
-          </li>
-          <li>
-            <a
-              className="group inline-flex p-1 mt-[2px] hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors ease-linear lg:p-2"
-              rel="noreferrer noopener"
-              target="_blank"
-              href="https://www.instagram.com/alpesdream/"
-            >
-              <InstagramIcon />
-            </a>
-          </li>
-          <li>
-            <a
-              className="group inline-flex p-1 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors ease-linear lg:p-2"
-              rel="noreferrer noopener"
-              target="_blank"
-              href="https://twitter.com/alpesdream"
-            >
-              <TwitterIcon />
             </a>
           </li>
           <li>

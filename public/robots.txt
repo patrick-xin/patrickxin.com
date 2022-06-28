@@ -1,9 +1,2 @@
-# *
 User-agent: *
-Allow: /
-
-# Host
-Host: https://patrickxin.com
-
-# Sitemaps
 Sitemap: https://patrickxin.com/sitemap.xml

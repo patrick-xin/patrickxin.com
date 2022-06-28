@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './code.css';
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
   body {
     @apply text-gray-600 bg-snow dark:bg-lead dark:text-snow/90
-     text-base antialiased font-body  lg:text-lg leading-3 tracking-tight xl:tracking-wide;
+     text-base antialiased font-body lg:text-lg leading-3 tracking-tight xl:tracking-wide;
   }
   h1,
   h2,
@@ -62,13 +64,12 @@
     box-shadow: rgba(50, 33, 84, 0.25) -52px -12px 50px -8px;
   }
 
-  .namespace {
-    opacity: 0.7;
+  .gradient-link:after {
+    background-size: inherit;
+    background-image: inherit;
+    -webkit-animation: inherit;
+    animation: inherit;
   }
-}
-
-:not(pre) > code {
-  @apply px-[0.2rem] py-[0.3rem] rounded whitespace-normal;
 }
 
 #nprogress {
@@ -77,201 +78,4 @@
 
 #nprogress .bar {
   @apply bg-gradient-to-r from-orange to-pink-600 dark:from-mint dark:to-purple-700 fixed z-100 top-0 left-0 w-full h-[3px];
-}
-
-:not(pre) > code[class*='language-'] {
-  @apply rounded p-0.5;
-}
-
-pre[class*='language-'] {
-  @apply overflow-auto relative my-2 -mx-1 md:-mx-0 py-6 px-4;
-}
-
-.language-css > code,
-.language-sass > code,
-.language-scss > code {
-  @apply text-red-600;
-}
-
-[class*='language-'] .namespace {
-  @apply opacity-70;
-}
-
-.token.atrule {
-  @apply text-indigo-500;
-}
-
-.token.attr-name {
-  @apply text-cyan-500 dark:text-green-600;
-}
-
-.token.attr-value {
-  @apply text-yellow-500 dark:text-lime-600;
-}
-
-.token.attribute {
-  @apply text-yellow-500 dark:text-lime-600;
-}
-
-.token.boolean {
-  @apply text-purple-500 dark:text-pink-300;
-}
-
-.token.builtin {
-  @apply text-cyan-500 dark:text-green-600;
-}
-
-.token.cdata {
-  @apply text-cyan-500 dark:text-green-600;
-}
-
-.token.char {
-  @apply text-cyan-500 dark:text-green-600;
-}
-
-.token.class {
-  @apply text-cyan-500 dark:text-amber-400;
-}
-
-.token.class-name {
-  @apply text-indigo-500 dark:text-yellow-300;
-}
-
-.token.comment {
-  @apply text-stone-500 dark:text-gray-500;
-}
-
-.token.constant {
-  @apply text-purple-500 dark:text-yellow-500;
-}
-
-.token.deleted {
-  @apply text-rose-500;
-}
-
-.token.doctype {
-  @apply text-gray-500;
-}
-
-.token.entity {
-  @apply text-rose-500;
-}
-
-.token.function {
-  @apply text-purple-500 dark:text-pink-500;
-}
-
-.token.hexcode {
-  @apply text-yellow-300;
-}
-
-.token.id {
-  @apply text-purple-500 dark:text-pink-300 font-bold;
-}
-
-.token.important {
-  @apply text-purple-500 dark:text-pink-300 font-bold;
-}
-
-.token.inserted {
-  @apply text-green-600;
-}
-
-.token.keyword {
-  @apply text-purple-500 dark:text-red-300;
-}
-
-.token.number {
-  @apply text-orange;
-}
-
-.token.operator {
-  @apply text-cyan-500;
-}
-
-.token.prolog {
-  @apply text-gray-500;
-}
-
-.token.property {
-  @apply dark:text-cyan-300 text-cyan-600;
-}
-
-.token.pseudo-class {
-  @apply text-lime-400;
-}
-
-.token.pseudo-element {
-  @apply text-lime-400;
-}
-
-.token.punctuation {
-  @apply text-blue-300 dark:text-blue-300;
-}
-
-.token.regex {
-  @apply text-yellow-400;
-}
-
-.token.selector {
-  @apply text-rose-500;
-}
-
-.token.string {
-  @apply text-lime-600 dark:text-lime-300;
-}
-
-.token.symbol {
-  @apply text-plum;
-}
-
-.token.tag {
-  @apply text-rose-500;
-}
-
-.token.unit {
-  @apply text-amber-600;
-}
-
-.token.url {
-  @apply text-rose-500;
-}
-
-.token.variable {
-  @apply text-grape;
-}
-
-.code-line {
-  @apply block px-5 -mx-[13px];
-}
-
-.code-line.inserted {
-  @apply bg-green-600/40;
-}
-
-.code-line.deleted {
-  @apply bg-red-500/20;
-}
-
-.code-highlight {
-  @apply float-left min-w-full;
-}
-
-.highlight-line {
-  @apply dark:bg-mint/10 bg-orange/10 min-w-max -mx-3 md:-mx-4 border-l-rose-400 dark:border-l-teal-600 border-l-4;
-}
-
-.line-number::before {
-  @apply inline-block w-4 text-right mr-5 -ml-2 text-gray-400;
-  content: attr(line);
-}
-.rehype-code-title {
-  @apply dark:bg-slate bg-[#F9FAFB] text-orange dark:text-mint rounded-sm rounded-b-none p-1.5 lg:py-2 flex items-center mt-6 -mb-2 -ml-3 md:ml-2 lg:mt-6 w-fit text-sm lg:-mb-8 lg:ml-4;
-}
-
-.gradient-link:after {
-  background-size: inherit;
-  background-image: inherit;
-  -webkit-animation: inherit;
-  animation: inherit;
 }

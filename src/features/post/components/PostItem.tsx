@@ -12,9 +12,9 @@ const PostItem = ({ post }: { post: Frontmatter }) => {
     <motion.li key={post.slug} className="py-4 w-full list-none lg:py-6 ">
       <Link href={`/posts/${post.slug}`}>
         <a className="group space-y-2 lg:space-y-4 ">
-          <div className="flex items-center space-x-1 italic">
+          <div className="flex items-center space-x-1 dark:text-gray-400">
             <PublishTime
-              className="text-xs italic lg:text-sm"
+              className="text-xs lg:text-sm"
               publishedAt={post.publishedAt}
             />
             <div>-</div>
@@ -24,9 +24,11 @@ const PostItem = ({ post }: { post: Frontmatter }) => {
             className="group-hover:underline decoration-orange dark:decoration-mint/60 group-hover:underline-offset-2 transition-all ease-linear"
             title={post.title}
             size="md"
-            isGradient={false}
+            isGradient={true}
           />
-          <p className="text-sm md:text-base">{post.description}</p>
+          <p className="text-sm dark:text-gray-400 md:text-base">
+            {post.description}
+          </p>
         </a>
       </Link>
     </motion.li>

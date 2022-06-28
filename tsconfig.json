@@ -19,6 +19,7 @@
     "paths": {
       "@/common/*": ["src/features/common/*"],
       "@/post/*": ["src/features/post/*"],
+      "@/project/*": ["src/features/project/*"],
       "@/auth/*": ["src/features/auth/*"],
       "@/admin/*": ["src/features/admin/*"],
       "@/styles/*": ["src/styles/*"],
