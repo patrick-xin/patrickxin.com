@@ -32,7 +32,7 @@ export const generateRSSFeed = (
 
   posts.forEach((post) => {
     const { description, title, slug, publishedAt } = post
-    const url = `${baseUrl}/${slug}`
+    const url = `${baseUrl}/posts/${slug}`
 
     feed.addItem({
       title,
