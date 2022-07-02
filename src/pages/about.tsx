@@ -6,27 +6,35 @@ import { usePosts } from '@/post/hooks'
 import { ChatIcon, EyeIcon, HeartIcon } from '@heroicons/react/solid'
 import { SpinLoader } from '@/common/components/icon'
 import { NextSeo } from 'next-seo'
-import { getSiteAboutInfo } from '@/config/site'
-import { GetStaticProps } from 'next'
-import { Site } from 'contentlayer/generated'
-import { useMDXComponent } from 'next-contentlayer/hooks'
-import components from '@/post/components/mdx/mdxComponents'
 
-type AboutPageProps = {
-  siteInfo: Site
-}
-
-const AboutPage = ({ siteInfo }: AboutPageProps) => {
+const AboutPage = () => {
   const { data, isLoading, isError } = usePosts()
 
-  const Component = useMDXComponent(siteInfo.body.code)
   return (
     <>
       <NextSeo title="About | Patrick Xin" description="About Patrick Xin" />
       <Container className="space-y-6 lg:space-y-10">
         <Breadcrumbs title="about" />
-        <Component components={components} />
-
+        <h5 className="text-2xl">About Me</h5>
+        <p className="leading-relaxed">
+          Hello, I&apos;m Patrick Xin. I&apos;m passionate about creating
+          beautiful, user-friendly websites. I love sharing my knowledge about
+          web development as well we building intresting web apps. My favourite
+          tech stack is NextJS, TailwindCSS, Prisma, GraphQL.
+        </p>
+        <p className="leading-relaxed">
+          This website is a continuous working project and completely
+          open-source on Github, source code can be found{' '}
+          <a
+            className="underline decoration-orange dark:decoration-mint underline-offset-2"
+            target="_blank"
+            rel="noreferrer"
+            href="https://github.com/patrick-xin/patrickxin.com"
+          >
+            here
+          </a>
+          .
+        </p>
         <section className="relative space-y-3">
           <h5 className="text-2xl">Site Stats</h5>
 
@@ -42,8 +50,8 @@ const AboutPage = ({ siteInfo }: AboutPageProps) => {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-3">
-              <div>
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+              <div className="space-y-3">
                 <h5>Total Views</h5>
                 <div className="flex gap-2 items-center">
                   <div>
@@ -52,7 +60,7 @@ const AboutPage = ({ siteInfo }: AboutPageProps) => {
                   {data.data.viewsCount}
                 </div>
               </div>
-              <div>
+              <div className="space-y-3">
                 <h5>Total Likes</h5>
                 <div className="flex gap-2 items-center">
                   <div>
@@ -61,7 +69,7 @@ const AboutPage = ({ siteInfo }: AboutPageProps) => {
                   {data.data.likesCount}
                 </div>
               </div>
-              <div>
+              <div className="space-y-3">
                 <h5>Total Comments</h5>
                 <div className="flex gap-2 items-center">
                   <div>
@@ -82,11 +90,4 @@ export default AboutPage
 
 AboutPage.getLayout = function getLayout(page: ReactElement) {
   return <BasicLayout>{page}</BasicLayout>
-}
-
-export const getStaticProps: GetStaticProps = () => {
-  const siteInfo = getSiteAboutInfo()
-  return {
-    props: { siteInfo },
-  }
 }

@@ -11,8 +11,8 @@ const ProjectsPage = ({ projects }: { projects: Project[] }) => {
       <PageHeader
         className="lg:mb-4"
         title="projects"
-        titleInfo="I love building interesting"
-        titleInfoMain="Projects"
+        titleInfo="I build interesting"
+        titleInfoMain="projects"
       />
       <ProjectCardList projects={projects} />
     </Container>

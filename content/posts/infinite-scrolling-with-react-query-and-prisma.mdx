@@ -50,9 +50,7 @@ import type { NextApiHandler } from 'next'
 const handler: NextApiHandler = async (req, res) => {
    try {
     const posts = await prisma.post.findMany()
-
     res.status(200).json(posts)
-
   } catch (error) {
     res.status(400).end()
   }
@@ -73,7 +71,6 @@ import type { NextPage } from 'next'
 const getPosts = async (): Promise<Post[]> => {
   const res = await fetch(`/api/posts`)
   const data = await res.json()
-
   return data
 }
 
@@ -311,10 +308,8 @@ const getPosts = async ({
 }: {
   pageParam: string
 }): Promise<{ posts: Post[]; nextId: string }> => {
-
   const res = await fetch(`/api/posts?cursor=${pageParam}`)
   const data = await res.json()
-
   return data
 }
 

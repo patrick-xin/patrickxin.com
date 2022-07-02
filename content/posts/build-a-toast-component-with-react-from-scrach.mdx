@@ -18,7 +18,7 @@ thumbnail:
 A toast is a common react component we see on the website. It can
 be used as a notification to display messages for the users. We may somewhat
 use libraries like [React Toastify](https://fkhadra.github.io/react-toastify/introduction) and [React Hot Toast](https://react-hot-toast.com/).
-But today in this article we will build one by ourselves. 🔥 If you're interested, please keep reading.
+But today in this article we will build one by ourselves. If you're interested, please keep reading.
 
 > ✨ This tutorial assumes that you have a basic understanding of React.
 >
@@ -45,7 +45,7 @@ Enough talking, let's get started!
 
 let's create a folder called _store_ inside the root directory first. Then inside it create `toast-store.ts`
 
-```ts:store/toast-store.ts showLineNumbers
+```ts:store/toast-store.ts
 import create from "zustand";
 
 export const useToastStore = create((set) => ({
@@ -64,7 +64,7 @@ But bear with me, I have a better option. Let's continue.
 
 We will add more properties to our current toast state.
 
-```ts:store/toast-store.ts {7-9} showLineNumbers
+```ts:store/toast-store.ts {7-9}
 import create from "zustand";
 
 export const useToastStore = create((set) => ({
@@ -83,7 +83,7 @@ We can also display the toast in various positions and decide how it pops up wit
 
 Now let's add the function that actually will open the toast.
 
-```ts:store/toast-store.ts {10-35} showLineNumbers
+```ts:store/toast-store.ts {10-35}
 import create from "zustand";
 
 export const useToastStore = create((set) => ({
@@ -130,7 +130,7 @@ export const useToastStore = create((set) => ({
 
 ### Add Types
 
-```ts:store/toast-store.ts showLineNumbers
+```ts:store/toast-store.ts
 type Position = "topCenter" | "bottomCenter" | "topRight" | "bottomRight";
 type ToastType = "success" | "error" | "warning";
 type Direction = "fadeUp" | "fadeLeft";
@@ -173,7 +173,7 @@ Now the error is gone and Typescript will help us avoid making typos and prevent
 
 ## Make Toast Component
 
-```tsx:components/toast.tsx showLineNumbers
+```tsx:components/toast.tsx
 const Toast = ()=>{
     return (
         <div className='fixed top-0 right-0 flex items-center justify-around rounded h-12 w-48'>
@@ -187,7 +187,7 @@ export default Toast;
 
 ### Render Toast Component On Screen
 
-```tsx:pages/index.tsx showLineNumbers
+```tsx:pages/index.tsx
 import Toast from "../components/toast";
 
 const HomePage = ()=>{
@@ -204,7 +204,7 @@ The Toast component should be on the right top of the screen. We haven't styled 
 
 ### Add Animation, Connect Store
 
-```tsx:components/toast.tsx {1, 4, 7-9, 12-14} showLineNumbers
+```tsx:components/toast.tsx
 import {motion, AnimatePresence} from 'framer-motion'
 import {useToastStore} from '../store/toast-store'
 
@@ -287,7 +287,7 @@ Now it's time to add some configurations to it to make it beautiful and function
 
 Now we are ready to add config to the toast component. We will define configurations as objects so that we can easily combine them with the options in our toast store and use `template literal` inside Tailwind classNames.
 
-```tsx:components/toast.tsx {7-13} showLineNumbers
+```tsx:components/toast.tsx {8-13}
 const Toast = () => {
   const { isToastOpen, message, toastType, position, direction, closeToast } =
     useToastStore();
@@ -323,7 +323,7 @@ We're almost done! I will be so glad if you are still here. Finally, it's time t
 
 ### Open Toast
 
-```tsx:pages/index.tsx {7, 9-19} showLineNumbers
+```tsx:pages/index.tsx {7, 9-19}
 import Toast from "../components/toast";
 import { useToastStore } from "../store/toast-store";
 
@@ -352,7 +352,7 @@ If everything works fine, you should see the success toast will pop up on the ri
 
 ### Close Toast
 
-```tsx:pages/index.tsx {5, 18-20} showLineNumbers
+```tsx:pages/index.tsx {5, 18-20}
 import Toast from "../components/toast";
 import { useToastStore } from "../store/toast-store";
 
@@ -383,7 +383,7 @@ const HomePage = () => {
 
 Let's test all the toast with different positions and types.
 
-```tsx:pages/index.tsx {18-31} showLineNumbers
+```tsx:pages/index.tsx {18-31}
 import Toast from "../components/toast";
 import { useToastStore } from "../store/toast-store";
 
