@@ -18,14 +18,15 @@ const HomePage = ({ post }: { post: Post }) => {
       <BlobSection />
       <div className="relative">
         <div className="font-heading text-xl tracking-wider leading-loose lg:text-3xl lg:leading-[3rem]">
-          Hi there! I&lsquo;m
+          Hey, I&#39;m
         </div>
         <h1 className="text-3xl font-bold lg:my-4 lg:text-6xl text-gradient">
           Patrick Xin
         </h1>
         <p className="font-heading text-xl tracking-wider leading-loose lg:text-3xl lg:leading-[3rem]">
-          a frontend developer, who loves creating beautiful websites and
-          interesting web apps.
+          I am a passionate Software Engineer, specialised in front-end
+          development using React and TypeScript. I love creating beautiful
+          websites and interesting web apps.
         </p>
       </div>
       <div className="my-24 lg:hidden">
