@@ -4,6 +4,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { NextSeo } from 'next-seo'
 import { ThemeProvider } from 'next-themes'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { Analytics } from '@vercel/analytics/react'
 
 import '@fontsource/dm-serif-display'
 import '@fontsource/space-mono'
@@ -67,6 +68,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           <ReactQueryDevtools />
         </Hydrate>
       </QueryClientProvider>
+      <Analytics />
     </>
   )
 }
